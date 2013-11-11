@@ -137,6 +137,18 @@ public abstract class StateMachineBase extends UIBuilder {
         this(res, null, loadTheme);
     }
 
+    public com.codename1.ui.RadioButton findLongVibrationButton(Component root) {
+        return (com.codename1.ui.RadioButton)findByName("longVibrationButton", root);
+    }
+
+    public com.codename1.ui.RadioButton findLongVibrationButton() {
+        com.codename1.ui.RadioButton cmp = (com.codename1.ui.RadioButton)findByName("longVibrationButton", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.RadioButton)findByName("longVibrationButton", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.ComboBox findUrlComboBox(Component root) {
         return (com.codename1.ui.ComboBox)findByName("urlComboBox", root);
     }
@@ -169,6 +181,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.RadioButton cmp = (com.codename1.ui.RadioButton)findByName("yellowRadioButton", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.RadioButton)findByName("yellowRadioButton", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Label findTest2Label(Component root) {
+        return (com.codename1.ui.Label)findByName("test2Label", root);
+    }
+
+    public com.codename1.ui.Label findTest2Label() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("test2Label", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("test2Label", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -233,6 +257,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.RadioButton findOffVibrationButton(Component root) {
+        return (com.codename1.ui.RadioButton)findByName("offVibrationButton", root);
+    }
+
+    public com.codename1.ui.RadioButton findOffVibrationButton() {
+        com.codename1.ui.RadioButton cmp = (com.codename1.ui.RadioButton)findByName("offVibrationButton", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.RadioButton)findByName("offVibrationButton", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.Label findLatitudeLabel(Component root) {
         return (com.codename1.ui.Label)findByName("latitudeLabel", root);
     }
@@ -241,6 +277,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("latitudeLabel", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Label)findByName("latitudeLabel", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Label findTest3Label(Component root) {
+        return (com.codename1.ui.Label)findByName("test3Label", root);
+    }
+
+    public com.codename1.ui.Label findTest3Label() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("test3Label", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("test3Label", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -493,6 +541,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("providersMultiListContainer", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Container)findByName("providersMultiListContainer", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.RadioButton findShortVibrationButton(Component root) {
+        return (com.codename1.ui.RadioButton)findByName("shortVibrationButton", root);
+    }
+
+    public com.codename1.ui.RadioButton findShortVibrationButton() {
+        com.codename1.ui.RadioButton cmp = (com.codename1.ui.RadioButton)findByName("shortVibrationButton", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.RadioButton)findByName("shortVibrationButton", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -785,6 +845,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.Container findVibrationContainer(Component root) {
+        return (com.codename1.ui.Container)findByName("vibrationContainer", root);
+    }
+
+    public com.codename1.ui.Container findVibrationContainer() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("vibrationContainer", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("vibrationContainer", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.Button findButton(Component root) {
         return (com.codename1.ui.Button)findByName("Button", root);
     }
@@ -1001,6 +1073,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.Label findVibrationLabel(Component root) {
+        return (com.codename1.ui.Label)findByName("vibrationLabel", root);
+    }
+
+    public com.codename1.ui.Label findVibrationLabel() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("vibrationLabel", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("vibrationLabel", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.RadioButton findLeatherRadioButton(Component root) {
         return (com.codename1.ui.RadioButton)findByName("leatherRadioButton", root);
     }
@@ -1121,14 +1205,14 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.TextArea findStreetTextArea(Component root) {
-        return (com.codename1.ui.TextArea)findByName("streetTextArea", root);
+    public com.codename1.ui.Label findTest1Label(Component root) {
+        return (com.codename1.ui.Label)findByName("test1Label", root);
     }
 
-    public com.codename1.ui.TextArea findStreetTextArea() {
-        com.codename1.ui.TextArea cmp = (com.codename1.ui.TextArea)findByName("streetTextArea", Display.getInstance().getCurrent());
+    public com.codename1.ui.Label findTest1Label() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("test1Label", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.TextArea)findByName("streetTextArea", aboutToShowThisContainer);
+            cmp = (com.codename1.ui.Label)findByName("test1Label", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -1141,6 +1225,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("urlComboRenderer", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Container)findByName("urlComboRenderer", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.ComponentGroup findVibrationGroup(Component root) {
+        return (com.codename1.ui.ComponentGroup)findByName("vibrationGroup", root);
+    }
+
+    public com.codename1.ui.ComponentGroup findVibrationGroup() {
+        com.codename1.ui.ComponentGroup cmp = (com.codename1.ui.ComponentGroup)findByName("vibrationGroup", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.ComponentGroup)findByName("vibrationGroup", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -4764,10 +4860,6 @@ public abstract class StateMachineBase extends UIBuilder {
                 onInsertAddressForm_StreetFieldAction(c, event);
                 return;
             }
-            if("streetTextArea".equals(c.getName())) {
-                onInsertAddressForm_StreetTextAreaAction(c, event);
-                return;
-            }
         }
         if(rootContainerName.equals("Share")) {
             if("shareButton".equals(c.getName())) {
@@ -4860,6 +4952,18 @@ public abstract class StateMachineBase extends UIBuilder {
             }
             if("soundNoRadioButton".equals(c.getName())) {
                 onSettings_SoundNoRadioButtonAction(c, event);
+                return;
+            }
+            if("offVibrationButton".equals(c.getName())) {
+                onSettings_OffVibrationButtonAction(c, event);
+                return;
+            }
+            if("shortVibrationButton".equals(c.getName())) {
+                onSettings_ShortVibrationButtonAction(c, event);
+                return;
+            }
+            if("longVibrationButton".equals(c.getName())) {
+                onSettings_LongVibrationButtonAction(c, event);
                 return;
             }
         }
@@ -4969,9 +5073,6 @@ public abstract class StateMachineBase extends UIBuilder {
       protected void onInsertAddressForm_StreetFieldAction(Component c, ActionEvent event) {
       }
 
-      protected void onInsertAddressForm_StreetTextAreaAction(Component c, ActionEvent event) {
-      }
-
       protected void onShare_ShareButtonAction(Component c, ActionEvent event) {
       }
 
@@ -5033,6 +5134,15 @@ public abstract class StateMachineBase extends UIBuilder {
       }
 
       protected void onSettings_SoundNoRadioButtonAction(Component c, ActionEvent event) {
+      }
+
+      protected void onSettings_OffVibrationButtonAction(Component c, ActionEvent event) {
+      }
+
+      protected void onSettings_ShortVibrationButtonAction(Component c, ActionEvent event) {
+      }
+
+      protected void onSettings_LongVibrationButtonAction(Component c, ActionEvent event) {
       }
 
       protected void onMapsForm_MapsMultiListAction(Component c, ActionEvent event) {

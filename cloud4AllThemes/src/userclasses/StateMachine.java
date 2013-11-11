@@ -12,8 +12,10 @@ import gr.certh.hit.app.map.GeocodingService;
 import gr.certh.hit.app.map.ProximityService;
 import gr.certh.hit.util.MyFolderBrowser;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.Vector;
@@ -45,6 +47,7 @@ import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
+import com.codename1.ui.ComponentGroup;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
@@ -84,7 +87,7 @@ public class StateMachine extends StateMachineBase {
 	Image fileBrowserViewImage;
 	EncodedImage currentImage2;
 
-	String photoPath;
+	String photoPath, audioPath;
 	Contact displayContact;
 
 	MyFolderBrowser browser;
@@ -120,7 +123,14 @@ public class StateMachine extends StateMachineBase {
 	Label latitudeLb, longitudeLb;
 	String latitudeStr, longitudeStr;
 
-	boolean timerIsRunning;
+	boolean timerIsRunning, offVibration, shortVibration, longVibration;
+	
+	int vibrationTime;
+	
+	// DEBUG variables
+	String homePathDebug, outputDebug, photoNameDebug, audioNameDebug;
+	char sepDebug;
+	int stepDebug;
 
 	public StateMachine(String resFile) {
 		super(resFile);
@@ -139,6 +149,10 @@ public class StateMachine extends StateMachineBase {
 		volume = 100;
 		isInitialised = false;
 		timerIsRunning = false;
+		
+		offVibration = false;
+		shortVibration = true;
+		longVibration = false;
 
 		// initVolumeAudio();
 	}
@@ -188,7 +202,7 @@ public class StateMachine extends StateMachineBase {
 	protected boolean onMainExit() {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		boolean val = super.onMainExit();
-
+		Display.getInstance().vibrate(vibrationTime);
 		return val;
 	}
 
@@ -196,6 +210,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_BlackRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		UIManager.getInstance().setThemeProps(r.getTheme("mitsosBlack"));
 		selectedTheme = "mitsosBlack";
 
@@ -229,6 +244,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_WhiteRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
 		selectedTheme = "mitsosWhite";
 
@@ -258,6 +274,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_YellowRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		UIManager.getInstance().setThemeProps(r.getTheme("mitsosYellow"));
 		selectedTheme = "mitsosYellow";
 
@@ -287,6 +304,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_LeatherRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		UIManager.getInstance().setThemeProps(r.getTheme("Leather"));
 		selectedTheme = "Leather";
 
@@ -331,13 +349,7 @@ public class StateMachine extends StateMachineBase {
 	protected boolean onMainSettings() {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		boolean val = super.onMainSettings();
-
-		// String defaultLocale = System.getProperty("microedition.locale");
-		// System.out.println("defaultLocale: " + defaultLocale);
-		System.out.println("A: " + Display.getInstance().getLocalizationManager().getLanguage());
-		// System.out.println("B: " + Display.getInstance().getLocalizationManager().getLocale());
-		// selectedLanguage = Display.getInstance().getLocalizationManager().getLanguage();
-
+		Display.getInstance().vibrate(vibrationTime);
 		return val;
 	}
 
@@ -499,14 +511,53 @@ public class StateMachine extends StateMachineBase {
 				// findVolumeSlider().getComponentForm().revalidate();
 			}
 		}
+		
+		setVibrationLevels();
+		
+		String testLanguage = "";
+		String testLocale = ""; 
+		
+		// Getting system's properties
+//		String defaultLocale = System.getProperty("microedition.locale");
+		if(Display.getInstance() != null){
+			testLanguage = Display.getInstance().getLocalizationManager().getLanguage();
+			testLocale = Display.getInstance().getLocalizationManager().getLocale();
+		}
+		
+		findTest1Label().setText("properties");
+		findTest2Label().setText("language: " + testLanguage);
+		findTest3Label().setText("locale: " + testLocale);
 
 		Display.getInstance().getCurrent().refreshTheme();
+	}
+	
+	private void setVibrationLevels() {
+		if (offVibration) {
+			findOffVibrationButton().setSelected(true);
+			offVibration = true;
+			shortVibration = false;
+			longVibration = false;
+			vibrationTime = 0;
+		} else if(shortVibration) {
+			findShortVibrationButton().setSelected(true);
+			offVibration = false;
+			shortVibration = true;
+			longVibration = false;
+			vibrationTime = 1000;
+		} else if(longVibration){
+			findLongVibrationButton().setSelected(true);
+			offVibration = false;
+			shortVibration = false;
+			longVibration = true;
+			vibrationTime = 2000;
+		}
 	}
 
 	protected void onSettings_SmallRadioButtonAction(Component c, ActionEvent event) {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_SmallRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		UIManager.getInstance().addThemeProps(r.getTheme("4"));
 		selectedFont = "small";
 		Display.getInstance().getCurrent().refreshTheme();
@@ -516,6 +567,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_MediumRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		UIManager.getInstance().addThemeProps(r.getTheme("3"));
 		selectedFont = "medium";
 		Display.getInstance().getCurrent().refreshTheme();
@@ -525,6 +577,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_LargeRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		UIManager.getInstance().addThemeProps(r.getTheme("2"));
 		selectedFont = "large";
 		Display.getInstance().getCurrent().refreshTheme();
@@ -534,6 +587,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_VeryLargeRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		UIManager.getInstance().addThemeProps(r.getTheme("1"));
 		selectedFont = "veryLarge";
 		Display.getInstance().getCurrent().refreshTheme();
@@ -543,6 +597,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_HugeRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		UIManager.getInstance().addThemeProps(r.getTheme("0"));
 		selectedFont = "huge";
 		Display.getInstance().getCurrent().refreshTheme();
@@ -560,6 +615,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_EnglishRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "en"));
 		selectedLanguage = "en";
 	}
@@ -568,6 +624,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_GreekRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		Hashtable table = r.getL10N("cloud4AllThemes", "gr");
 		UIManager.getInstance().setResourceBundle(table);
 		selectedLanguage = "gr";
@@ -626,9 +683,12 @@ public class StateMachine extends StateMachineBase {
 			showForm("Main", null);
 		} else if (username.equals("3")) {
 			// Default Theme
-			selectedTheme = "mitsosNative";
-			UIManager.getInstance().setThemeProps(r.getTheme("mitsosNative"));
-			Display.getInstance().getCurrent().refreshTheme();
+//			selectedTheme = "mitsosNative";
+//			UIManager.getInstance().setThemeProps(r.getTheme("mitsosNative"));
+//			Display.getInstance().getCurrent().refreshTheme();
+			
+			// Testing the applyServerSettings method
+	    	applyServerSettings("Yellow-Black", "huge", "Greek", 50, 0);
 
 			showForm("Main", null);
 		} else {
@@ -966,39 +1026,39 @@ public class StateMachine extends StateMachineBase {
 
 		if (selectedIndex == 0) {
 			// showForm("Contacts", null); // First choice
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			// showForm("MyContacts Form", null);
 			showForm("Contacts", null);
 		} else if (selectedIndex == 1) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Share", null);
 			// showForm("Video View", null);
 		} else if (selectedIndex == 2) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			// showForm("ContactsTest", null);
 			showForm("My Multimedia Form", null);
 		} else if (selectedIndex == 3) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			// showForm("Maps Form", null);
 			showForm("Find Your Position Form", null);
 		} else if (selectedIndex == 4) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Web Browser Form", null);
 			// showForm("Contacts", null);
 		}
 		// else if (selectedIndex == 4) {
-		// Display.getInstance().vibrate(1000);
+		// Display.getInstance().vibrate(vibrationTime);
 		// // showForm("Camera Form", null);
 		// showForm("Storage Form", null);
 		// }
 		// else if (selectedIndex == 5) {
-		// Display.getInstance().vibrate(1000);
+		// Display.getInstance().vibrate(vibrationTime);
 		// showForm("File Browser", null);
 		// // FolderBrowser fb = new FolderBrowser();
 		// // fb.show();
 		// }
 		// else if (selectedIndex == 6) {
-		// // Display.getInstance().vibrate(1000);
+		// // Display.getInstance().vibrate(vibrationTime);
 		// // showForm("My Audio Form", null);
 		// // FolderBrowser fb = new FolderBrowser();
 		// // fb.show();
@@ -1100,9 +1160,10 @@ public class StateMachine extends StateMachineBase {
 		int selectedIndex = findMapsMultiList().getSelectedIndex();
 
 		if (selectedIndex == 0) {
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Maps Providers", null);
 		} else if (selectedIndex == 1) {
-			// showForm("Proximity Form", null);
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Proximity Providers Form", null);
 		}
 	}
@@ -1546,13 +1607,15 @@ public class StateMachine extends StateMachineBase {
 
 		// if(selectedContact != null)
 		if (selectedContact != null) {
+			Display.getInstance().vibrate(vibrationTime);
+			
 			String homeNo = "-";
 			String mobileNo = "-";
 			String workNo = "-";
 			String faxNo = "-";
 			String otherNo = "-";
 			;
-
+			
 			// selectedContact.getPrimaryPhoneNumber(); null (NOKIA 701 with SIM card)
 			// selectedContact.getFamilyName(); OK (NOKIA 701 with SIM card)
 			Hashtable phoneNumbers = selectedContact.getPhoneNumbers();
@@ -1573,8 +1636,8 @@ public class StateMachine extends StateMachineBase {
 				otherNo = phoneNumbers.get("other").toString();
 
 			// String info = selectedContact.getId() + ":" + homeNo + ":" + mobileNo + ":" + workNo + ":" + faxNo + ":" + otherNo;
-			// c.getComponentForm().setTitle(info);
-			// c.getComponentForm().revalidate();
+			 c.getComponentForm().setTitle(selectedContact.getFamilyName() + "-" + mobileNo);
+			 c.getComponentForm().revalidate();
 
 			Display.getInstance().dial(mobileNo);
 		}
@@ -1642,9 +1705,18 @@ public class StateMachine extends StateMachineBase {
 		// 24.7.13 2:56
 		// System.out.println(lastLocation.getLongitude() + "-" + lastLocation.getLatitude());
 
+		final Dialog dlg = new Dialog();
+		InfiniteProgress prog = new InfiniteProgress();
+		prog.setAnimation(r.getImage("waiting_4.png"));
+
+		dlg.setLayout(new BorderLayout());
+		dlg.addComponent(BorderLayout.CENTER, prog);
+		dlg.showPacked(BorderLayout.CENTER, false);		
+		
 		Vector poiVec = ps.parseXMLResponseWithCodenameOneParser(ps.requestProximityService(lastLocation.getLongitude(), lastLocation.getLatitude()));
-		// System.out.println("StateMachine: " + findProximityMc());
 		ps.showResturantsOnMap(f, findProximityMc(), poiVec, lastLocation.getLatitude(), lastLocation.getLongitude());
+		
+		dlg.dispose();
 	}
 
 	protected void onFileBrowser_FolderBrowserListAction(Component c, ActionEvent event) {
@@ -1753,46 +1825,49 @@ public class StateMachine extends StateMachineBase {
 		super.beforeLoadPhotoForm(f);
 
 		// AYTO LEITOURGEI KAI KANEI TO PRESENTATION APO TIW PHOTOS POU TRAVIXAME
-		 final MyPhotos photos = (MyPhotos) Storage.getInstance().readObject("SavedPhoto");
-		
-		 if (photos != null) {
-		 // Display.getInstance().callSerially(new SwitchPhotos(photos.getPhotos(), findPhotoLb()));
-		 new SwitchPhotos(photos.getPhotos(), findPhotoLb());
-		 System.out.println("FORM NAME2: " + Display.getInstance().getCurrent().getName());
-		 }
+		// final MyPhotos photos = (MyPhotos) Storage.getInstance().readObject("SavedPhoto");
+		//
+		// if (photos != null) {
+		// // Display.getInstance().callSerially(new SwitchPhotos(photos.getPhotos(), findPhotoLb()));
+		// new SwitchPhotos(photos.getPhotos(), findPhotoLb());
+		// System.out.println("FORM NAME2: " + Display.getInstance().getCurrent().getName());
+		// }
 
 		// AYTO LEITOURGEI KAI DIALEGOUME EMEIS APO TON FILE BROWSER POIA PHOTO THELOUME NA ANOIXOUME (thelei tropopoihsh to size - koita commented out lines)
-//		Display.getInstance().openImageGallery(new ActionListener() {
-//
-//			public void actionPerformed(ActionEvent evt) {
-//				try {
-//					if (evt == null) {
-//						System.out.println("user cancelled");
-//						return;
+		Display.getInstance().openImageGallery(new ActionListener() {
+
+			public void actionPerformed(ActionEvent evt) {
+				try {
+					if (evt == null) {
+						System.out.println("user cancelled");
+						return;
+					}
+
+					String path = (String) evt.getSource();
+					// we are opening the image with the file handle since the image
+					// is large this method can scale it down dynamically to a manageable
+					// size that doesn't exceed the heap
+					Image i = Image.createImage(path);
+					
+					findPhotoLb().setIcon(i.scaledWidth(Display.getInstance().getDisplayWidth())); // TODO: This should be in place of 360
+					
+//					Label image = new Label(i.scaledWidth(Display.getInstance().getDisplayWidth() / 2));
+//					final ComponentGroup cnt = new ComponentGroup();
+//					if (cnt.getComponentCount() > 2) {
+//						cnt.removeComponent(cnt.getComponentAt(2));
 //					}
-//
-//					String path = (String) evt.getSource();
-//					// we are opening the image with the file handle since the image
-//					// is large this method can scale it down dynamically to a manageable
-//					// size that doesn't exceed the heap
-//					Image i = Image.createImage(path);
-//					// Label image = new Label(i.scaledWidth(Display.getInstance().getDisplayWidth() / 2));
-//					// if(cnt.getComponentCount() > 2) {
-//					// cnt.removeComponent(cnt.getComponentAt(2));
-//					// }
-//					// cnt.addComponent(image);
-//					// cnt.getComponentForm().revalidate();
-//
+//					cnt.addComponent(image);
+//					cnt.getComponentForm().revalidate();
+
 //					findPhotoLb().setIcon(i);
-//
-//					findPhotoLb().getComponentForm().revalidate();
-//				} catch (Exception ex) {
-//					ex.printStackTrace();
-//				}
-//			}
-//		});
-		
-		
+
+					findPhotoLb().getComponentForm().revalidate();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
+
 	}
 
 	protected void postMediaPlayerForm(Form f) {
@@ -1878,18 +1953,20 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onMyMultimediaForm_MultimediaListAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
+		
 		System.out.println("findMultimediaList().getSelectedItem(): " + findMultimediaList().getSelectedItem());
 		System.out.println("findMultimediaList().getSelectedIndex():" + findMultimediaList().getSelectedIndex());
 		int selectedIndex = findMultimediaList().getSelectedIndex();
 
 		if (selectedIndex == 0) {
-			Display.getInstance().vibrate(1000);
+//			Display.getInstance().vibrate(vibrationTime);
 			showForm("My Images Form", null);
 		} else if (selectedIndex == 1) {
-			Display.getInstance().vibrate(1000);
+//			Display.getInstance().vibrate(vibrationTime);
 			showForm("My Audio Form", null);
 		} else if (selectedIndex == 2) {
-			Display.getInstance().vibrate(1000);
+//			Display.getInstance().vibrate(vibrationTime);
 			showForm("My Video Form", null);
 		}
 	}
@@ -1903,10 +1980,10 @@ public class StateMachine extends StateMachineBase {
 		int selectedIndex = findMyImagesMultiList().getSelectedIndex();
 
 		if (selectedIndex == 0) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Load Photo Form", null);
 		} else if (selectedIndex == 1) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Image Capture", null);
 		}
 	}
@@ -1914,19 +1991,33 @@ public class StateMachine extends StateMachineBase {
 	protected void onMyAudioForm_MyAudioMultiListAction(final Component c, ActionEvent event) {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onMyAudioForm_MyAudioMultiListAction(c, event);
+		
+//		String type, type2 = "";
+//		
+//		type = Display.getInstance().getMediaRecorderingMimeType();
+//		System.out.println("type: " + type);
+//		
+//		String[] array = Display.getInstance().getAvailableRecordingMimeTypes();
+//		for(int i=0; i<array.length; i++) {
+//			type2 = type2 + "-" + array[i];
+//			System.out.println("type2: " + type2);
+//		}
+//		
+//		c.getComponentForm().setTitle(type + "----" + type2);
+//		c.getComponentForm().revalidate();
 
 		System.out.println("findMyAudioMultiList().getSelectedItem(): " + findMyAudioMultiList().getSelectedItem());
 		System.out.println("findMyAudioMultiList().getSelectedIndex():" + findMyAudioMultiList().getSelectedIndex());
 		int selectedIndex = findMyAudioMultiList().getSelectedIndex();
 
 		if (selectedIndex == 0) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			// showForm("Audio Listen", null);
 
 			final Dialog d = new Dialog("select an audio file");
 			d.setLayout(new BorderLayout());
 			FileTreeModel model = new FileTreeModel(true);
-			model.addExtensionFilter("mp3");
+//			model.addExtensionFilter("mp3"); // DEN PAIZOUN TA MP3
 			model.addExtensionFilter("wav");
 			// model.addExtensionFilter("mp4");
 
@@ -1943,7 +2034,7 @@ public class StateMachine extends StateMachineBase {
 							d.dispose();
 							try {
 								System.out.println("node: " + node);
-
+								Display.getInstance().vibrate(vibrationTime);
 								// audioMedia = MediaManager.createMedia((String) node, false); // true (video)
 
 								audioMedia = MediaManager.createMedia((String) node, false, new Runnable() {
@@ -1976,61 +2067,238 @@ public class StateMachine extends StateMachineBase {
 			d.showAtPosition(2, 2, 2, 2, true);
 
 		} else if (selectedIndex == 1) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			// showForm("Audio Record", null);
 
 			String debugTest = "1";
 			c.getComponentForm().setTitle(debugTest);
 			c.getComponentForm().revalidate();
 
-			final String value = Capture.captureAudio();
+//			final String value = Capture.captureAudio();
+			
+			
+			
+			
+			
+			
+			
+			// TODO: Testing with ActionListener
+			
+			Capture.captureAudio(new ActionListener() {
 
-			debugTest = "2";
-			c.getComponentForm().setTitle(debugTest);
-			c.getComponentForm().revalidate();
-
-			if (value != null) {
-
-				debugTest = "3";
-				c.getComponentForm().setTitle(debugTest);
-				c.getComponentForm().revalidate();
-
-				final Button playCapturedAudio = new Button("listen to recorded audio");
-
-				debugTest = "4";
-				c.getComponentForm().setTitle(debugTest);
-				c.getComponentForm().revalidate();
-
-				c.getComponentForm().addComponent(playCapturedAudio);
-
-				debugTest = "5";
-				c.getComponentForm().setTitle(debugTest);
-				c.getComponentForm().revalidate();
-
-				c.getComponentForm().revalidate();
-
-				debugTest = "6";
-				c.getComponentForm().setTitle(debugTest);
-				c.getComponentForm().revalidate();
-
-				playCapturedAudio.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				public void actionPerformed(ActionEvent evt) {
+					if (evt != null) {
+						InputStream is = null;
+						OutputStream o = null;
 						try {
+							audioPath = (String) evt.getSource();
+							System.out.println("path " + audioPath);
 
-							Media m = MediaManager.createMedia(value, false);
-							m.setVolume(volume);
-							m.play();
+							is = com.codename1.io.FileSystemStorage.getInstance().openInputStream(audioPath); // Me ayto leitourgouse
+							// is = com.codename1.io.Storage.getInstance().createInputStream(photoPath);
+							
+//							System.out.println("type: " + Display.getInstance().getMediaRecorderingMimeType());
+//							
+//							String[] array = Display.getInstance().getAvailableRecordingMimeTypes();
+//							for(int i=0; i<array.length; i++) {
+//								System.out.println("type2: " + array[i]);
+//							}
+							
+							
+//							Media audio = MediaManager.createMedia(, Display.getInstance().getMediaRecorderingMimeType());
+//							isGlobal = is;
+//							i = EncodedImage.create(is);
+//							i.setImageName(getDateTime());
+//							currentImage2 = (EncodedImage) i;
+//							i = i.scaledWidth(360);
+//							l.setIcon(i);
+							
+//							Display
 
-							c.getComponentForm().revalidate();
-							c.getComponentForm().show();
+							// Afte loading the photo I clean the InputStream and recreate it in order to copy it
+//							Util.cleanup(is);
+//							stepDebug = 10;
+//							is = com.codename1.io.FileSystemStorage.getInstance().openInputStream(audioPath);
 
-						} catch (IOException ex) {
-							// Log.e(ex);
-							Dialog.show("Error", "" + ex.getMessage(), "OK", null);
+							FileSystemStorage fs = FileSystemStorage.getInstance();
+
+							String[] roots = fs.getRoots();
+							stepDebug = 1;
+
+							String allRoots = "";
+
+							for (int i = 0; i < roots.length; i++) {
+								allRoots = allRoots + "-" + roots[i];
+							}
+							stepDebug = 2;
+
+							// is = com.codename1.io.Storage.getInstance().createInputStream(photoPath);
+							fs.mkdir(roots[0] + "cloud4all"); // file:///E:/
+							stepDebug = 30;
+							char sep = fs.getFileSystemSeparator();
+							stepDebug = 31;
+							audioNameDebug = roots[0] + "cloud4all" + sep + getDateTime() + ".wav";
+							stepDebug = 32;
+							o = FileSystemStorage.getInstance().openOutputStream(audioNameDebug);
+							stepDebug = 4;
+							// DataOutputStream dos = new DataOutputStream(o);
+							// Util.writeObject(i, dos);
+							Util.copy(is, o);
+							stepDebug = 5;
+
+							// OutputStream o = Storage.getInstance().createOutputStream(name);
+							// Util.copy(input, o);
+							// Util.close(o);
+
+							// // Saving the photo in a directory in order to have them permanently
+							// stepDebug = 11;
+							// Storage storage = Storage.getInstance();
+							// stepDebug = 12;
+							// final String homePath = storage.getAppHomePath();
+							// stepDebug = 13;
+							// homePathDebug = homePath;
+							// System.out.println("homepath: " + homePathDebug);
+							// stepDebug = 1;
+							//
+							// final char sep = fileSystemStorage.getFileSystemSeparator();
+							// sepDebug = sep;
+							// stepDebug = 2;
+							// System.out.println("sepDebug: " + sepDebug);
+							//
+							// fileSystemStorage.mkdir(homePath + "cloud4all");
+							// stepDebug = 3;
+							// // System.out.println("homepath: " + homePathDebug);
+							//
+							// photoNameDebug = homePath + "cloud4all" + sep + currentImage2.getImageName()+".jpg";
+							// OutputStream o = FileSystemStorage.getInstance().openOutputStream(photoNameDebug);
+							// stepDebug = 4;
+							// System.out.println("photoNameDebug: " + photoNameDebug);
+							//
+							// Util.copy(is, o);
+							// stepDebug = 5;
+							// // System.out.println("homepath: " + homePathDebug);
+							//
+							// o.close();
+							// stepDebug = 6;
+							// // System.out.println("homepath: " + homePathDebug);
+
+							// FileSystemStorage fs = FileSystemStorage.getInstance();
+							//
+							// String[] roots = fs.getRoots();
+							//
+							// // if(!root.endsWith("/")) {
+							// // root += "/";
+							// // }
+							// for(int i=0; i<roots.length; i++) {
+							// System.out.println(roots[i]);
+							// }
+							//
+							// // String fileName = root + "myFileName";
+							//
+							// // f.setTitle(photoPath);
+
+							// // Saving the photo in a directory in order to have them permanently
+							// stepDebug = 11;
+							// FileSystemStorage fileSystemStorage = FileSystemStorage.getInstance();
+							// stepDebug = 12;
+							// final String homePath = fileSystemStorage.getAppHomePath();
+							// stepDebug = 13;
+							// homePathDebug = homePath;
+							// System.out.println("homepath: " + homePathDebug);
+							// stepDebug = 1;
+							//
+							// final char sep = fileSystemStorage.getFileSystemSeparator();
+							// sepDebug = sep;
+							// stepDebug = 2;
+							// System.out.println("sepDebug: " + sepDebug);
+							//
+							// fileSystemStorage.mkdir(homePath + "cloud4all");
+							// stepDebug = 3;
+							// // System.out.println("homepath: " + homePathDebug);
+							//
+							// photoNameDebug = homePath + "cloud4all" + sep + currentImage2.getImageName()+".jpg";
+							// OutputStream o = FileSystemStorage.getInstance().openOutputStream(photoNameDebug);
+							// stepDebug = 4;
+							// System.out.println("photoNameDebug: " + photoNameDebug);
+							//
+							// Util.copy(is, o);
+							// stepDebug = 5;
+							// // System.out.println("homepath: " + homePathDebug);
+							//
+							// o.close();
+							// stepDebug = 6;
+							// // System.out.println("homepath: " + homePathDebug);
+
+						} catch (Exception ex) {
+							Dialog.show("Error", "" + ex.getMessage() + "-step: " + stepDebug, "OK", null);
+							ex.printStackTrace();
+						} finally {
+							Util.cleanup(is);
+							Util.cleanup(o);
 						}
+					} else {
+						showForm("My Audio Form", null);
 					}
-				});
-			}
+				}
+			});
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+//			debugTest = "2";
+//			c.getComponentForm().setTitle(debugTest);
+//			c.getComponentForm().revalidate();
+
+//			if (value != null) {
+//
+//				debugTest = "3";
+//				c.getComponentForm().setTitle(debugTest);
+//				c.getComponentForm().revalidate();
+//
+//				final Button playCapturedAudio = new Button("listen to recorded audio");
+//
+//				debugTest = "4";
+//				c.getComponentForm().setTitle(debugTest);
+//				c.getComponentForm().revalidate();
+//
+//				c.getComponentForm().addComponent(playCapturedAudio);
+//
+//				debugTest = "5";
+//				c.getComponentForm().setTitle(debugTest);
+//				c.getComponentForm().revalidate();
+//
+//				c.getComponentForm().revalidate();
+//
+//				debugTest = "6";
+//				c.getComponentForm().setTitle(debugTest);
+//				c.getComponentForm().revalidate();
+//
+//				playCapturedAudio.addActionListener(new ActionListener() {
+//					public void actionPerformed(ActionEvent evt) {
+//						try {
+//
+//							Media m = MediaManager.createMedia(value, false);
+//							m.setVolume(volume);
+//							m.play();
+//
+//							c.getComponentForm().revalidate();
+//							c.getComponentForm().show();
+//
+//						} catch (IOException ex) {
+//							// Log.e(ex);
+//							Dialog.show("Error", "" + ex.getMessage(), "OK", null);
+//						}
+//					}
+//				});
+//			}
 		}
 	}
 
@@ -2043,10 +2311,10 @@ public class StateMachine extends StateMachineBase {
 		int selectedIndex = findMyVideoMultiList().getSelectedIndex();
 
 		if (selectedIndex == 0) {
-			// Display.getInstance().vibrate(1000);
+			// Display.getInstance().vibrate(vibrationTime);
 			// showForm("Video View", null);
 
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			// showForm("Audio Listen", null);
 
 			final Dialog d = new Dialog("Select a video file");
@@ -2068,7 +2336,8 @@ public class StateMachine extends StateMachineBase {
 							d.dispose();
 							try {
 								// videoMedia = MediaManager.createMedia((String) node, true); // false (audio)
-
+								Display.getInstance().vibrate(vibrationTime);
+								
 								videoMedia = MediaManager.createMedia((String) node, true, new Runnable() {
 									public void run() {
 										// findAudioPlayButton().setText("");
@@ -2103,7 +2372,7 @@ public class StateMachine extends StateMachineBase {
 			d.showAtPosition(2, 2, 2, 2, true);
 
 		} else if (selectedIndex == 1) { // TODO: TO BE COMMENTED OUT WHEN THE VIDEO COMPONENT WILL BE WORKING PROPERLY
-			// Display.getInstance().vibrate(1000);
+			// Display.getInstance().vibrate(vibrationTime);
 			// showForm("Video Capture", null);
 		}
 	}
@@ -2177,14 +2446,13 @@ public class StateMachine extends StateMachineBase {
 			public void actionPerformed(ActionEvent evt) {
 				if (evt != null) {
 					InputStream is = null;
+					OutputStream o = null;
 					try {
 						photoPath = (String) evt.getSource();
 						System.out.println("path " + photoPath);
 
-						is = com.codename1.io.FileSystemStorage.getInstance().openInputStream(photoPath);
-
-						// DEBUG
-						f.setTitle(photoPath);
+						is = com.codename1.io.FileSystemStorage.getInstance().openInputStream(photoPath); // Me ayto leitourgouse
+						// is = com.codename1.io.Storage.getInstance().createInputStream(photoPath);
 
 						isGlobal = is;
 						i = EncodedImage.create(is);
@@ -2192,15 +2460,126 @@ public class StateMachine extends StateMachineBase {
 						currentImage2 = (EncodedImage) i;
 						i = i.scaledWidth(360);
 						l.setIcon(i);
-						f.revalidate();
+
+						// Afte loading the photo I clean the InputStream and recreate it in order to copy it
+						Util.cleanup(is);
+						is = com.codename1.io.FileSystemStorage.getInstance().openInputStream(photoPath);
+
+						FileSystemStorage fs = FileSystemStorage.getInstance();
+
+						String[] roots = fs.getRoots();
+						stepDebug = 1;
+
+						String allRoots = "";
+
+						for (int i = 0; i < roots.length; i++) {
+							allRoots = allRoots + "-" + roots[i];
+						}
+						stepDebug = 2;
+
+						// is = com.codename1.io.Storage.getInstance().createInputStream(photoPath);
+						fs.mkdir(roots[0] + "cloud4all"); // file:///E:/
+						stepDebug = 30;
+						char sep = fs.getFileSystemSeparator();
+						stepDebug = 31;
+						photoNameDebug = roots[0] + "cloud4all" + sep + currentImage2.getImageName() + ".jpg";
+						stepDebug = 32;
+						o = FileSystemStorage.getInstance().openOutputStream(photoNameDebug);
+						stepDebug = 4;
+						// DataOutputStream dos = new DataOutputStream(o);
+						// Util.writeObject(i, dos);
+						Util.copy(is, o);
+						stepDebug = 5;
+
+						// OutputStream o = Storage.getInstance().createOutputStream(name);
+						// Util.copy(input, o);
+						// Util.close(o);
+
+						// // Saving the photo in a directory in order to have them permanently
+						// stepDebug = 11;
+						// Storage storage = Storage.getInstance();
+						// stepDebug = 12;
+						// final String homePath = storage.getAppHomePath();
+						// stepDebug = 13;
+						// homePathDebug = homePath;
+						// System.out.println("homepath: " + homePathDebug);
+						// stepDebug = 1;
+						//
+						// final char sep = fileSystemStorage.getFileSystemSeparator();
+						// sepDebug = sep;
+						// stepDebug = 2;
+						// System.out.println("sepDebug: " + sepDebug);
+						//
+						// fileSystemStorage.mkdir(homePath + "cloud4all");
+						// stepDebug = 3;
+						// // System.out.println("homepath: " + homePathDebug);
+						//
+						// photoNameDebug = homePath + "cloud4all" + sep + currentImage2.getImageName()+".jpg";
+						// OutputStream o = FileSystemStorage.getInstance().openOutputStream(photoNameDebug);
+						// stepDebug = 4;
+						// System.out.println("photoNameDebug: " + photoNameDebug);
+						//
+						// Util.copy(is, o);
+						// stepDebug = 5;
+						// // System.out.println("homepath: " + homePathDebug);
+						//
+						// o.close();
+						// stepDebug = 6;
+						// // System.out.println("homepath: " + homePathDebug);
+
+						// FileSystemStorage fs = FileSystemStorage.getInstance();
+						//
+						// String[] roots = fs.getRoots();
+						//
+						// // if(!root.endsWith("/")) {
+						// // root += "/";
+						// // }
+						// for(int i=0; i<roots.length; i++) {
+						// System.out.println(roots[i]);
+						// }
+						//
+						// // String fileName = root + "myFileName";
+						//
+						// // f.setTitle(photoPath);
+
+						// // Saving the photo in a directory in order to have them permanently
+						// stepDebug = 11;
+						// FileSystemStorage fileSystemStorage = FileSystemStorage.getInstance();
+						// stepDebug = 12;
+						// final String homePath = fileSystemStorage.getAppHomePath();
+						// stepDebug = 13;
+						// homePathDebug = homePath;
+						// System.out.println("homepath: " + homePathDebug);
+						// stepDebug = 1;
+						//
+						// final char sep = fileSystemStorage.getFileSystemSeparator();
+						// sepDebug = sep;
+						// stepDebug = 2;
+						// System.out.println("sepDebug: " + sepDebug);
+						//
+						// fileSystemStorage.mkdir(homePath + "cloud4all");
+						// stepDebug = 3;
+						// // System.out.println("homepath: " + homePathDebug);
+						//
+						// photoNameDebug = homePath + "cloud4all" + sep + currentImage2.getImageName()+".jpg";
+						// OutputStream o = FileSystemStorage.getInstance().openOutputStream(photoNameDebug);
+						// stepDebug = 4;
+						// System.out.println("photoNameDebug: " + photoNameDebug);
+						//
+						// Util.copy(is, o);
+						// stepDebug = 5;
+						// // System.out.println("homepath: " + homePathDebug);
+						//
+						// o.close();
+						// stepDebug = 6;
+						// // System.out.println("homepath: " + homePathDebug);
+
 					} catch (Exception ex) {
+						Dialog.show("Error", "" + ex.getMessage() + "-step: " + stepDebug, "OK", null);
 						ex.printStackTrace();
 					} finally {
-						try {
-							is.close();
-						} catch (IOException ex) {
-							ex.printStackTrace();
-						}
+						Util.cleanup(is);
+						Util.cleanup(o);
 					}
 				} else {
 					showForm("My Images Form", null);
@@ -2208,21 +2587,24 @@ public class StateMachine extends StateMachineBase {
 			}
 		});
 
-		// Saving the captured photo
-		if (currentImage2 instanceof EncodedImage) {
-			photos.addPhoto((EncodedImage) currentImage2);
-			System.out.println("photos.getPhotos().length: " + photos.getPhotos().size());
-		}
+		// EPAIZE AYTO
+		// // Saving the captured photo
+		// if (currentImage2 instanceof EncodedImage) {
+		// photos.addPhoto((EncodedImage) currentImage2);
+		// System.out.println("photos.getPhotos().length: " + photos.getPhotos().size());
+		// }
+		//
+		// Storage.getInstance().writeObject("SavedPhoto", photos);
 
-		Storage.getInstance().writeObject("SavedPhoto", photos);
-
-		f.show();
+		f.revalidate();
 	}
 
 	protected boolean onImageCaptureCapture() {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		boolean val = super.onImageCaptureCapture();
-
+		
+		Display.getInstance().vibrate(vibrationTime);
+		
 		final Form f = Display.getInstance().getCurrent();// (Form)findByName("Storage Form", null);
 		System.out.println("FORM NAME: " + f.getName());
 
@@ -2252,8 +2634,39 @@ public class StateMachine extends StateMachineBase {
 						i = i.scaledWidth(360);
 						l.setIcon(i);
 						f.revalidate();
+
+						// // Saving the photo in a directory in order to have them permanently
+						// FileSystemStorage fileSystemStorage = FileSystemStorage.getInstance();
+						// final String homePath = fileSystemStorage.getAppHomePath();
+						// homePathDebug = homePath;
+						// System.out.println("homepath: " + homePathDebug);
+						// stepDebug = 1;
+						//
+						// final char sep = fileSystemStorage.getFileSystemSeparator();
+						// sepDebug = sep;
+						// stepDebug = 2;
+						// System.out.println("sepDebug: " + sepDebug);
+						//
+						// fileSystemStorage.mkdir(homePath + "cloud4all");
+						// stepDebug = 3;
+						// // System.out.println("homepath: " + homePathDebug);
+						//
+						// photoNameDebug = homePath + "cloud4all" + sep + currentImage2.getImageName()+".jpg";
+						// OutputStream o = FileSystemStorage.getInstance().openOutputStream(photoNameDebug);
+						// stepDebug = 4;
+						// System.out.println("photoNameDebug: " + photoNameDebug);
+						//
+						// Util.copy(is, o);
+						// stepDebug = 5;
+						// // System.out.println("homepath: " + homePathDebug);
+						//
+						// o.close();
+						// stepDebug = 6;
+						// // System.out.println("homepath: " + homePathDebug);
+
 					} catch (Exception ex) {
 						ex.printStackTrace();
+						Dialog.show("Error", "" + ex.getMessage(), "OK", null);
 					} finally {
 						try {
 							is.close();
@@ -2267,15 +2680,16 @@ public class StateMachine extends StateMachineBase {
 			}
 		});
 
-		// Saving the captured photo
-		if (currentImage2 instanceof EncodedImage) {
-			photos.addPhoto((EncodedImage) currentImage2);
-			System.out.println("photos.getPhotos().length: " + photos.getPhotos().size());
-		}
-
-		Storage.getInstance().writeObject("SavedPhoto", photos);
-
-		f.show();
+		// YPHRXE
+		// // Saving the captured photo
+		// if (currentImage2 instanceof EncodedImage) {
+		// photos.addPhoto((EncodedImage) currentImage2);
+		// System.out.println("photos.getPhotos().length: " + photos.getPhotos().size());
+		// }
+		//
+		// Storage.getInstance().writeObject("SavedPhoto", photos);
+		//
+		// f.show();
 
 		return val;
 	}
@@ -2283,17 +2697,17 @@ public class StateMachine extends StateMachineBase {
 	protected void exitImageCapture(Form f) {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.exitImageCapture(f);
-
-		 // Saving the captured photo
-		 if (currentImage2 instanceof EncodedImage) {
-		 photos.addPhoto((EncodedImage) currentImage2);
-		 System.out.println("photos.getPhotos().length: " + photos.getPhotos().size());
-		 }
 		
-		 Storage.getInstance().writeObject("SavedPhoto", photos);
+		// TODO: DEN XERV AN XREIAZETAI!
+		// Saving the captured photo
+//		if (currentImage2 instanceof EncodedImage) {
+//			photos.addPhoto((EncodedImage) currentImage2);
+//			System.out.println("photos.getPhotos().length: " + photos.getPhotos().size());
+//		}
+//		Storage.getInstance().writeObject("SavedPhoto", photos);
 
-//		// MHPWS DEN SWZEI THN TELEYTAIA PHOTO?
-//		showForm("My Images Form", null);
+		// // MHPWS DEN SWZEI THN TELEYTAIA PHOTO?
+		// showForm("My Images Form", null);
 	}
 
 	protected void postVideoView(Form f) {
@@ -2362,6 +2776,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		boolean val = super.onVideoViewBack();
 
+		Display.getInstance().vibrate(vibrationTime);
 		videoMedia.cleanup();
 
 		return val;
@@ -2371,6 +2786,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		boolean val = super.onAudioListenBack();
 
+		Display.getInstance().vibrate(vibrationTime);
 		audioMedia.cleanup();
 
 		return val;
@@ -2457,6 +2873,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_SoundYesRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		if (((RadioButton) c).isSelected()) {
 			findVolumeSlider().setProgress(volume);
 			findVolumeSlider().setVisible(true);
@@ -2471,6 +2888,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onSettings_SoundNoRadioButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		if (((RadioButton) c).isSelected()) {
 			volume = 0;
 			findVolumeSlider().setProgress(volume);
@@ -2531,6 +2949,8 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		boolean val = super.onURLDialogVisit();
 
+		Display.getInstance().vibrate(vibrationTime);
+		
 		String manualUrl = findUrlTextField().getText();
 		System.out.println("a: " + manualUrl);
 		if (manualUrl.equals("")) {
@@ -2598,6 +3018,7 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onURLDialog_UrlComboBoxAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
 		// url = (((ComboBox)c).getSelectedItem().toString());
 		url = (String) ((Hashtable) (((ComboBox) c).getSelectedItem())).get("url");
 		// System.out.println("obj: " + obj);
@@ -2685,8 +3106,10 @@ public class StateMachine extends StateMachineBase {
 
 		// Google
 		if (selectedIndex == 0) {
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("My Google Position Form", null);
 		} else if (selectedIndex == 1) {
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("My Position Form", null);
 		}
 	}
@@ -2793,13 +3216,13 @@ public class StateMachine extends StateMachineBase {
 		int selectedIndex = findPositionMultiList().getSelectedIndex();
 
 		if (selectedIndex == 0) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Gps Form", null);
 		} else if (selectedIndex == 1) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Insert Position Manually Form", null);
 		} else if (selectedIndex == 2) {
-			Display.getInstance().vibrate(1000);
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Insert Address Form", null);
 		}
 	}
@@ -3000,9 +3423,11 @@ public class StateMachine extends StateMachineBase {
 
 		// Google
 		if (selectedIndex == 0) {
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Proximity Google Form", null);
 		} // Open Street Maps
 		else if (selectedIndex == 1) {
+			Display.getInstance().vibrate(vibrationTime);
 			showForm("Proximity Form", null);
 		}
 	}
@@ -3014,31 +3439,19 @@ public class StateMachine extends StateMachineBase {
 		MapComponent googleMap = new MapComponent(new GoogleMapsProvider("AIzaSyA0R1Bq4_ldMQQVKcBv3fq1dakPfmpUcVU"));
 		f.addComponent(BorderLayout.CENTER, googleMap);
 
-		// Image i = null;
-		// try {
-		// i = Image.createImage("/blue_pin.png");
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// Dialog.show("1_" + e.toString(), e.getMessage(), "ok", "cancel");
-		// }
-		//
-		// PointsLayer pl = new PointsLayer();
-		// pl.setPointIcon(i);
-		// PointLayer p = new PointLayer(lastLocation, "You Are Here", i);
-		//
-		// p.setDisplayName(true);
-		// pl.addPoint(p);
-		//
-		// map.addLayer(pl);
-		// map.zoomToLayers();
-		// map.revalidate();
-		//
-		// f.revalidate();
+		final Dialog dlg = new Dialog();
+		InfiniteProgress prog = new InfiniteProgress();
+		prog.setAnimation(r.getImage("waiting_4.png"));
 
+		dlg.setLayout(new BorderLayout());
+		dlg.addComponent(BorderLayout.CENTER, prog);
+		dlg.showPacked(BorderLayout.CENTER, false);
+		
 		ProximityService ps = new ProximityService();
-
 		Vector poiVec = ps.parseXMLResponseWithCodenameOneParser(ps.requestProximityService(lastLocation.getLongitude(), lastLocation.getLatitude()));
 		ps.showRestaurantsOnGoogleMap(f, googleMap, poiVec, lastLocation.getLatitude(), lastLocation.getLongitude());
+		
+		dlg.dispose();
 	}
 
 	protected void exitInsertPositionManuallyForm(Form f) {
@@ -3089,7 +3502,7 @@ public class StateMachine extends StateMachineBase {
 		Vector<Hashtable> items = new Vector<Hashtable>();
 
 		Hashtable item1 = new Hashtable();
-		item1.put("Line1", "view");
+		item1.put("Line1", "pick from folder");
 		item1.put("icon", UIManager.getInstance().getThemeImageConstant("viewPhotoImage"));
 		item1.put("emblem", r.getImage("Arrow.png"));
 
@@ -3141,7 +3554,7 @@ public class StateMachine extends StateMachineBase {
 		Vector<Hashtable> items = new Vector<Hashtable>();
 
 		Hashtable item1 = new Hashtable();
-		item1.put("Line1", "view");
+		item1.put("Line1", "pick from folder");
 		item1.put("icon", UIManager.getInstance().getThemeImageConstant("viewVideoImage"));
 		item1.put("emblem", r.getImage("Arrow.png"));
 
@@ -3194,6 +3607,8 @@ public class StateMachine extends StateMachineBase {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onAudioListen_AudioPlayButtonAction(c, event);
 
+		Display.getInstance().vibrate(vibrationTime);
+		
 		if (audioMedia != null) {
 			if (audioMedia.isPlaying()) { // EDV NA ALLAZV KAI ONOMA STO KOUMPI KATHE FORA
 				audioMedia.pause();
@@ -3404,5 +3819,336 @@ public class StateMachine extends StateMachineBase {
 
 		return true;
 	}
+
+//	protected void postMyImagesForm(Form f) {
+//		// If the resource file changes the names of components this call will break notifying you that you should fix the code
+//		super.postMyImagesForm(f);
+//
+//		f.setTitle("" + stepDebug);
+//		f.revalidate();
+//	}
+
+
+    protected void onSettings_OffVibrationButtonAction(Component c, ActionEvent event) {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        super.onSettings_OffVibrationButtonAction(c, event);
+    
+        Display.getInstance().vibrate(vibrationTime);
+        offVibration = true;
+        shortVibration = false;
+        longVibration = false;
+        
+        vibrationTime = 0;
+    }
+
+    protected void onSettings_ShortVibrationButtonAction(Component c, ActionEvent event) {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        super.onSettings_ShortVibrationButtonAction(c, event);
+    
+        Display.getInstance().vibrate(vibrationTime);
+        offVibration = false;
+        shortVibration = true;
+        longVibration = false;
+        
+        vibrationTime = 1000;
+    }
+
+    protected void onSettings_LongVibrationButtonAction(Component c, ActionEvent event) {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        super.onSettings_LongVibrationButtonAction(c, event);
+    
+        Display.getInstance().vibrate(vibrationTime);
+        offVibration = false;
+        shortVibration = false;
+        longVibration = true;
+        
+        vibrationTime = 2000;
+    }
+
+
+    protected boolean onSettingsBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onSettingsBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+
+    protected boolean onShareBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onShareBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected void onShare_ShareButtonAction(Component c, ActionEvent event) {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        super.onShare_ShareButtonAction(c, event);
+        Display.getInstance().vibrate(vibrationTime);
+    }
+
+    protected boolean onMyMultimediaFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onMyMultimediaFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onMyVideoFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onMyVideoFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onMyImagesFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onMyImagesFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onLoadPhotoFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onLoadPhotoFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onImageCaptureBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onImageCaptureBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onFindYourPositionFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onFindYourPositionFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onGpsFormNext() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onGpsFormNext();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onGpsFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onGpsFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onInsertPositionManuallyFormNext() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onInsertPositionManuallyFormNext();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onInsertPositionManuallyFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onInsertPositionManuallyFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onMapsFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onMapsFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onMapsProvidersBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onMapsProvidersBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onMyGooglePositionFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onMyGooglePositionFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onMyPositionFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onMyPositionFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onProximityProvidersFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onProximityProvidersFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onProximityGoogleFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onProximityGoogleFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onProximityFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onProximityFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onWebBrowserFormBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onWebBrowserFormBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onWebBrowserFormSetUrl() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onWebBrowserFormSetUrl();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+    protected boolean onURLDialogBack() {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        boolean val = super.onURLDialogBack();
+        Display.getInstance().vibrate(vibrationTime);
+        return val;
+    }
+
+
+    protected boolean initListModelMapsMultiList(List cmp) {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        super.initListModelMapsMultiList(cmp);
+        
+		Vector<Hashtable> items = new Vector<Hashtable>();
+
+		Hashtable item1 = new Hashtable();
+		item1.put("Line1", "show me on map");
+		item1.put("icon", UIManager.getInstance().getThemeImageConstant("myPositionImage"));
+		item1.put("emblem", r.getImage("Arrow.png"));
+
+		Hashtable item2 = new Hashtable();
+		item2.put("Line1", "show nearby hotels");
+		item2.put("icon", UIManager.getInstance().getThemeImageConstant("hotelsImage"));
+		item2.put("emblem", r.getImage("Arrow.png"));
+
+		items.add(item1);
+		items.add(item2);
+
+		ListModel model = new DefaultListModel(items);
+		cmp.setModel(model);
+        
+        return true;
+    }
+    
+    public void applyServerSettings(String themeName, String fontSize, String language, int volumeLevel, int vibrationLevel) {
+    	// ALWAYS set all the selectedXXXXXXX values so that theSettings form continues to be functionable and 
+    	// usable by the user in case he/she wants to apply manual settings
+    	
+    	// THEME
+    	// Black-White, White-Black, Yellow-Black, Leather
+    	if(themeName.equalsIgnoreCase("Black-White")) {
+        	selectedTheme = "mitsosWhite";
+    	} else if(themeName.equalsIgnoreCase("White-Black")) {
+        	selectedTheme = "mitsosBlack";
+    	} else if(themeName.equalsIgnoreCase("Yellow-Black")) {
+        	selectedTheme = "mitsosYellow";
+    	} else if(themeName.equalsIgnoreCase("Leather")) {
+        	selectedTheme = "Leather";
+    	}
+    	System.out.println("Selected Theme: " + selectedTheme);
+    	UIManager.getInstance().setThemeProps(r.getTheme(selectedTheme)); //"mitsosWhite"
+		Display.getInstance().getCurrent().refreshTheme();
+    	
+    	//Also set the thumbnailImage of the volumeSlider 
+    	
+    	// FONT
+		if (fontSize.equals("huge")) {
+			UIManager.getInstance().addThemeProps(r.getTheme("0"));
+			System.out.println("--> 00");
+			selectedFont = "huge";
+		} else if (fontSize.equals("veryLarge")) {
+			UIManager.getInstance().addThemeProps(r.getTheme("1"));
+			System.out.println("--> 10");
+			selectedFont = "veryLarge";
+		} else if (fontSize.equals("large")) {
+			UIManager.getInstance().addThemeProps(r.getTheme("2"));
+			System.out.println("--> 20");
+			selectedFont = "large";
+		} else if (fontSize.equals("medium")) {
+			UIManager.getInstance().addThemeProps(r.getTheme("3"));
+			System.out.println("--> 30");
+			selectedFont = "medium";
+		} else if (fontSize.equals("small")) {
+			UIManager.getInstance().addThemeProps(r.getTheme("4"));
+			System.out.println("--> 40");
+			selectedFont = "small";
+		}
+    	System.out.println("Selected Font: " + selectedFont);
+		Display.getInstance().getCurrent().refreshTheme();
+		
+		// LANGUAGE - Currently ONLY Greek and English are supported
+		if(language.equalsIgnoreCase("English")) {
+			UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "en"));
+			selectedLanguage = "en";
+		} else if(language.equalsIgnoreCase("German")) {
+			UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "en"));
+			selectedLanguage = "en";
+		} else if(language.equalsIgnoreCase("Greek")) {
+			UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "gr"));
+			selectedLanguage = "gr";
+		} else if(language.equalsIgnoreCase("Spanish")) {
+			UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "en"));
+			selectedLanguage = "en";
+		}
+    	System.out.println("Selected Language: " + selectedLanguage);
+		
+		// VOLUME
+		volume = volumeLevel;
+		System.out.println("Volume: " + volume);
+//		if(volume == 0) {
+//			findVolumeSlider().setProgress(volume);
+//			findVolumeSlider().setVisible(false);
+//		} else {
+//			findVolumeSlider().setProgress(volume);
+//			findVolumeSlider().setVisible(true);
+//		}
+		
+		// VIBRATION
+		vibrationTime = vibrationLevel;
+		if(vibrationLevel == 0) {
+	        offVibration = true;
+	        shortVibration = false;
+	        longVibration = false;
+	        
+	        vibrationTime = 0;
+		} else if(vibrationLevel == 1) {
+	        offVibration = false;
+	        shortVibration = true;
+	        longVibration = false;
+	        
+	        vibrationTime = 1000;
+		} else if(vibrationLevel == 2) {
+	        offVibration = false;
+	        shortVibration = false;
+	        longVibration = true;
+	        
+	        vibrationTime = 2000;
+		}
+        Display.getInstance().vibrate(vibrationTime);
+        System.out.println("Vibration Time: " + vibrationTime);
+    }
 
 }

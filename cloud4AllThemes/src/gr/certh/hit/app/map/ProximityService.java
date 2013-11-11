@@ -190,30 +190,32 @@ public class ProximityService {
 
 			Vector v = (Vector) poisVecObj;
 
-			Image im = Image.createImage("/hotel.png");
-			PointsLayer pl = new PointsLayer();
-			pl.setPointIcon(im);
-			pl.addActionListener(MyActionListener.getInstance(1, v));
+			if (v.size() > 0) {
+				Image im = Image.createImage("/hotel.png");
+				PointsLayer pl = new PointsLayer();
+				pl.setPointIcon(im);
+				pl.addActionListener(MyActionListener.getInstance(1, v));
 
-			for (int i = 0; i < v.size(); i++) {
-				Poi thePoi = (Poi) v.elementAt(i);
-				String x = thePoi.getCoordX();
-				String y = thePoi.getCoordY();
-				String name = thePoi.getName();
+				for (int i = 0; i < v.size(); i++) {
+					Poi thePoi = (Poi) v.elementAt(i);
+					String x = thePoi.getCoordX();
+					String y = thePoi.getCoordY();
+					String name = thePoi.getName();
 
-				PointLayer point = new PointLayer(new Coord((double) Double.parseDouble(y), (double) Double.parseDouble(x)), name, null);
-				pl.addPoint(point);
+					PointLayer point = new PointLayer(new Coord((double) Double.parseDouble(y), (double) Double.parseDouble(x)), name, null);
+					pl.addPoint(point);
+				}
+				// ((Dialog)progressObj).dispose();
+
+				mc.addLayer(pl);
+				f.show();
+				mc.zoomToLayers();
 			}
-			// ((Dialog)progressObj).dispose();
-
-			mc.addLayer(pl);
-			f.show();
-			mc.zoomToLayers();
-
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
+
 	public void showRestaurantsOnGoogleMap(Form f, MapComponent mc, Vector poisVec, double longitude, double latitude) {
 
 		System.out.println("ProximityService: " + mc);
@@ -249,7 +251,7 @@ public class ProximityService {
 				f.show();
 				mc.zoomToLayers();
 			}
-			
+
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -267,9 +269,9 @@ public class ProximityService {
 			p.setDisplayName(true);
 			pl.addPoint(p);
 			map.addLayer(pl);
-			
+
 			map.zoomToLayers(); // Recent addition in order to show my spot when there are no hotels returned in the nearby area
-			
+
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
