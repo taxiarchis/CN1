@@ -6,13 +6,13 @@ package userclasses;
 
 import generated.StateMachineBase;
 import gr.certh.hit.app.MyPhotos;
-import gr.certh.hit.app.SwitchPhotos;
 import gr.certh.hit.app.map.GeocodingPoi;
 import gr.certh.hit.app.map.GeocodingService;
 import gr.certh.hit.app.map.ProximityService;
+import gr.certh.hit.flowManager.FlowManagerService;
 import gr.certh.hit.util.MyFolderBrowser;
 
-import java.io.DataOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -47,7 +47,6 @@ import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
-import com.codename1.ui.ComponentGroup;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
@@ -125,12 +124,17 @@ public class StateMachine extends StateMachineBase {
 
 	boolean timerIsRunning, offVibration, shortVibration, longVibration;
 	
-	int vibrationTime;
+	int vibrationTime, vibrationMode;
 	
 	// DEBUG variables
 	String homePathDebug, outputDebug, photoNameDebug, audioNameDebug;
 	char sepDebug;
 	int stepDebug;
+	
+//	String dummyJsonResponse = "{\"info.cloud4all.JME\": {\"theme\": \"Yellow-Black\", \"fontSize\": \"veryLarge\", \"language\": \"English\", \"volume\": 50, \"vibrationMode\": 2}";
+//	String dummyJsonResponse2 = "{\"info.cloud4all.JME\": {\"fontSize\": \"large\", \"language\": \"Greek\", \"volume\": 0, \"vibrationMode\": 1}";
+//	String dummyJsonResponse3 = "{\"info.cloud4all.JME\": {\"language\": \"English\", \"volume\": 0, \"vibrationMode\": 1}";
+	private Hashtable ht;
 
 	public StateMachine(String resFile) {
 		super(resFile);
@@ -145,6 +149,8 @@ public class StateMachine extends StateMachineBase {
 			System.err.println("Unable to open resource file!");
 		}
 
+//		setDefaultValues();
+		
 		photos = new MyPhotos();
 		volume = 100;
 		isInitialised = false;
@@ -156,6 +162,39 @@ public class StateMachine extends StateMachineBase {
 
 		// initVolumeAudio();
 	}
+	
+	public Hashtable parseJsonResponse() {
+		FlowManagerService fms = new FlowManagerService();
+		InputStream is = fms.requestNeedsAndPreferences();
+		try {
+			ht = fms.parseJSONResponseWithCodenameOneParser(is);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ht;
+	}
+	
+	// Set default values
+	private void setDefaultValues(){
+    	selectedTheme = "mitsosWhite";
+    	selectedFont = "large";
+    	selectedLanguage = "en";
+    	volume = 100;
+    	vibrationMode = 1;
+
+		Hashtable table = r.getL10N("cloud4AllThemes", selectedLanguage);
+		UIManager.getInstance().setResourceBundle(table);
+
+		UIManager.getInstance().setThemeProps(r.getTheme(selectedTheme));
+
+		UIManager.getInstance().addThemeProps(r.getTheme("2"));
+		Display.getInstance().getCurrent().refreshTheme();
+	}
+	
+//	private Hashtable getResponseHashtable() {
+//		return ht;
+//	}
 
 	public void initVolumeAudio() {
 		InputStream is = Display.getInstance().getResourceAsStream(getClass(), "/volumeSound.wav");
@@ -688,8 +727,27 @@ public class StateMachine extends StateMachineBase {
 //			Display.getInstance().getCurrent().refreshTheme();
 			
 			// Testing the applyServerSettings method
-	    	applyServerSettings("Yellow-Black", "huge", "Greek", 50, 0);
+//	    	applyServerSettings("Yellow-Black", "huge", "Greek", 50, 0);
+			// Testing the applyServerSettings method and parseJSONResponseWithCodenameOneParser
+			
 
+	    	selectedTheme = "mitsosWhite";
+	    	selectedFont = "large";
+	    	selectedLanguage = "en";
+	    	volume = 100;
+	    	vibrationMode = 1;
+
+			Hashtable table = r.getL10N("cloud4AllThemes", selectedLanguage);
+			UIManager.getInstance().setResourceBundle(table);
+
+			UIManager.getInstance().setThemeProps(r.getTheme(selectedTheme));
+
+			UIManager.getInstance().addThemeProps(r.getTheme("2"));
+			Display.getInstance().getCurrent().refreshTheme();
+			
+			
+//			applyServerSettings(getResponseHashtable());
+			
 			showForm("Main", null);
 		} else {
 			// DEFAULT PROFILE (currently 1) IS LOADED
@@ -709,6 +767,10 @@ public class StateMachine extends StateMachineBase {
 			UIManager.getInstance().addThemeProps(r.getTheme("0"));
 
 			Display.getInstance().getCurrent().refreshTheme();
+			
+			// CHANGES MAY TAKE PLACE ACCORDING TO THE SERVICE RESPONSE (os_jme user is currently hardcoded)
+			Hashtable tab = parseJsonResponse();
+			applyServerSettings(tab);
 
 			showForm("Main", null);
 		}
@@ -4149,6 +4211,130 @@ public class StateMachine extends StateMachineBase {
 		}
         Display.getInstance().vibrate(vibrationTime);
         System.out.println("Vibration Time: " + vibrationTime);
-    }
 
+    }
+    
+    
+    public void applyServerSettings(Hashtable response) {
+    	// ALWAYS set all the selectedXXXXXXX values so that theSettings form continues to be functionable and 
+    	// usable by the user in case he/she wants to apply manual settings		
+    	
+    	Hashtable responseJME;
+    	String responseTheme = "";
+    	String responseFontSize = "";
+    	String responseLanguage = "";
+    	int responseVolume = -1;
+    	int responseVibrationMode = -1;
+    	
+    	if(response.containsKey("info.cloud4all.JME")) {
+			responseJME = (Hashtable)response.get("info.cloud4all.JME");
+			
+	    	if(responseJME.containsKey("theme")) {
+				responseTheme = responseJME.get("theme").toString();
+				
+		    	// THEME
+		    	// Black-White, White-Black, Yellow-Black, Leather
+		    	if(responseTheme.equalsIgnoreCase("Black-White")) {
+		        	selectedTheme = "mitsosWhite";
+		    	} else if(responseTheme.equalsIgnoreCase("White-Black")) {
+		        	selectedTheme = "mitsosBlack";
+		    	} else if(responseTheme.equalsIgnoreCase("Yellow-Black")) {
+		        	selectedTheme = "mitsosYellow";
+		    	} else if(responseTheme.equalsIgnoreCase("Leather")) {
+		        	selectedTheme = "Leather";
+		    	} 
+		    	System.out.println("Selected Theme: " + selectedTheme);
+		    	UIManager.getInstance().setThemeProps(r.getTheme(selectedTheme)); //"mitsosWhite"
+				Display.getInstance().getCurrent().refreshTheme();
+			}
+			if(responseJME.containsKey("fontSize")) {
+				responseFontSize = responseJME.get("fontSize").toString();
+				
+		    	// FONT
+				if (responseFontSize.equals("huge")) {
+					UIManager.getInstance().addThemeProps(r.getTheme("0"));
+					System.out.println("--> 00");
+					selectedFont = "huge";
+				} else if (responseFontSize.equals("veryLarge")) {
+					UIManager.getInstance().addThemeProps(r.getTheme("1"));
+					System.out.println("--> 10");
+					selectedFont = "veryLarge";
+				} else if (responseFontSize.equals("large")) {
+					UIManager.getInstance().addThemeProps(r.getTheme("2"));
+					System.out.println("--> 20");
+					selectedFont = "large";
+				} else if (responseFontSize.equals("medium")) {
+					UIManager.getInstance().addThemeProps(r.getTheme("3"));
+					System.out.println("--> 30");
+					selectedFont = "medium";
+				} else if (responseFontSize.equals("small")) {
+					UIManager.getInstance().addThemeProps(r.getTheme("4"));
+					System.out.println("--> 40");
+					selectedFont = "small";
+				} 
+		    	System.out.println("Selected Font: " + selectedFont);
+				Display.getInstance().getCurrent().refreshTheme();
+			}
+			if(responseJME.containsKey("language")) {
+				responseLanguage = responseJME.get("language").toString();
+				
+				// LANGUAGE - Currently ONLY Greek and English are supported
+				if(responseLanguage.equalsIgnoreCase("English")) {
+					UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "en"));
+					selectedLanguage = "en";
+				} else if(responseLanguage.equalsIgnoreCase("German")) {
+					UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "en"));
+					selectedLanguage = "en";
+				} else if(responseLanguage.equalsIgnoreCase("Greek")) {
+					UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "gr"));
+					selectedLanguage = "gr";
+				} else if(responseLanguage.equalsIgnoreCase("Spanish")) {
+					UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "en"));
+					selectedLanguage = "en";
+				} 
+		    	System.out.println("Selected Language: " + selectedLanguage);
+			}
+			if(responseJME.containsKey("volume")) {
+				responseVolume = ((Double)responseJME.get("volume")).intValue();
+				
+				// VOLUME
+//				volume = Integer.parseInt(responseVolume);
+				volume = responseVolume;
+				System.out.println("Volume: " + volume);
+			}
+			if(responseJME.containsKey("vibrationMode")) {
+				responseVibrationMode = ((Double)responseJME.get("vibrationMode")).intValue();
+				
+				// VIBRATION
+				vibrationMode = responseVibrationMode;
+				if(vibrationMode == 0) {
+			        offVibration = true;
+			        shortVibration = false;
+			        longVibration = false;
+			        
+			        vibrationTime = 0;
+				} else if(vibrationMode == 1) {
+			        offVibration = false;
+			        shortVibration = true;
+			        longVibration = false;
+			        
+			        vibrationTime = 1000;
+				} else if(vibrationMode == 2) {
+			        offVibration = false;
+			        shortVibration = false;
+			        longVibration = true;
+			        
+			        vibrationTime = 2000;
+				}
+		        Display.getInstance().vibrate(vibrationTime);
+		        System.out.println("Vibration Time: " + vibrationTime);
+			}
+		} 
+//    	else { // ERROR CASE (Wronmg Username)
+//			Dialog.show("Error in Login", "Username does not exist!", "Ok", null);
+//		}
+    	
+    	//Also set the thumbnailImage of the volumeSlider 
+		
+    }
 }

@@ -10,6 +10,7 @@ package generated;
 import com.codename1.ui.*;
 import com.codename1.ui.util.*;
 import com.codename1.ui.plaf.*;
+import java.util.Hashtable;
 import com.codename1.ui.events.*;
 
 public abstract class StateMachineBase extends UIBuilder {
@@ -2277,6 +2278,7 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+            return;
     }
 
 
@@ -2731,6 +2733,7 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+            return;
     }
 
 
@@ -2914,7 +2917,7 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
     protected void beforeShowContainer(Container c) {
-    aboutToShowThisContainer = c;
+        aboutToShowThisContainer = c;
         if("Select Address Form".equals(c.getName())) {
             beforeContainerSelectAddressForm(c);
             aboutToShowThisContainer = null;
@@ -3185,6 +3188,7 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+            return;
     }
 
 
@@ -3638,6 +3642,7 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+            return;
     }
 
 
@@ -4091,6 +4096,7 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+            return;
     }
 
 
@@ -4544,6 +4550,7 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+            return;
     }
 
 
@@ -4726,6 +4733,916 @@ public abstract class StateMachineBase extends UIBuilder {
     protected void onCreateMediaPlayerForm() {
     }
 
+    protected Hashtable getFormState(Form f) {
+        Hashtable h = super.getFormState(f);
+        if("Select Address Form".equals(f.getName())) {
+            getStateSelectAddressForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Find Your Position Form".equals(f.getName())) {
+            getStateFindYourPositionForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Audio Form".equals(f.getName())) {
+            getStateMyAudioForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Proximity Form".equals(f.getName())) {
+            getStateProximityForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Save Photo Form".equals(f.getName())) {
+            getStateSavePhotoForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Share Form".equals(f.getName())) {
+            getStateMyShareForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Load Form".equals(f.getName())) {
+            getStateLoadForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Insert Address Form".equals(f.getName())) {
+            getStateInsertAddressForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Camera Form".equals(f.getName())) {
+            getStateCameraForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Share".equals(f.getName())) {
+            getStateShare(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Video Capture".equals(f.getName())) {
+            getStateVideoCapture(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Web Browser Form".equals(f.getName())) {
+            getStateWebBrowserForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Login".equals(f.getName())) {
+            getStateLogin(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Splash".equals(f.getName())) {
+            getStateSplash(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Storage Form".equals(f.getName())) {
+            getStateStorageForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Contact Form".equals(f.getName())) {
+            getStateContactForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("MyContacts Form".equals(f.getName())) {
+            getStateMyContactsForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Settings".equals(f.getName())) {
+            getStateSettings(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("QR Login".equals(f.getName())) {
+            getStateQRLogin(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Maps Form".equals(f.getName())) {
+            getStateMapsForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Images Form".equals(f.getName())) {
+            getStateMyImagesForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Video Form".equals(f.getName())) {
+            getStateMyVideoForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Audio Listen".equals(f.getName())) {
+            getStateAudioListen(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Proximity Providers Form".equals(f.getName())) {
+            getStateProximityProvidersForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Video View".equals(f.getName())) {
+            getStateVideoView(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Proximity Google Form".equals(f.getName())) {
+            getStateProximityGoogleForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("AyoolaContacts".equals(f.getName())) {
+            getStateAyoolaContacts(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("ContactsTest".equals(f.getName())) {
+            getStateContactsTest(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Gps Form".equals(f.getName())) {
+            getStateGpsForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Insert Position Manually Form".equals(f.getName())) {
+            getStateInsertPositionManuallyForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Main".equals(f.getName())) {
+            getStateMain(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("URL Dialog".equals(f.getName())) {
+            getStateURLDialog(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Contacts".equals(f.getName())) {
+            getStateContacts(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Image Capture".equals(f.getName())) {
+            getStateImageCapture(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Position On Map Form".equals(f.getName())) {
+            getStateMyPositionOnMapForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Maps Providers".equals(f.getName())) {
+            getStateMapsProviders(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Adress Form".equals(f.getName())) {
+            getStateAdressForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("File Browser View Form".equals(f.getName())) {
+            getStateFileBrowserViewForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Google Position Form".equals(f.getName())) {
+            getStateMyGooglePositionForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("File Browser".equals(f.getName())) {
+            getStateFileBrowser(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Position Form".equals(f.getName())) {
+            getStateMyPositionForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("urlComboRenderer".equals(f.getName())) {
+            getStateUrlComboRenderer(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Multimedia Form".equals(f.getName())) {
+            getStateMyMultimediaForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Load Photo Form".equals(f.getName())) {
+            getStateLoadPhotoForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Media Player Form".equals(f.getName())) {
+            getStateMediaPlayerForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+            return h;
+    }
+
+
+    protected void getStateSelectAddressForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateFindYourPositionForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyAudioForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateProximityForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateSavePhotoForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyShareForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateLoadForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateInsertAddressForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateCameraForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateShare(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateVideoCapture(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateWebBrowserForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateLogin(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateSplash(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateStorageForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateContactForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyContactsForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateSettings(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateQRLogin(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMapsForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyImagesForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyVideoForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateAudioListen(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateProximityProvidersForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateVideoView(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateProximityGoogleForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateAyoolaContacts(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateContactsTest(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateGpsForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateInsertPositionManuallyForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMain(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateURLDialog(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateContacts(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateImageCapture(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyPositionOnMapForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMapsProviders(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateAdressForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateFileBrowserViewForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyGooglePositionForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateFileBrowser(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyPositionForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateUrlComboRenderer(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyMultimediaForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateLoadPhotoForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMediaPlayerForm(Form f, Hashtable h) {
+    }
+
+    protected void setFormState(Form f, Hashtable state) {
+        super.setFormState(f, state);
+        if("Select Address Form".equals(f.getName())) {
+            setStateSelectAddressForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Find Your Position Form".equals(f.getName())) {
+            setStateFindYourPositionForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Audio Form".equals(f.getName())) {
+            setStateMyAudioForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Form".equals(f.getName())) {
+            setStateProximityForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Save Photo Form".equals(f.getName())) {
+            setStateSavePhotoForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Share Form".equals(f.getName())) {
+            setStateMyShareForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Form".equals(f.getName())) {
+            setStateLoadForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Insert Address Form".equals(f.getName())) {
+            setStateInsertAddressForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Camera Form".equals(f.getName())) {
+            setStateCameraForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Share".equals(f.getName())) {
+            setStateShare(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video Capture".equals(f.getName())) {
+            setStateVideoCapture(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Web Browser Form".equals(f.getName())) {
+            setStateWebBrowserForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Login".equals(f.getName())) {
+            setStateLogin(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Splash".equals(f.getName())) {
+            setStateSplash(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Storage Form".equals(f.getName())) {
+            setStateStorageForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Contact Form".equals(f.getName())) {
+            setStateContactForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("MyContacts Form".equals(f.getName())) {
+            setStateMyContactsForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Settings".equals(f.getName())) {
+            setStateSettings(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("QR Login".equals(f.getName())) {
+            setStateQRLogin(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Form".equals(f.getName())) {
+            setStateMapsForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Images Form".equals(f.getName())) {
+            setStateMyImagesForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Video Form".equals(f.getName())) {
+            setStateMyVideoForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Audio Listen".equals(f.getName())) {
+            setStateAudioListen(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Providers Form".equals(f.getName())) {
+            setStateProximityProvidersForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video View".equals(f.getName())) {
+            setStateVideoView(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Google Form".equals(f.getName())) {
+            setStateProximityGoogleForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("AyoolaContacts".equals(f.getName())) {
+            setStateAyoolaContacts(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("ContactsTest".equals(f.getName())) {
+            setStateContactsTest(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Gps Form".equals(f.getName())) {
+            setStateGpsForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Insert Position Manually Form".equals(f.getName())) {
+            setStateInsertPositionManuallyForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Main".equals(f.getName())) {
+            setStateMain(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("URL Dialog".equals(f.getName())) {
+            setStateURLDialog(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Contacts".equals(f.getName())) {
+            setStateContacts(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Image Capture".equals(f.getName())) {
+            setStateImageCapture(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Position On Map Form".equals(f.getName())) {
+            setStateMyPositionOnMapForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Providers".equals(f.getName())) {
+            setStateMapsProviders(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Adress Form".equals(f.getName())) {
+            setStateAdressForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("File Browser View Form".equals(f.getName())) {
+            setStateFileBrowserViewForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Google Position Form".equals(f.getName())) {
+            setStateMyGooglePositionForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("File Browser".equals(f.getName())) {
+            setStateFileBrowser(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Position Form".equals(f.getName())) {
+            setStateMyPositionForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("urlComboRenderer".equals(f.getName())) {
+            setStateUrlComboRenderer(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Multimedia Form".equals(f.getName())) {
+            setStateMyMultimediaForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Photo Form".equals(f.getName())) {
+            setStateLoadPhotoForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Media Player Form".equals(f.getName())) {
+            setStateMediaPlayerForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+            return;
+    }
+
+
+    protected void setStateSelectAddressForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateFindYourPositionForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyAudioForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateProximityForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateSavePhotoForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyShareForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateLoadForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateInsertAddressForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateCameraForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateShare(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateVideoCapture(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateWebBrowserForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateLogin(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateSplash(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateStorageForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateContactForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyContactsForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateSettings(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateQRLogin(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMapsForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyImagesForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyVideoForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateAudioListen(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateProximityProvidersForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateVideoView(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateProximityGoogleForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateAyoolaContacts(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateContactsTest(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateGpsForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateInsertPositionManuallyForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMain(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateURLDialog(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateContacts(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateImageCapture(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyPositionOnMapForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMapsProviders(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateAdressForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateFileBrowserViewForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyGooglePositionForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateFileBrowser(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyPositionForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateUrlComboRenderer(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyMultimediaForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateLoadPhotoForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMediaPlayerForm(Form f, Hashtable state) {
+    }
+
     protected boolean setListModel(List cmp) {
         String listName = cmp.getName();
         if("urlComboBox".equals(listName)) {
@@ -4833,7 +5750,8 @@ public abstract class StateMachineBase extends UIBuilder {
         Container rootContainerAncestor = getRootAncestor(c);
         if(rootContainerAncestor == null) return;
         String rootContainerName = rootContainerAncestor.getName();
-        if(c.getParent().getLeadParent() != null) {
+        Container leadParentContainer = c.getParent().getLeadParent();
+        if(leadParentContainer != null && leadParentContainer.getClass() != Container.class) {
             c = c.getParent().getLeadParent();
         }
         if(rootContainerName == null) return;
