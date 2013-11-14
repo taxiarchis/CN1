@@ -669,6 +669,16 @@ public class StateMachine extends StateMachineBase {
 		selectedLanguage = "gr";
 	}
 
+	protected void onSettings_SpanishRadioButtonAction(Component c, ActionEvent event) {
+        // If the resource file changes the names of components this call will break notifying you that you should fix the code
+        super.onSettings_SpanishRadioButtonAction(c, event);
+    
+		Display.getInstance().vibrate(vibrationTime);
+		Hashtable table = r.getL10N("cloud4AllThemes", "es");
+		UIManager.getInstance().setResourceBundle(table);
+		selectedLanguage = "es";
+    }
+
 	protected void onLogin_LoginBtnAction(Component c, ActionEvent event) {
 		// If the resource file changes the names of components this call will break notifying you that you should fix the code
 		super.onLogin_LoginBtnAction(c, event);
@@ -4337,4 +4347,5 @@ public class StateMachine extends StateMachineBase {
     	//Also set the thumbnailImage of the volumeSlider 
 		
     }
+
 }
