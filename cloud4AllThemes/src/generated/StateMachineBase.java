@@ -354,6 +354,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.RadioButton findSpanishRadioButton(Component root) {
+        return (com.codename1.ui.RadioButton)findByName("spanishRadioButton", root);
+    }
+
+    public com.codename1.ui.RadioButton findSpanishRadioButton() {
+        com.codename1.ui.RadioButton cmp = (com.codename1.ui.RadioButton)findByName("spanishRadioButton", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.RadioButton)findByName("spanishRadioButton", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.TextField findSurnameField(Component root) {
         return (com.codename1.ui.TextField)findByName("surnameField", root);
     }
@@ -1338,18 +1350,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Container findThemesContainer(Component root) {
-        return (com.codename1.ui.Container)findByName("themesContainer", root);
-    }
-
-    public com.codename1.ui.Container findThemesContainer() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("themesContainer", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("themesContainer", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.list.MultiList findMyVideoMultiList(Component root) {
         return (com.codename1.ui.list.MultiList)findByName("My Video MultiList", root);
     }
@@ -1358,6 +1358,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.list.MultiList cmp = (com.codename1.ui.list.MultiList)findByName("My Video MultiList", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.list.MultiList)findByName("My Video MultiList", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findThemesContainer(Component root) {
+        return (com.codename1.ui.Container)findByName("themesContainer", root);
+    }
+
+    public com.codename1.ui.Container findThemesContainer() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("themesContainer", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("themesContainer", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -5864,6 +5876,10 @@ public abstract class StateMachineBase extends UIBuilder {
                 onSettings_GreekRadioButtonAction(c, event);
                 return;
             }
+            if("spanishRadioButton".equals(c.getName())) {
+                onSettings_SpanishRadioButtonAction(c, event);
+                return;
+            }
             if("soundYesRadioButton".equals(c.getName())) {
                 onSettings_SoundYesRadioButtonAction(c, event);
                 return;
@@ -6046,6 +6062,9 @@ public abstract class StateMachineBase extends UIBuilder {
       }
 
       protected void onSettings_GreekRadioButtonAction(Component c, ActionEvent event) {
+      }
+
+      protected void onSettings_SpanishRadioButtonAction(Component c, ActionEvent event) {
       }
 
       protected void onSettings_SoundYesRadioButtonAction(Component c, ActionEvent event) {
