@@ -4299,8 +4299,8 @@ public class StateMachine extends StateMachineBase {
 					UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "gr"));
 					selectedLanguage = "gr";
 				} else if(responseLanguage.equalsIgnoreCase("Spanish")) {
-					UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "en"));
-					selectedLanguage = "en";
+					UIManager.getInstance().setResourceBundle(r.getL10N("cloud4AllThemes", "es"));
+					selectedLanguage = "es";
 				} 
 		    	System.out.println("Selected Language: " + selectedLanguage);
 			}
