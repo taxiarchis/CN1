@@ -39,8 +39,8 @@ public abstract class StateMachineBase extends UIBuilder {
         UIBuilder.registerCustomComponent("MediaPlayer", com.codename1.components.MediaPlayer.class);
         UIBuilder.registerCustomComponent("Dialog", com.codename1.ui.Dialog.class);
         UIBuilder.registerCustomComponent("TextArea", com.codename1.ui.TextArea.class);
-        UIBuilder.registerCustomComponent("Slider", com.codename1.ui.Slider.class);
         UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
+        UIBuilder.registerCustomComponent("Slider", com.codename1.ui.Slider.class);
         UIBuilder.registerCustomComponent("WebBrowser", com.codename1.components.WebBrowser.class);
         UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("ComponentGroup", com.codename1.ui.ComponentGroup.class);
@@ -90,8 +90,8 @@ public abstract class StateMachineBase extends UIBuilder {
         UIBuilder.registerCustomComponent("MediaPlayer", com.codename1.components.MediaPlayer.class);
         UIBuilder.registerCustomComponent("Dialog", com.codename1.ui.Dialog.class);
         UIBuilder.registerCustomComponent("TextArea", com.codename1.ui.TextArea.class);
-        UIBuilder.registerCustomComponent("Slider", com.codename1.ui.Slider.class);
         UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
+        UIBuilder.registerCustomComponent("Slider", com.codename1.ui.Slider.class);
         UIBuilder.registerCustomComponent("WebBrowser", com.codename1.components.WebBrowser.class);
         UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("ComponentGroup", com.codename1.ui.ComponentGroup.class);
@@ -750,18 +750,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Container findFindYourPositionContainer(Component root) {
-        return (com.codename1.ui.Container)findByName("findYourPositionContainer", root);
-    }
-
-    public com.codename1.ui.Container findFindYourPositionContainer() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("findYourPositionContainer", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("findYourPositionContainer", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Label findStreetLabel(Component root) {
         return (com.codename1.ui.Label)findByName("streetLabel", root);
     }
@@ -770,6 +758,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("streetLabel", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Label)findByName("streetLabel", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findFindYourPositionContainer(Component root) {
+        return (com.codename1.ui.Container)findByName("findYourPositionContainer", root);
+    }
+
+    public com.codename1.ui.Container findFindYourPositionContainer() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("findYourPositionContainer", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("findYourPositionContainer", aboutToShowThisContainer);
         }
         return cmp;
     }
