@@ -135,6 +135,7 @@ public class StateMachine extends StateMachineBase {
 //	String dummyJsonResponse2 = "{\"info.cloud4all.JME\": {\"fontSize\": \"large\", \"language\": \"Greek\", \"volume\": 0, \"vibrationMode\": 1}";
 //	String dummyJsonResponse3 = "{\"info.cloud4all.JME\": {\"language\": \"English\", \"volume\": 0, \"vibrationMode\": 1}";
 	private Hashtable ht;
+	private boolean isError;
 
 	public StateMachine(String resFile) {
 		super(resFile);
@@ -159,15 +160,17 @@ public class StateMachine extends StateMachineBase {
 		offVibration = false;
 		shortVibration = true;
 		longVibration = false;
+		
+		isError = false;
 
 		// initVolumeAudio();
 	}
 	
-	public Hashtable parseJsonResponse() {
+	public Hashtable getJsonResponseHashtable(String username) {
 		FlowManagerService fms = new FlowManagerService();
-		InputStream is = fms.requestNeedsAndPreferences();
+		InputStream is = fms.requestNeedsAndPreferences2(username);
 		try {
-			ht = fms.parseJSONResponseWithCodenameOneParser(is);
+			ht = fms.parseJsonNeedsAndPreferencesResponse(is);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -483,8 +486,10 @@ public class StateMachine extends StateMachineBase {
 
 		if (selectedLanguage.equals("en")) {
 			findEnglishRadioButton().setSelected(true);
-		} else {
+		} else if (selectedLanguage.equals("gr")) {
 			findGreekRadioButton().setSelected(true);
+		} else if (selectedLanguage.equals("es")) {
+			findSpanishRadioButton().setSelected(true);
 		}
 
 		findBlackRadioButton().setFocus(false);
@@ -668,15 +673,15 @@ public class StateMachine extends StateMachineBase {
 		UIManager.getInstance().setResourceBundle(table);
 		selectedLanguage = "gr";
 	}
-
-	protected void onSettings_SpanishRadioButtonAction(Component c, ActionEvent event) {
+	
+    protected void onSettings_SpanishRadioButtonAction(Component c, ActionEvent event) {
         // If the resource file changes the names of components this call will break notifying you that you should fix the code
         super.onSettings_SpanishRadioButtonAction(c, event);
     
-		Display.getInstance().vibrate(vibrationTime);
-		Hashtable table = r.getL10N("cloud4AllThemes", "es");
-		UIManager.getInstance().setResourceBundle(table);
-		selectedLanguage = "es";
+        Display.getInstance().vibrate(vibrationTime);
+        Hashtable table = r.getL10N("cloud4AllThemes", "es");
+        UIManager.getInstance().setResourceBundle(table);
+        selectedLanguage = "es";
     }
 
 	protected void onLogin_LoginBtnAction(Component c, ActionEvent event) {
@@ -760,29 +765,33 @@ public class StateMachine extends StateMachineBase {
 			
 			showForm("Main", null);
 		} else {
-			// DEFAULT PROFILE (currently 1) IS LOADED
-			selectedLanguage = "gr";
-			selectedFont = "huge";
-			// selectedTheme = "mitsosYellow";
-
-			// Set Greek
-			Hashtable table = r.getL10N("cloud4AllThemes", "gr");
-			UIManager.getInstance().setResourceBundle(table);
-
-			// Set mitsosWhite
-			UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
-			selectedTheme = "mitsosWhite";
-
-			// Set huge
-			UIManager.getInstance().addThemeProps(r.getTheme("0"));
-
-			Display.getInstance().getCurrent().refreshTheme();
+//			// DEFAULT PROFILE (currently 1) IS LOADED
+//			selectedLanguage = "gr";
+//			selectedFont = "huge";
+//			// selectedTheme = "mitsosYellow";
+//
+//			// Set Greek
+//			Hashtable table = r.getL10N("cloud4AllThemes", "gr");
+//			UIManager.getInstance().setResourceBundle(table);
+//
+//			// Set mitsosWhite
+//			UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
+//			selectedTheme = "mitsosWhite";
+//
+//			// Set huge
+//			UIManager.getInstance().addThemeProps(r.getTheme("0"));
+//
+//			Display.getInstance().getCurrent().refreshTheme();
 			
 			// CHANGES MAY TAKE PLACE ACCORDING TO THE SERVICE RESPONSE (os_jme user is currently hardcoded)
-			Hashtable tab = parseJsonResponse();
+			Hashtable tab = getJsonResponseHashtable(username);
 			applyServerSettings(tab);
 
-			showForm("Main", null);
+			if(!isError) {
+				showForm("Main", null);
+			} else {
+				showForm("Login", null);
+			}
 		}
 	}
 
@@ -4237,6 +4246,7 @@ public class StateMachine extends StateMachineBase {
     	int responseVibrationMode = -1;
     	
     	if(response.containsKey("info.cloud4all.JME")) {
+    		isError = false;
 			responseJME = (Hashtable)response.get("info.cloud4all.JME");
 			
 	    	if(responseJME.containsKey("theme")) {
@@ -4339,10 +4349,10 @@ public class StateMachine extends StateMachineBase {
 		        Display.getInstance().vibrate(vibrationTime);
 		        System.out.println("Vibration Time: " + vibrationTime);
 			}
-		} 
-//    	else { // ERROR CASE (Wronmg Username)
-//			Dialog.show("Error in Login", "Username does not exist!", "Ok", null);
-//		}
+		} else if(response.containsKey("isError")) {
+			Dialog.show("Error in Login", "Username does not exist!", "Ok", null);
+			isError = true;
+		}
     	
     	//Also set the thumbnailImage of the volumeSlider 
 		
