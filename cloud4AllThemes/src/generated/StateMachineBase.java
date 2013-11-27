@@ -750,6 +750,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.Label findIpLb(Component root) {
+        return (com.codename1.ui.Label)findByName("ipLb", root);
+    }
+
+    public com.codename1.ui.Label findIpLb() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("ipLb", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("ipLb", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.Label findStreetLabel(Component root) {
         return (com.codename1.ui.Label)findByName("streetLabel", root);
     }
@@ -1022,6 +1034,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("browserCon", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Container)findByName("browserCon", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.TextArea findIpTA(Component root) {
+        return (com.codename1.ui.TextArea)findByName("ipTA", root);
+    }
+
+    public com.codename1.ui.TextArea findIpTA() {
+        com.codename1.ui.TextArea cmp = (com.codename1.ui.TextArea)findByName("ipTA", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.TextArea)findByName("ipTA", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -5806,6 +5830,10 @@ public abstract class StateMachineBase extends UIBuilder {
                 onLogin_PasswordTAAction(c, event);
                 return;
             }
+            if("ipTA".equals(c.getName())) {
+                onLogin_IpTAAction(c, event);
+                return;
+            }
             if("loginBtn".equals(c.getName())) {
                 onLogin_LoginBtnAction(c, event);
                 return;
@@ -6014,6 +6042,9 @@ public abstract class StateMachineBase extends UIBuilder {
       }
 
       protected void onLogin_PasswordTAAction(Component c, ActionEvent event) {
+      }
+
+      protected void onLogin_IpTAAction(Component c, ActionEvent event) {
       }
 
       protected void onLogin_LoginBtnAction(Component c, ActionEvent event) {

@@ -166,9 +166,14 @@ public class StateMachine extends StateMachineBase {
 		// initVolumeAudio();
 	}
 	
-	public Hashtable getJsonResponseHashtable(String username) {
+	public Hashtable getJsonResponseHashtable(String ip, String username) {
 		FlowManagerService fms = new FlowManagerService();
-		InputStream is = fms.requestNeedsAndPreferences2(username);
+		
+		if(ip.equalsIgnoreCase("")){
+			ip = "160.40.60.183";
+		}
+		
+		InputStream is = fms.requestNeedsAndPreferences2(ip, username);
 		try {
 			ht = fms.parseJsonNeedsAndPreferencesResponse(is);
 		} catch (IOException e) {
@@ -689,6 +694,7 @@ public class StateMachine extends StateMachineBase {
 		super.onLogin_LoginBtnAction(c, event);
 
 		String username = findUsernameTA().getText();
+		String ip = findIpTA().getText();
 
 		if (username.equals("1")) {
 			selectedLanguage = "gr";
@@ -784,7 +790,7 @@ public class StateMachine extends StateMachineBase {
 //			Display.getInstance().getCurrent().refreshTheme();
 			
 			// CHANGES MAY TAKE PLACE ACCORDING TO THE SERVICE RESPONSE (os_jme user is currently hardcoded)
-			Hashtable tab = getJsonResponseHashtable(username);
+			Hashtable tab = getJsonResponseHashtable(ip, username);
 			applyServerSettings(tab);
 
 			if(!isError) {
