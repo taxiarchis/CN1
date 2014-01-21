@@ -207,7 +207,8 @@ public class StateMachine extends StateMachineBase {
 		Log.p("01");
 
 		if (ip.equalsIgnoreCase("")) {
-			ip = "160.40.60.183";
+			ip = "160.40.60.183:8081";
+//			ip = "flowmanager.gpii.net:80";
 		}
 
 		Log.p("02");
@@ -617,7 +618,7 @@ public class StateMachine extends StateMachineBase {
 						System.out.println("type: " + type);
 						System.out.println("index: " + index);
 						volume = index;
-						findSoundLabel().setText("" + volume);
+//						findSoundLabel().setText("" + volume);
 
 						if (timerIsRunning) {
 							timer.cancel();

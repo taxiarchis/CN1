@@ -52,7 +52,7 @@ public class FlowManagerService {
 //	}
 	
 	public InputStream requestNeedsAndPreferences2(String serverIp, String username) { // Currently hardcoded for user os_jme  - later on to be retrieved by the textArea in the Login form
-		String url = "http://" + serverIp + ":8081/" + username + "/settings/%7B%22OS%22%3A%7B%22id%22%3A%22web%22%7D%2C%22solutions%22%3A%5B%7B%22id%22%3A%22info.cloud4all.JME%22%7D%5D%7D";
+		String url = "http://" + serverIp + "/" + username + "/settings/%7B%22OS%22%3A%7B%22id%22%3A%22web%22%7D%2C%22solutions%22%3A%5B%7B%22id%22%3A%22info.cloud4all.JME%22%7D%5D%7D";
 		Log.p("Before Connection Request..");
 		ConnectionRequest con = new ConnectionRequest(){
 //		      @Override
