@@ -56,6 +56,7 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.List;
 import com.codename1.ui.RadioButton;
+import com.codename1.ui.TextArea;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.events.DataChangedListener;
@@ -148,6 +149,8 @@ public class StateMachine extends StateMachineBase {
 	private String testingLog;
 	String home;
 
+	TextArea serverTA;
+
 	public StateMachine(String resFile) {
 		super(resFile);
 		// do not modify, write code in initVars and initialize class members
@@ -185,9 +188,14 @@ public class StateMachine extends StateMachineBase {
 		// //("file:///accounts/1000/shared/misc/android/cn1.log"); //
 		// ("/data/cn1.log");
 
+		// *************************************************************************************************************************************************************
+
 		Log.setReportingLevel(com.codename1.io.Log.DEBUG);
 		Log.getInstance().setFileWriteEnabled(true);
 		Log.getInstance().setFileURL("file:///E:/cn1.log"); // NOKIA
+
+		// *************************************************************************************************************************************************************
+
 		// Log.getInstance().setFileURL("file:///cn1.log");//accounts/1000/shared/misc/android/cn1.log");
 
 		// initVolumeAudio();
@@ -202,26 +210,51 @@ public class StateMachine extends StateMachineBase {
 	// }
 
 	public Hashtable getJsonResponseHashtable(String ip, String username) {
-		Log.p("getJsonResponseHashtable");
+		Log.p("getJsonResponseHashtable-0");
 		FlowManagerService fms = new FlowManagerService();
-		Log.p("01");
+		Log.p("getJsonResponseHashtable-1");
 
-		if (ip.equalsIgnoreCase("")) {
-			ip = "160.40.60.183:8081";
-//			ip = "flowmanager.gpii.net:80";
+//		if (!findServerCombo().isVisible()) {
+//			ip = serverTA.getText();
+//		} else {
+//			if (findServerCombo().getSelectedItem().equals("Cloud4All Server")) {
+//				ip = "flowmanager.gpii.net:80";
+//			} else if (findServerCombo().getSelectedItem().equals("HIT Server 2")) {
+//				ip = "160.40.60.183:8081";
+//			} else if (findServerCombo().getSelectedItem().equals("HIT Server 1")) {
+//				ip = "160.40.60.230:8081";
+//			}
+//		}
+
+		Log.p("ip: " + ip);
+		Log.p("username: " + username);
+
+		if (ip != null) {
+			if (ip.equalsIgnoreCase("")) {
+				ip = "160.40.60.230:8081";
+				Log.p("ip_2: " + ip);
+			}
+		} else {
+			ip = "160.40.60.230:8081";
+			Log.p("ip_3: " + ip);
 		}
 
-		Log.p("02");
+		Log.p("getJsonResponseHashtable-2");
 		InputStream is = fms.requestNeedsAndPreferences2(ip, username);
-		Log.p("03");
-		try {
-			ht = fms.parseJsonNeedsAndPreferencesResponse(is);
-			Log.p("04");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		if(is!=null){
+			Log.p("getJsonResponseHashtable-3");
+			try {
+				ht = fms.parseJsonNeedsAndPreferencesResponse(is);
+				Log.p("getJsonResponseHashtable-4");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return ht;
+		} else {
+			return null;
 		}
-		return ht;
 	}
 
 	// Set default values
@@ -271,8 +304,7 @@ public class StateMachine extends StateMachineBase {
 	}
 
 	/**
-	 * this method should be used to initialize variables instead of the
-	 * constructor/class scope to avoid race conditions
+	 * this method should be used to initialize variables instead of the constructor/class scope to avoid race conditions
 	 */
 	protected void initVars() { // TODO: TO BE COMMENTED IN
 
@@ -314,13 +346,18 @@ public class StateMachine extends StateMachineBase {
 		Util.register("MyPhotos", MyPhotos.class); // Used for storing photos
 	}
 
-	protected boolean onMainExit() {
-		// If the resource file changes the names of components this call will
-		// break notifying you that you should fix the code
-		boolean val = super.onMainExit();
-		Display.getInstance().vibrate(vibrationTime);
-		return val;
-	}
+	// protected boolean onMainExit() {
+	// // If the resource file changes the names of components this call will
+	// // break notifying you that you should fix the code
+	// boolean val = super.onMainLogout();
+	// Display.getInstance().vibrate(vibrationTime);
+	//
+	// // selectedTheme = "Initial";
+	// // UIManager.getInstance().setThemeProps(r.getTheme("Initial"));
+	// // Display.getInstance().getCurrent().refreshTheme();
+	//
+	// return val;
+	// }
 
 	protected void onSettings_BlackRadioButtonAction(Component c, ActionEvent event) {
 		// If the resource file changes the names of components this call will
@@ -491,7 +528,8 @@ public class StateMachine extends StateMachineBase {
 		});
 
 		// Theme
-		System.out.println("Display.getInstance().getCurrent().getName(): " + Display.getInstance().getCurrent().getName());
+		System.out.println("Display.getInstance().getCurrent().getName(): "
+				+ Display.getInstance().getCurrent().getName());
 		System.out.println("UIManager.getInstance().getThemeName(): " + UIManager.getInstance().getThemeName());
 
 		if (UIManager.getInstance().getThemeName().equals("mitsosBlack")) { // mitsosBlack
@@ -618,7 +656,7 @@ public class StateMachine extends StateMachineBase {
 						System.out.println("type: " + type);
 						System.out.println("index: " + index);
 						volume = index;
-//						findSoundLabel().setText("" + volume);
+						// findSoundLabel().setText("" + volume);
 
 						if (timerIsRunning) {
 							timer.cancel();
@@ -782,7 +820,21 @@ public class StateMachine extends StateMachineBase {
 		Log.p("onLogin_LoginBtnAction-1");
 
 		String username = findUsernameTA().getText();
-		ip = findIpTA().getText();
+
+//		if (!serverTA.isVisible()) {
+		if(!findUsernameLb().getComponentForm().contains(serverTA)){
+			// ip = findServerCombo().getSelectedItem().toString();
+			if (findServerCombo().getSelectedItem().equals("Cloud4All Server")) {
+				ip = "flowmanager.gpii.net:80";
+			} else if (findServerCombo().getSelectedItem().equals("HIT Server 2")) {
+				ip = "160.40.60.183:8081";
+			} else if (findServerCombo().getSelectedItem().equals("HIT Server 1")) {
+				ip = "160.40.60.230:8081";
+			}
+		} else {
+			ip = serverTA.getText();
+		}
+		System.out.println("ip: " + ip);
 
 		if (username.equals("1")) {
 			selectedLanguage = "gr";
@@ -803,20 +855,6 @@ public class StateMachine extends StateMachineBase {
 			Display.getInstance().getCurrent().refreshTheme();
 
 			showForm("Main", null);
-
-			/*
-			 * The simplest thing is to set the button as a Command and just
-			 * select the destination form in the action (notice this will
-			 * effectively disable the action event). Alternatively you can
-			 * call: showForm("formName", null); from code. To add elements to
-			 * an existing form you need to decide where they should be. E.g.
-			 * the destination form has a Container where you want to place the
-			 * TextArea? Just name that Container in the GUI builder as
-			 * "MyDestContainer". Now when you want to add the text area you can
-			 * get a pointer to the Container by using something like: Container
-			 * dest = findMyDestContainer(Display.getInstance().getCurrent());
-			 */
-
 		} else if (username.equals("2")) {
 			selectedLanguage = "en";
 			selectedFont = "medium";
@@ -836,16 +874,6 @@ public class StateMachine extends StateMachineBase {
 
 			showForm("Main", null);
 		} else if (username.equals("3")) {
-			// Default Theme
-			// selectedTheme = "mitsosNative";
-			// UIManager.getInstance().setThemeProps(r.getTheme("mitsosNative"));
-			// Display.getInstance().getCurrent().refreshTheme();
-
-			// Testing the applyServerSettings method
-			// applyServerSettings("Yellow-Black", "huge", "Greek", 50, 0);
-			// Testing the applyServerSettings method and
-			// parseJSONResponseWithCodenameOneParser
-
 			selectedTheme = "mitsosWhite";
 			selectedFont = "large";
 			selectedLanguage = "en";
@@ -864,32 +892,18 @@ public class StateMachine extends StateMachineBase {
 
 			showForm("Main", null);
 		} else {
-			// // DEFAULT PROFILE (currently 1) IS LOADED
-			// selectedLanguage = "gr";
-			// selectedFont = "huge";
-			// // selectedTheme = "mitsosYellow";
-			//
-			// // Set Greek
-			// Hashtable table = r.getL10N("cloud4AllThemes", "gr");
-			// UIManager.getInstance().setResourceBundle(table);
-			//
-			// // Set mitsosWhite
-			// UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
-			// selectedTheme = "mitsosWhite";
-			//
-			// // Set huge
-			// UIManager.getInstance().addThemeProps(r.getTheme("0"));
-			//
-			// Display.getInstance().getCurrent().refreshTheme();
-
-			// CHANGES MAY TAKE PLACE ACCORDING TO THE SERVICE RESPONSE (os_jme
-			// user is currently hardcoded)
 			Hashtable tab = getJsonResponseHashtable(ip, username);
-			applyServerSettings(tab);
-
-			if (!isError) {
-				showForm("Main", null);
+			if(tab != null){
+				applyServerSettings(tab);
+				
+				if (!isError) {
+					showForm("Main", null);
+				} else {
+					showForm("Login", null);
+				}
 			} else {
+				Dialog.show("Server ip error!", "", "OK", null);
+				
 				showForm("Login", null);
 			}
 		}
@@ -959,44 +973,42 @@ public class StateMachine extends StateMachineBase {
 								selectedTheme = "mitsosYellow";
 								Display.getInstance().getCurrent().refreshTheme();
 
-//								Display.getInstance().callSerially(new Runnable() {
-//									public void run() {
-//										Log.p("showMain!-000");
-//										showForm("Main", null);
-//										Log.p("showMain!-001");
-//									}
-//								});
-								 showForm("Main", null);
+								// Display.getInstance().callSerially(new
+								// Runnable() {
+								// public void run() {
+								// Log.p("showMain!-000");
+								// showForm("Main", null);
+								// Log.p("showMain!-001");
+								// }
+								// });
+								showForm("Main", null);
 							} else if (contents.equals("11")) {
-//								flag = "11";
-//								Log.p("content=11");
-//
-//								Hashtable tab = getJsonResponseHashtable(ip, "os_jme");
-//								Log.p("content=11-1");
-//								applyServerSettings(tab);
-//								Log.p("After applyServerSettings!");
-//
-////								Display.getInstance().callSerially(new Runnable() {
-////									public void run() {
-////										Log.p("showMain!-0");
-//										showForm("Main", null);
-////										Log.p("showMain!-1");
-////									}
-////								});
+								flag = "11";
+								Log.p("scanCompleted-11-0");
+								//
+								Hashtable tab = getJsonResponseHashtable(ip, "os_jme");
+								Log.p("scanCompleted-11-1");
+								applyServerSettings(tab);
+								Log.p("scanCompleted-11-2");
 
-							} else if (contents.equals("22")) {
-//								flag = "22";
-//								Log.p("content=22");
-//
-//								Hashtable tab = getJsonResponseHashtable(ip, "os_jme2");
-//								applyServerSettings(tab);
-//
-//								Display.getInstance().callSerially(new Runnable() {
-//									public void run() {
-//										showForm("Main", null);
-//									}
-//								});
+								Display.getInstance().callSerially(new Runnable() {
+									public void run() {
+										showForm("Main", null);
+										Log.p("scanCompleted-11-3");
+									}
+								});
+							} else {
+								Hashtable tab = getJsonResponseHashtable(ip, contents);
+								Log.p("scanCompleted-else-1");
+								applyServerSettings(tab);
+								Log.p("scanCompleted-else-2");
 
+								Display.getInstance().callSerially(new Runnable() {
+									public void run() {
+										showForm("Main", null);
+										Log.p("scanCompleted-else-3");
+									}
+								});
 							}
 						}
 
@@ -1024,9 +1036,10 @@ public class StateMachine extends StateMachineBase {
 									selectedTheme = "mitsosWhite";
 									Display.getInstance().getCurrent().refreshTheme();
 
-//									String currentFormName = Display.getInstance().getCurrent().getName();
-//
-//									text = text + currentFormName;
+									// String currentFormName =
+									// Display.getInstance().getCurrent().getName();
+									//
+									// text = text + currentFormName;
 
 									showForm("Main", null);
 								} else if (flag.equals("2")) {
@@ -1049,27 +1062,41 @@ public class StateMachine extends StateMachineBase {
 									Display.getInstance().getCurrent().refreshTheme();
 
 									showForm("Main", null);
-//									Display.getInstance().callSerially(new Runnable() {
-//										public void run() {
-//											Log.p("showMain!-000");
-//											showForm("Main", null);
-//											Log.p("showMain!-001");
-//										}
-//									});
+									// Display.getInstance().callSerially(new
+									// Runnable() {
+									// public void run() {
+									// Log.p("showMain!-000");
+									// showForm("Main", null);
+									// Log.p("showMain!-001");
+									// }
+									// });
 								} else if (flag.equals("11")) {
-//									flag = "11";
-//									Log.p("content=11");
-//									
-//									showForm("Main", null);
+									Log.p("scanCancelled-11-0");
+
+									// Display.getInstance().callSerially(new
+									// Runnable() {
+									// public void run() {
+									// Log.p("scanCancelled-11-1");
+									// showForm("Main",null);
+									// Log.p("scanCancelled-11-2");
+									// }
+									// });
+									// Display.getInstance().getCurrent().refreshTheme();
+
+									// flag = "11";
+									// Log.p("content=11");
+									//
+									// showForm("Main", null);
 								} else if (flag.equals("22")) {
-//									flag = "22";
-//									Log.p("content=22");
-//									
-//									Display.getInstance().callSerially(new Runnable() {
-//										public void run() {
-//											showForm("Main", null);
-//										}
-//									});
+									// flag = "22";
+									// Log.p("content=22");
+									//
+									// Display.getInstance().callSerially(new
+									// Runnable() {
+									// public void run() {
+									// showForm("Main", null);
+									// }
+									// });
 								}
 							}
 						}
@@ -1119,28 +1146,30 @@ public class StateMachine extends StateMachineBase {
 
 									showForm("Main", null);
 								} else if (flag.equals("11")) {
-//									Log.p("Error-flag=11");
-//									showForm("Main", null);
+									Log.p("scanError-11-0");
+									// Log.p("Error-flag=11");
+									// showForm("Main", null);
 								} else if (flag.equals("22")) {
-//									Log.p("Error-flag=22");
-//
-//									Display.getInstance().callSerially(new Runnable() {
-//										public void run() {
-//											Log.p("showMain!-000");
-//											showForm("Main", null);
-//											Log.p("showMain!-001");
-//										}
-//									});
+									// Log.p("Error-flag=22");
+									//
+									// Display.getInstance().callSerially(new
+									// Runnable() {
+									// public void run() {
+									// Log.p("showMain!-000");
+									// showForm("Main", null);
+									// Log.p("showMain!-001");
+									// }
+									// });
 								}
 							}
-
 						}
 					});
 				}
 			});
 
 			final Button barCode = new Button("Scan Barcode");
-//			findQRLoginForm(f).addComponent(barCode); IF COMMENTED OUT THE BARCODE SCAN BUTTON IS GOING TO BE ADDED
+			// findQRLoginForm(f).addComponent(barCode); IF COMMENTED OUT THE
+			// BARCODE SCAN BUTTON IS GOING TO BE ADDED
 
 			barCode.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
@@ -1595,19 +1624,21 @@ public class StateMachine extends StateMachineBase {
 		// return returnStr;
 	}
 
-	protected void postQRLogin(Form f) {
-		// If the resource file changes the names of components this call will
-		// break notifying you that you should fix the code
-		super.postQRLogin(f);
-
-		Log.p("Post QR Login!");
-
-		if (flag != null) {
-			// if (flag.equals("1")) {
-			showForm("Main", null);
-			// }
-		}
-	}
+	// protected void postQRLogin(Form f) {
+	// // If the resource file changes the names of components this call will
+	// // break notifying you that you should fix the code
+	// super.postQRLogin(f);
+	//
+	// Log.p("Post QR Login!");
+	//
+	// if (flag != null) {
+	// // if (flag.equals("1")) {
+	// Log.p("postQRLogin1");
+	// showForm("Main", null);
+	// Log.p("postQRLogin2");
+	// // }
+	// }
+	// }
 
 	protected void onMain_MultiListAction(Component c, ActionEvent event) {
 		// If the resource file changes the names of components this call will
@@ -2060,8 +2091,8 @@ public class StateMachine extends StateMachineBase {
 		System.out.println("Today5: " + now.get(Calendar.MINUTE));
 		System.out.println("Today6: " + now.get(Calendar.SECOND));
 
-		String timeDate = "" + now.get(Calendar.DATE) + now.get(Calendar.MONTH) + now.get(Calendar.YEAR) + now.get(Calendar.HOUR_OF_DAY) + now.get(Calendar.MINUTE)
-				+ now.get(Calendar.SECOND);
+		String timeDate = "" + now.get(Calendar.DATE) + now.get(Calendar.MONTH) + now.get(Calendar.YEAR)
+				+ now.get(Calendar.HOUR_OF_DAY) + now.get(Calendar.MINUTE) + now.get(Calendar.SECOND);
 		return timeDate;
 	}
 
@@ -2395,8 +2426,10 @@ public class StateMachine extends StateMachineBase {
 		dlg.addComponent(BorderLayout.CENTER, prog);
 		dlg.showPacked(BorderLayout.CENTER, false);
 
-		Vector poiVec = ps.parseXMLResponseWithCodenameOneParser(ps.requestProximityService(lastLocation.getLongitude(), lastLocation.getLatitude()));
-		ps.showResturantsOnMap(f, (MapComponent) findByName("ProximityMc", f), poiVec, lastLocation.getLatitude(), lastLocation.getLongitude());
+		Vector poiVec = ps.parseXMLResponseWithCodenameOneParser(ps.requestProximityService(
+				lastLocation.getLongitude(), lastLocation.getLatitude()));
+		ps.showResturantsOnMap(f, (MapComponent) findByName("ProximityMc", f), poiVec, lastLocation.getLatitude(),
+				lastLocation.getLongitude());
 
 		dlg.dispose();
 	}
@@ -3081,10 +3114,10 @@ public class StateMachine extends StateMachineBase {
 								showForm("Video View", null);
 
 							} catch (Exception ex) {// (IOException ex) {
-								Dialog.show(
-										"A_" + ex.toString(),
-										"form:" + showForm("Video View", null) + "videoMedia:" + videoMedia + "_OLE_" + "node:" + node + "_OLE_" + ex.getMessage() + "_OLE_"
-												+ ex.toString(), "ok", "cancel");
+								Dialog.show("A_" + ex.toString(),
+										"form:" + showForm("Video View", null) + "videoMedia:" + videoMedia + "_OLE_"
+												+ "node:" + node + "_OLE_" + ex.getMessage() + "_OLE_" + ex.toString(),
+										"ok", "cancel");
 							}
 						}
 					});
@@ -3766,8 +3799,10 @@ public class StateMachine extends StateMachineBase {
 				videoMedia.getVideoComponent().getComponentForm().show();
 
 			} catch (Exception e) {
-				Dialog.show("B_" + e.toString(), "videoMedia:" + videoMedia + "videoMedia.getVideoComponent:" + videoMedia.getVideoComponent() + "_OLE_" + e.getMessage() + "_OLE_"
-						+ "videoMedia.getVideoComponent().getComponentForm(): " + videoMedia.getVideoComponent().getComponentForm() + "_OLE_" + e.toString(), "ok", "cancel");
+				Dialog.show("B_" + e.toString(), "videoMedia:" + videoMedia + "videoMedia.getVideoComponent:"
+						+ videoMedia.getVideoComponent() + "_OLE_" + e.getMessage() + "_OLE_"
+						+ "videoMedia.getVideoComponent().getComponentForm(): "
+						+ videoMedia.getVideoComponent().getComponentForm() + "_OLE_" + e.toString(), "ok", "cancel");
 			}
 		}
 	}
@@ -4244,7 +4279,8 @@ public class StateMachine extends StateMachineBase {
 		dlg.showPacked(BorderLayout.CENTER, false);
 
 		ProximityService ps = new ProximityService();
-		Vector poiVec = ps.parseXMLResponseWithCodenameOneParser(ps.requestProximityService(lastLocation.getLongitude(), lastLocation.getLatitude()));
+		Vector poiVec = ps.parseXMLResponseWithCodenameOneParser(ps.requestProximityService(
+				lastLocation.getLongitude(), lastLocation.getLatitude()));
 		ps.showRestaurantsOnGoogleMap(f, googleMap, poiVec, lastLocation.getLatitude(), lastLocation.getLongitude());
 
 		dlg.dispose();
@@ -4906,7 +4942,8 @@ public class StateMachine extends StateMachineBase {
 		return true;
 	}
 
-	public void applyServerSettings(String themeName, String fontSize, String language, int volumeLevel, int vibrationLevel) {
+	public void applyServerSettings(String themeName, String fontSize, String language, int volumeLevel,
+			int vibrationLevel) {
 		// ALWAYS set all the selectedXXXXXXX values so that theSettings form
 		// continues to be functionable and
 		// usable by the user in case he/she wants to apply manual settings
@@ -5154,6 +5191,10 @@ public class StateMachine extends StateMachineBase {
 		findPasswordLb().setVisible(false);
 		findUsernameLb().setText("Token");
 
+		selectedTheme = "Initial";
+		UIManager.getInstance().setThemeProps(r.getTheme("Initial"));
+		f.refreshTheme();
+
 		f.revalidate();
 
 		// MyNfcListener myListener =
@@ -5235,6 +5276,43 @@ public class StateMachine extends StateMachineBase {
 		Hashtable table = r.getL10N("cloud4AllThemes", "de");
 		UIManager.getInstance().setResourceBundle(table);
 		selectedLanguage = "de";
+	}
+
+	@Override
+	protected void onLogin_ServerComboAction(Component c, ActionEvent event) {
+		System.out.println("COMBO: " + ((ComboBox) c).getSelectedItem());
+
+		if (((ComboBox) c).getSelectedItem().equals("Insert Manually")) {
+			serverTA = new TextArea();
+			findUsernameLb().getComponentForm().replace((ComboBox) c, serverTA, null);
+			findUsernameLb().getComponentForm().revalidate();
+		} else if (((ComboBox) c).getSelectedItem().equals("Cloud4All Server")) {
+			ip = "flowmanager.gpii.net:80";
+			if(serverTA != null){
+				findUsernameLb().getComponentForm().removeComponent(serverTA);
+				findUsernameLb().getComponentForm().revalidate();
+			}
+		} else if (((ComboBox) c).getSelectedItem().equals("HIT Server 2")) {
+			ip = "160.40.60.183:8081";
+			if(serverTA != null){
+				findUsernameLb().getComponentForm().removeComponent(serverTA);
+				findUsernameLb().getComponentForm().revalidate();
+			}
+		} else if (((ComboBox) c).getSelectedItem().equals("HIT Server 1")) {
+			ip = "160.40.60.230:8081";
+			if(serverTA != null){
+				findUsernameLb().getComponentForm().removeComponent(serverTA);
+				findUsernameLb().getComponentForm().revalidate();
+			}
+		}
+	}
+
+	@Override
+	protected boolean onMainLogout() {
+		boolean val = super.onMainLogout();
+		Display.getInstance().vibrate(vibrationTime);
+
+		return val;
 	}
 
 }

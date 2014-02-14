@@ -16,11 +16,12 @@ import com.codename1.ui.Dialog;
 public class FlowManagerService {
 	
 	public static Hashtable parseJsonNeedsAndPreferencesResponse(InputStream input) throws IOException {
-		Log.p("input:" + input);
+		Log.p("parseJsonNeedsAndPreferencesResponse-0");
 		InputStreamReader dataReader = new InputStreamReader(input);
-
+		Log.p("parseJsonNeedsAndPreferencesResponse-1");
 		JSONParser parser = new JSONParser();
 		Hashtable myHashtable = parser.parse(dataReader);
+		Log.p("parseJsonNeedsAndPreferencesResponse-2");
 		
 		return myHashtable;
 	}
@@ -53,41 +54,45 @@ public class FlowManagerService {
 	
 	public InputStream requestNeedsAndPreferences2(String serverIp, String username) { // Currently hardcoded for user os_jme  - later on to be retrieved by the textArea in the Login form
 		String url = "http://" + serverIp + "/" + username + "/settings/%7B%22OS%22%3A%7B%22id%22%3A%22web%22%7D%2C%22solutions%22%3A%5B%7B%22id%22%3A%22info.cloud4all.JME%22%7D%5D%7D";
-		Log.p("Before Connection Request..");
+		Log.p("requestNeedsAndPreferences2-0");
 		ConnectionRequest con = new ConnectionRequest(){
-//		      @Override
-//		      protected void handleErrorResponseCode(int code, String message) {
-//		        System.out.println("*******Error: " + code + " Mensaje: " + message);
-//		        
-//		        Dialog.show("Eroor!", message, "OK", null);
-//		      }
-//
-//		      @Override
-//		      protected void handleException(Exception e) {
-//		        System.out.println("------Error: " + e.getMessage());
-//		      }
+		      @Override
+		      protected void handleErrorResponseCode(int code, String message) {
+		        Log.p("*******Error: " + code + " Mensaje: " + message);
+//		        Dialog.show("Error!", "Error in username!", "OK", null);
+		      }
+
+		      @Override
+		      protected void handleException(Exception e) {
+		        Log.p("------Error: " + e.getMessage());
+		      }
 		};
-		Log.p("After Connection Request..");
+		Log.p("requestNeedsAndPreferences2-1");
 		
 		con.setUrl(url);
 		con.setPost(false);
 		con.setContentType("application/json");
 		con.setFailSilently(true);
 		con.setReadResponseForErrors(true);
+		Log.p("requestNeedsAndPreferences2-2");
 
 		InfiniteProgress prog = new InfiniteProgress();
 		Dialog dlg = prog.showInifiniteBlocking();
 		con.setDisposeOnCompletion(dlg);
+		Log.p("requestNeedsAndPreferences2-3");
 
 		NetworkManager.getInstance().addToQueueAndWait(con);
 		byte[] data = con.getResponseData();
-		System.out.println(data);
-		String response = openFileToString(data);
-		System.out.println("response: " + response);
-
-		InputStream is = new ByteArrayInputStream(response.getBytes());
-
-		return is;
+		if(data != null) {
+			System.out.println(data);
+			String response = openFileToString(data);
+			Log.p("requestNeedsAndPreferences2-4");
+	
+			InputStream is = new ByteArrayInputStream(response.getBytes());
+			return is;
+		} else {
+			return null;
+		}
 	}
 	
 	public String openFileToString(byte[] _bytes) {

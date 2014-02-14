@@ -42,8 +42,8 @@ public abstract class StateMachineBase extends UIBuilder {
         UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
         UIBuilder.registerCustomComponent("Slider", com.codename1.ui.Slider.class);
         UIBuilder.registerCustomComponent("WebBrowser", com.codename1.components.WebBrowser.class);
-        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("ComponentGroup", com.codename1.ui.ComponentGroup.class);
+        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("ComboBox", com.codename1.ui.ComboBox.class);
         UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
         UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
@@ -93,8 +93,8 @@ public abstract class StateMachineBase extends UIBuilder {
         UIBuilder.registerCustomComponent("TextField", com.codename1.ui.TextField.class);
         UIBuilder.registerCustomComponent("Slider", com.codename1.ui.Slider.class);
         UIBuilder.registerCustomComponent("WebBrowser", com.codename1.components.WebBrowser.class);
-        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("ComponentGroup", com.codename1.ui.ComponentGroup.class);
+        UIBuilder.registerCustomComponent("Button", com.codename1.ui.Button.class);
         UIBuilder.registerCustomComponent("ComboBox", com.codename1.ui.ComboBox.class);
         UIBuilder.registerCustomComponent("Form", com.codename1.ui.Form.class);
         UIBuilder.registerCustomComponent("MultiList", com.codename1.ui.list.MultiList.class);
@@ -158,6 +158,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.ComboBox cmp = (com.codename1.ui.ComboBox)findByName("urlComboBox", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.ComboBox)findByName("urlComboBox", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.ComboBox findServerCombo(Component root) {
+        return (com.codename1.ui.ComboBox)findByName("serverCombo", root);
+    }
+
+    public com.codename1.ui.ComboBox findServerCombo() {
+        com.codename1.ui.ComboBox cmp = (com.codename1.ui.ComboBox)findByName("serverCombo", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.ComboBox)findByName("serverCombo", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -234,18 +246,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Label findPhoneIcon(Component root) {
-        return (com.codename1.ui.Label)findByName("phoneIcon", root);
-    }
-
-    public com.codename1.ui.Label findPhoneIcon() {
-        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("phoneIcon", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Label)findByName("phoneIcon", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.RadioButton findOffVibrationButton(Component root) {
         return (com.codename1.ui.RadioButton)findByName("offVibrationButton", root);
     }
@@ -254,6 +254,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.RadioButton cmp = (com.codename1.ui.RadioButton)findByName("offVibrationButton", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.RadioButton)findByName("offVibrationButton", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Label findPhoneIcon(Component root) {
+        return (com.codename1.ui.Label)findByName("phoneIcon", root);
+    }
+
+    public com.codename1.ui.Label findPhoneIcon() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("phoneIcon", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("phoneIcon", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -642,6 +654,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.TextArea findServerTA(Component root) {
+        return (com.codename1.ui.TextArea)findByName("serverTA", root);
+    }
+
+    public com.codename1.ui.TextArea findServerTA() {
+        com.codename1.ui.TextArea cmp = (com.codename1.ui.TextArea)findByName("serverTA", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.TextArea)findByName("serverTA", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.Label findStorageLb(Component root) {
         return (com.codename1.ui.Label)findByName("storageLb", root);
     }
@@ -714,18 +738,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.list.MultiList findShareMultiList(Component root) {
-        return (com.codename1.ui.list.MultiList)findByName("shareMultiList", root);
-    }
-
-    public com.codename1.ui.list.MultiList findShareMultiList() {
-        com.codename1.ui.list.MultiList cmp = (com.codename1.ui.list.MultiList)findByName("shareMultiList", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.list.MultiList)findByName("shareMultiList", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Label findLanguagesLabel(Component root) {
         return (com.codename1.ui.Label)findByName("languagesLabel", root);
     }
@@ -734,6 +746,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("languagesLabel", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Label)findByName("languagesLabel", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.list.MultiList findShareMultiList(Component root) {
+        return (com.codename1.ui.list.MultiList)findByName("shareMultiList", root);
+    }
+
+    public com.codename1.ui.list.MultiList findShareMultiList() {
+        com.codename1.ui.list.MultiList cmp = (com.codename1.ui.list.MultiList)findByName("shareMultiList", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.list.MultiList)findByName("shareMultiList", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -750,18 +774,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Container findFindYourPositionContainer(Component root) {
-        return (com.codename1.ui.Container)findByName("findYourPositionContainer", root);
-    }
-
-    public com.codename1.ui.Container findFindYourPositionContainer() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("findYourPositionContainer", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("findYourPositionContainer", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Label findStreetLabel(Component root) {
         return (com.codename1.ui.Label)findByName("streetLabel", root);
     }
@@ -770,6 +782,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("streetLabel", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Label)findByName("streetLabel", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findFindYourPositionContainer(Component root) {
+        return (com.codename1.ui.Container)findByName("findYourPositionContainer", root);
+    }
+
+    public com.codename1.ui.Container findFindYourPositionContainer() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("findYourPositionContainer", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("findYourPositionContainer", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -818,6 +842,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.TextField cmp = (com.codename1.ui.TextField)findByName("phoneField", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.TextField)findByName("phoneField", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Label findServerLb(Component root) {
+        return (com.codename1.ui.Label)findByName("serverLb", root);
+    }
+
+    public com.codename1.ui.Label findServerLb() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("serverLb", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Label)findByName("serverLb", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -1026,18 +1062,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.TextArea findIpTA(Component root) {
-        return (com.codename1.ui.TextArea)findByName("ipTA", root);
-    }
-
-    public com.codename1.ui.TextArea findIpTA() {
-        com.codename1.ui.TextArea cmp = (com.codename1.ui.TextArea)findByName("ipTA", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.TextArea)findByName("ipTA", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.components.WebBrowser findWebBrowser(Component root) {
         return (com.codename1.components.WebBrowser)findByName("webBrowser", root);
     }
@@ -1062,18 +1086,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Label findGpsLongitudeLabel(Component root) {
-        return (com.codename1.ui.Label)findByName("gpsLongitudeLabel", root);
-    }
-
-    public com.codename1.ui.Label findGpsLongitudeLabel() {
-        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("gpsLongitudeLabel", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Label)findByName("gpsLongitudeLabel", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.ui.Container findNameContainer(Component root) {
         return (com.codename1.ui.Container)findByName("nameContainer", root);
     }
@@ -1086,14 +1098,14 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.Container findFontsContainer(Component root) {
-        return (com.codename1.ui.Container)findByName("fontsContainer", root);
+    public com.codename1.ui.Label findGpsLongitudeLabel(Component root) {
+        return (com.codename1.ui.Label)findByName("gpsLongitudeLabel", root);
     }
 
-    public com.codename1.ui.Container findFontsContainer() {
-        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("fontsContainer", Display.getInstance().getCurrent());
+    public com.codename1.ui.Label findGpsLongitudeLabel() {
+        com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("gpsLongitudeLabel", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.Container)findByName("fontsContainer", aboutToShowThisContainer);
+            cmp = (com.codename1.ui.Label)findByName("gpsLongitudeLabel", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -1106,6 +1118,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.ui.Label cmp = (com.codename1.ui.Label)findByName("vibrationLabel", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.ui.Label)findByName("vibrationLabel", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.Container findFontsContainer(Component root) {
+        return (com.codename1.ui.Container)findByName("fontsContainer", root);
+    }
+
+    public com.codename1.ui.Container findFontsContainer() {
+        com.codename1.ui.Container cmp = (com.codename1.ui.Container)findByName("fontsContainer", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Container)findByName("fontsContainer", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -1326,18 +1350,6 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
-    public com.codename1.ui.list.MultiList findPositionMultiList(Component root) {
-        return (com.codename1.ui.list.MultiList)findByName("positionMultiList", root);
-    }
-
-    public com.codename1.ui.list.MultiList findPositionMultiList() {
-        com.codename1.ui.list.MultiList cmp = (com.codename1.ui.list.MultiList)findByName("positionMultiList", Display.getInstance().getCurrent());
-        if(cmp == null && aboutToShowThisContainer != null) {
-            cmp = (com.codename1.ui.list.MultiList)findByName("positionMultiList", aboutToShowThisContainer);
-        }
-        return cmp;
-    }
-
     public com.codename1.components.ShareButton findShareButton(Component root) {
         return (com.codename1.components.ShareButton)findByName("shareButton", root);
     }
@@ -1346,6 +1358,18 @@ public abstract class StateMachineBase extends UIBuilder {
         com.codename1.components.ShareButton cmp = (com.codename1.components.ShareButton)findByName("shareButton", Display.getInstance().getCurrent());
         if(cmp == null && aboutToShowThisContainer != null) {
             cmp = (com.codename1.components.ShareButton)findByName("shareButton", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
+    public com.codename1.ui.list.MultiList findPositionMultiList(Component root) {
+        return (com.codename1.ui.list.MultiList)findByName("positionMultiList", root);
+    }
+
+    public com.codename1.ui.list.MultiList findPositionMultiList() {
+        com.codename1.ui.list.MultiList cmp = (com.codename1.ui.list.MultiList)findByName("positionMultiList", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.list.MultiList)findByName("positionMultiList", aboutToShowThisContainer);
         }
         return cmp;
     }
@@ -1405,24 +1429,26 @@ public abstract class StateMachineBase extends UIBuilder {
     public static final int COMMAND_FileBrowserExit = 41;
     public static final int COMMAND_LoadPhotoFormBack = 43;
     public static final int COMMAND_StorageFormLoad = 28;
-    public static final int COMMAND_SelectAddressFormBack = 76;
     public static final int COMMAND_VideoViewBack = 50;
-    public static final int COMMAND_MediaPlayerFormBack = 21;
+    public static final int COMMAND_SelectAddressFormBack = 76;
     public static final int COMMAND_MyImagesFormBack = 45;
+    public static final int COMMAND_MediaPlayerFormBack = 21;
     public static final int COMMAND_SettingsBack = 9;
     public static final int COMMAND_MainSettings = 2;
     public static final int COMMAND_GpsFormBack = 63;
     public static final int COMMAND_FindYourPositionFormBack = 62;
+    public static final int COMMAND_ServerDialogCancel = 82;
+    public static final int COMMAND_ServerDialogOk = 81;
     public static final int COMMAND_MyMultimediaFormBack = 44;
     public static final int COMMAND_LoginExit = 61;
-    public static final int COMMAND_MainExit = 1;
     public static final int COMMAND_MyPositionFormBack = 13;
     public static final int COMMAND_ProximityProvidersFormBack = 73;
     public static final int COMMAND_ContactsTestBack = 80;
-    public static final int COMMAND_MapsFormBack = 79;
     public static final int COMMAND_URLDialogBack = 56;
+    public static final int COMMAND_MapsFormBack = 79;
     public static final int COMMAND_ProximityGoogleFormBack = 69;
     public static final int COMMAND_AudioListenBack = 53;
+    public static final int COMMAND_MainLogout = 1;
     public static final int COMMAND_URLDialogVisit = 57;
     public static final int COMMAND_ContactFormBack = 33;
     public static final int COMMAND_FileBrowserViewFormBack = 39;
@@ -1435,8 +1461,8 @@ public abstract class StateMachineBase extends UIBuilder {
     public static final int COMMAND_ContactsBack = 10;
     public static final int COMMAND_LoginLogin = 7;
     public static final int COMMAND_MyAudioFormBack = 71;
-    public static final int COMMAND_CameraFormBack = 22;
     public static final int COMMAND_WebBrowserFormBack = 54;
+    public static final int COMMAND_CameraFormBack = 22;
     public static final int COMMAND_InsertAddressFormNext = 68;
     public static final int COMMAND_CameraFormSave = 24;
     public static final int COMMAND_VideoCaptureBack = 51;
@@ -1478,19 +1504,19 @@ public abstract class StateMachineBase extends UIBuilder {
         return false;
     }
 
-    protected boolean onSelectAddressFormBack() {
-        return false;
-    }
-
     protected boolean onVideoViewBack() {
         return false;
     }
 
-    protected boolean onMediaPlayerFormBack() {
+    protected boolean onSelectAddressFormBack() {
         return false;
     }
 
     protected boolean onMyImagesFormBack() {
+        return false;
+    }
+
+    protected boolean onMediaPlayerFormBack() {
         return false;
     }
 
@@ -1510,15 +1536,19 @@ public abstract class StateMachineBase extends UIBuilder {
         return false;
     }
 
+    protected boolean onServerDialogCancel() {
+        return false;
+    }
+
+    protected boolean onServerDialogOk() {
+        return false;
+    }
+
     protected boolean onMyMultimediaFormBack() {
         return false;
     }
 
     protected boolean onLoginExit() {
-        return false;
-    }
-
-    protected boolean onMainExit() {
         return false;
     }
 
@@ -1534,11 +1564,11 @@ public abstract class StateMachineBase extends UIBuilder {
         return false;
     }
 
-    protected boolean onMapsFormBack() {
+    protected boolean onURLDialogBack() {
         return false;
     }
 
-    protected boolean onURLDialogBack() {
+    protected boolean onMapsFormBack() {
         return false;
     }
 
@@ -1547,6 +1577,10 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
     protected boolean onAudioListenBack() {
+        return false;
+    }
+
+    protected boolean onMainLogout() {
         return false;
     }
 
@@ -1598,11 +1632,11 @@ public abstract class StateMachineBase extends UIBuilder {
         return false;
     }
 
-    protected boolean onCameraFormBack() {
+    protected boolean onWebBrowserFormBack() {
         return false;
     }
 
-    protected boolean onWebBrowserFormBack() {
+    protected boolean onCameraFormBack() {
         return false;
     }
 
@@ -1705,13 +1739,6 @@ public abstract class StateMachineBase extends UIBuilder {
                 }
                 break;
 
-            case COMMAND_SelectAddressFormBack:
-                if(onSelectAddressFormBack()) {
-                    ev.consume();
-                    return;
-                }
-                break;
-
             case COMMAND_VideoViewBack:
                 if(onVideoViewBack()) {
                     ev.consume();
@@ -1719,8 +1746,8 @@ public abstract class StateMachineBase extends UIBuilder {
                 }
                 break;
 
-            case COMMAND_MediaPlayerFormBack:
-                if(onMediaPlayerFormBack()) {
+            case COMMAND_SelectAddressFormBack:
+                if(onSelectAddressFormBack()) {
                     ev.consume();
                     return;
                 }
@@ -1728,6 +1755,13 @@ public abstract class StateMachineBase extends UIBuilder {
 
             case COMMAND_MyImagesFormBack:
                 if(onMyImagesFormBack()) {
+                    ev.consume();
+                    return;
+                }
+                break;
+
+            case COMMAND_MediaPlayerFormBack:
+                if(onMediaPlayerFormBack()) {
                     ev.consume();
                     return;
                 }
@@ -1761,6 +1795,20 @@ public abstract class StateMachineBase extends UIBuilder {
                 }
                 break;
 
+            case COMMAND_ServerDialogCancel:
+                if(onServerDialogCancel()) {
+                    ev.consume();
+                    return;
+                }
+                break;
+
+            case COMMAND_ServerDialogOk:
+                if(onServerDialogOk()) {
+                    ev.consume();
+                    return;
+                }
+                break;
+
             case COMMAND_MyMultimediaFormBack:
                 if(onMyMultimediaFormBack()) {
                     ev.consume();
@@ -1770,13 +1818,6 @@ public abstract class StateMachineBase extends UIBuilder {
 
             case COMMAND_LoginExit:
                 if(onLoginExit()) {
-                    ev.consume();
-                    return;
-                }
-                break;
-
-            case COMMAND_MainExit:
-                if(onMainExit()) {
                     ev.consume();
                     return;
                 }
@@ -1803,15 +1844,15 @@ public abstract class StateMachineBase extends UIBuilder {
                 }
                 break;
 
-            case COMMAND_MapsFormBack:
-                if(onMapsFormBack()) {
+            case COMMAND_URLDialogBack:
+                if(onURLDialogBack()) {
                     ev.consume();
                     return;
                 }
                 break;
 
-            case COMMAND_URLDialogBack:
-                if(onURLDialogBack()) {
+            case COMMAND_MapsFormBack:
+                if(onMapsFormBack()) {
                     ev.consume();
                     return;
                 }
@@ -1826,6 +1867,13 @@ public abstract class StateMachineBase extends UIBuilder {
 
             case COMMAND_AudioListenBack:
                 if(onAudioListenBack()) {
+                    ev.consume();
+                    return;
+                }
+                break;
+
+            case COMMAND_MainLogout:
+                if(onMainLogout()) {
                     ev.consume();
                     return;
                 }
@@ -1915,15 +1963,15 @@ public abstract class StateMachineBase extends UIBuilder {
                 }
                 break;
 
-            case COMMAND_CameraFormBack:
-                if(onCameraFormBack()) {
+            case COMMAND_WebBrowserFormBack:
+                if(onWebBrowserFormBack()) {
                     ev.consume();
                     return;
                 }
                 break;
 
-            case COMMAND_WebBrowserFormBack:
-                if(onWebBrowserFormBack()) {
+            case COMMAND_CameraFormBack:
+                if(onCameraFormBack()) {
                     ev.consume();
                     return;
                 }
@@ -2020,116 +2068,8 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
     protected void exitForm(Form f) {
-        if("Select Address Form".equals(f.getName())) {
-            exitSelectAddressForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Find Your Position Form".equals(f.getName())) {
-            exitFindYourPositionForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Nfc".equals(f.getName())) {
-            exitNfc(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Audio Form".equals(f.getName())) {
-            exitMyAudioForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Form".equals(f.getName())) {
-            exitProximityForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Save Photo Form".equals(f.getName())) {
-            exitSavePhotoForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Share Form".equals(f.getName())) {
-            exitMyShareForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Load Form".equals(f.getName())) {
-            exitLoadForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Insert Address Form".equals(f.getName())) {
-            exitInsertAddressForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Camera Form".equals(f.getName())) {
-            exitCameraForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Share".equals(f.getName())) {
-            exitShare(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video Capture".equals(f.getName())) {
-            exitVideoCapture(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Web Browser Form".equals(f.getName())) {
-            exitWebBrowserForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Login".equals(f.getName())) {
-            exitLogin(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Splash".equals(f.getName())) {
-            exitSplash(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Storage Form".equals(f.getName())) {
-            exitStorageForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contact Form".equals(f.getName())) {
-            exitContactForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("MyContacts Form".equals(f.getName())) {
-            exitMyContactsForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Settings".equals(f.getName())) {
-            exitSettings(f);
+        if("My Video Form".equals(f.getName())) {
+            exitMyVideoForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2140,44 +2080,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Maps Form".equals(f.getName())) {
-            exitMapsForm(f);
+        if("Web Browser Form".equals(f.getName())) {
+            exitWebBrowserForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Images Form".equals(f.getName())) {
-            exitMyImagesForm(f);
+        if("Nfc".equals(f.getName())) {
+            exitNfc(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Video Form".equals(f.getName())) {
-            exitMyVideoForm(f);
+        if("Contact Form".equals(f.getName())) {
+            exitContactForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Audio Listen".equals(f.getName())) {
-            exitAudioListen(f);
+        if("Save Photo Form".equals(f.getName())) {
+            exitSavePhotoForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Proximity Providers Form".equals(f.getName())) {
-            exitProximityProvidersForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video View".equals(f.getName())) {
-            exitVideoView(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Google Form".equals(f.getName())) {
-            exitProximityGoogleForm(f);
+        if("Settings".equals(f.getName())) {
+            exitSettings(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2188,14 +2116,116 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("ContactsTest".equals(f.getName())) {
-            exitContactsTest(f);
+        if("Camera Form".equals(f.getName())) {
+            exitCameraForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Form".equals(f.getName())) {
+            exitMapsForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("MyContacts Form".equals(f.getName())) {
+            exitMyContactsForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Audio Listen".equals(f.getName())) {
+            exitAudioListen(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Select Address Form".equals(f.getName())) {
+            exitSelectAddressForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("serverDialog".equals(f.getName())) {
+            exitServerDialog(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Find Your Position Form".equals(f.getName())) {
+            exitFindYourPositionForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video View".equals(f.getName())) {
+            exitVideoView(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Form".equals(f.getName())) {
+            exitProximityForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
         if("Gps Form".equals(f.getName())) {
             exitGpsForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Google Position Form".equals(f.getName())) {
+            exitMyGooglePositionForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Position On Map Form".equals(f.getName())) {
+            exitMyPositionOnMapForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Share Form".equals(f.getName())) {
+            exitMyShareForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Providers Form".equals(f.getName())) {
+            exitProximityProvidersForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video Capture".equals(f.getName())) {
+            exitVideoCapture(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("File Browser View Form".equals(f.getName())) {
+            exitFileBrowserViewForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Image Capture".equals(f.getName())) {
+            exitImageCapture(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Providers".equals(f.getName())) {
+            exitMapsProviders(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Photo Form".equals(f.getName())) {
+            exitLoadPhotoForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2212,62 +2242,8 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("URL Dialog".equals(f.getName())) {
-            exitURLDialog(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contacts".equals(f.getName())) {
-            exitContacts(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Image Capture".equals(f.getName())) {
-            exitImageCapture(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position On Map Form".equals(f.getName())) {
-            exitMyPositionOnMapForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Maps Providers".equals(f.getName())) {
-            exitMapsProviders(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Adress Form".equals(f.getName())) {
-            exitAdressForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser View Form".equals(f.getName())) {
-            exitFileBrowserViewForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Google Position Form".equals(f.getName())) {
-            exitMyGooglePositionForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser".equals(f.getName())) {
-            exitFileBrowser(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position Form".equals(f.getName())) {
-            exitMyPositionForm(f);
+        if("My Multimedia Form".equals(f.getName())) {
+            exitMyMultimediaForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2278,14 +2254,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("My Multimedia Form".equals(f.getName())) {
-            exitMyMultimediaForm(f);
+        if("My Images Form".equals(f.getName())) {
+            exitMyImagesForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Load Photo Form".equals(f.getName())) {
-            exitLoadPhotoForm(f);
+        if("Proximity Google Form".equals(f.getName())) {
+            exitProximityGoogleForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Insert Address Form".equals(f.getName())) {
+            exitInsertAddressForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Adress Form".equals(f.getName())) {
+            exitAdressForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Form".equals(f.getName())) {
+            exitLoadForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2296,95 +2290,67 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+        if("Splash".equals(f.getName())) {
+            exitSplash(f);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("My Audio Form".equals(f.getName())) {
+            exitMyAudioForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void exitSelectAddressForm(Form f) {
-    }
+        if("Share".equals(f.getName())) {
+            exitShare(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Contacts".equals(f.getName())) {
+            exitContacts(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void exitFindYourPositionForm(Form f) {
-    }
+        if("My Position Form".equals(f.getName())) {
+            exitMyPositionForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Login".equals(f.getName())) {
+            exitLogin(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void exitNfc(Form f) {
-    }
+        if("Storage Form".equals(f.getName())) {
+            exitStorageForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("File Browser".equals(f.getName())) {
+            exitFileBrowser(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void exitMyAudioForm(Form f) {
-    }
+        if("ContactsTest".equals(f.getName())) {
+            exitContactsTest(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("URL Dialog".equals(f.getName())) {
+            exitURLDialog(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void exitProximityForm(Form f) {
-    }
-
-
-    protected void exitSavePhotoForm(Form f) {
-    }
-
-
-    protected void exitMyShareForm(Form f) {
-    }
-
-
-    protected void exitLoadForm(Form f) {
-    }
-
-
-    protected void exitInsertAddressForm(Form f) {
-    }
-
-
-    protected void exitCameraForm(Form f) {
-    }
-
-
-    protected void exitShare(Form f) {
-    }
-
-
-    protected void exitVideoCapture(Form f) {
-    }
-
-
-    protected void exitWebBrowserForm(Form f) {
-    }
-
-
-    protected void exitLogin(Form f) {
-    }
-
-
-    protected void exitSplash(Form f) {
-    }
-
-
-    protected void exitStorageForm(Form f) {
-    }
-
-
-    protected void exitContactForm(Form f) {
-    }
-
-
-    protected void exitMyContactsForm(Form f) {
-    }
-
-
-    protected void exitSettings(Form f) {
-    }
-
-
-    protected void exitQRLogin(Form f) {
-    }
-
-
-    protected void exitMapsForm(Form f) {
-    }
-
-
-    protected void exitMyImagesForm(Form f) {
+            return;
     }
 
 
@@ -2392,19 +2358,27 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void exitAudioListen(Form f) {
+    protected void exitQRLogin(Form f) {
     }
 
 
-    protected void exitProximityProvidersForm(Form f) {
+    protected void exitWebBrowserForm(Form f) {
     }
 
 
-    protected void exitVideoView(Form f) {
+    protected void exitNfc(Form f) {
     }
 
 
-    protected void exitProximityGoogleForm(Form f) {
+    protected void exitContactForm(Form f) {
+    }
+
+
+    protected void exitSavePhotoForm(Form f) {
+    }
+
+
+    protected void exitSettings(Form f) {
     }
 
 
@@ -2412,11 +2386,79 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void exitContactsTest(Form f) {
+    protected void exitCameraForm(Form f) {
+    }
+
+
+    protected void exitMapsForm(Form f) {
+    }
+
+
+    protected void exitMyContactsForm(Form f) {
+    }
+
+
+    protected void exitAudioListen(Form f) {
+    }
+
+
+    protected void exitSelectAddressForm(Form f) {
+    }
+
+
+    protected void exitServerDialog(Form f) {
+    }
+
+
+    protected void exitFindYourPositionForm(Form f) {
+    }
+
+
+    protected void exitVideoView(Form f) {
+    }
+
+
+    protected void exitProximityForm(Form f) {
     }
 
 
     protected void exitGpsForm(Form f) {
+    }
+
+
+    protected void exitMyGooglePositionForm(Form f) {
+    }
+
+
+    protected void exitMyPositionOnMapForm(Form f) {
+    }
+
+
+    protected void exitMyShareForm(Form f) {
+    }
+
+
+    protected void exitProximityProvidersForm(Form f) {
+    }
+
+
+    protected void exitVideoCapture(Form f) {
+    }
+
+
+    protected void exitFileBrowserViewForm(Form f) {
+    }
+
+
+    protected void exitImageCapture(Form f) {
+    }
+
+
+    protected void exitMapsProviders(Form f) {
+    }
+
+
+    protected void exitLoadPhotoForm(Form f) {
     }
 
 
@@ -2428,43 +2470,7 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void exitURLDialog(Form f) {
-    }
-
-
-    protected void exitContacts(Form f) {
-    }
-
-
-    protected void exitImageCapture(Form f) {
-    }
-
-
-    protected void exitMyPositionOnMapForm(Form f) {
-    }
-
-
-    protected void exitMapsProviders(Form f) {
-    }
-
-
-    protected void exitAdressForm(Form f) {
-    }
-
-
-    protected void exitFileBrowserViewForm(Form f) {
-    }
-
-
-    protected void exitMyGooglePositionForm(Form f) {
-    }
-
-
-    protected void exitFileBrowser(Form f) {
-    }
-
-
-    protected void exitMyPositionForm(Form f) {
+    protected void exitMyMultimediaForm(Form f) {
     }
 
 
@@ -2472,129 +2478,73 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void exitMyMultimediaForm(Form f) {
+    protected void exitMyImagesForm(Form f) {
     }
 
 
-    protected void exitLoadPhotoForm(Form f) {
+    protected void exitProximityGoogleForm(Form f) {
+    }
+
+
+    protected void exitInsertAddressForm(Form f) {
+    }
+
+
+    protected void exitAdressForm(Form f) {
+    }
+
+
+    protected void exitLoadForm(Form f) {
     }
 
 
     protected void exitMediaPlayerForm(Form f) {
     }
 
+
+    protected void exitSplash(Form f) {
+    }
+
+
+    protected void exitMyAudioForm(Form f) {
+    }
+
+
+    protected void exitShare(Form f) {
+    }
+
+
+    protected void exitContacts(Form f) {
+    }
+
+
+    protected void exitMyPositionForm(Form f) {
+    }
+
+
+    protected void exitLogin(Form f) {
+    }
+
+
+    protected void exitStorageForm(Form f) {
+    }
+
+
+    protected void exitFileBrowser(Form f) {
+    }
+
+
+    protected void exitContactsTest(Form f) {
+    }
+
+
+    protected void exitURLDialog(Form f) {
+    }
+
     protected void beforeShow(Form f) {
     aboutToShowThisContainer = f;
-        if("Select Address Form".equals(f.getName())) {
-            beforeSelectAddressForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Find Your Position Form".equals(f.getName())) {
-            beforeFindYourPositionForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Nfc".equals(f.getName())) {
-            beforeNfc(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Audio Form".equals(f.getName())) {
-            beforeMyAudioForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Form".equals(f.getName())) {
-            beforeProximityForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Save Photo Form".equals(f.getName())) {
-            beforeSavePhotoForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Share Form".equals(f.getName())) {
-            beforeMyShareForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Load Form".equals(f.getName())) {
-            beforeLoadForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Insert Address Form".equals(f.getName())) {
-            beforeInsertAddressForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Camera Form".equals(f.getName())) {
-            beforeCameraForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Share".equals(f.getName())) {
-            beforeShare(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video Capture".equals(f.getName())) {
-            beforeVideoCapture(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Web Browser Form".equals(f.getName())) {
-            beforeWebBrowserForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Login".equals(f.getName())) {
-            beforeLogin(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Splash".equals(f.getName())) {
-            beforeSplash(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Storage Form".equals(f.getName())) {
-            beforeStorageForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contact Form".equals(f.getName())) {
-            beforeContactForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("MyContacts Form".equals(f.getName())) {
-            beforeMyContactsForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Settings".equals(f.getName())) {
-            beforeSettings(f);
+        if("My Video Form".equals(f.getName())) {
+            beforeMyVideoForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2605,44 +2555,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Maps Form".equals(f.getName())) {
-            beforeMapsForm(f);
+        if("Web Browser Form".equals(f.getName())) {
+            beforeWebBrowserForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Images Form".equals(f.getName())) {
-            beforeMyImagesForm(f);
+        if("Nfc".equals(f.getName())) {
+            beforeNfc(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Video Form".equals(f.getName())) {
-            beforeMyVideoForm(f);
+        if("Contact Form".equals(f.getName())) {
+            beforeContactForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Audio Listen".equals(f.getName())) {
-            beforeAudioListen(f);
+        if("Save Photo Form".equals(f.getName())) {
+            beforeSavePhotoForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Proximity Providers Form".equals(f.getName())) {
-            beforeProximityProvidersForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video View".equals(f.getName())) {
-            beforeVideoView(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Google Form".equals(f.getName())) {
-            beforeProximityGoogleForm(f);
+        if("Settings".equals(f.getName())) {
+            beforeSettings(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2653,14 +2591,116 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("ContactsTest".equals(f.getName())) {
-            beforeContactsTest(f);
+        if("Camera Form".equals(f.getName())) {
+            beforeCameraForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Form".equals(f.getName())) {
+            beforeMapsForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("MyContacts Form".equals(f.getName())) {
+            beforeMyContactsForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Audio Listen".equals(f.getName())) {
+            beforeAudioListen(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Select Address Form".equals(f.getName())) {
+            beforeSelectAddressForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("serverDialog".equals(f.getName())) {
+            beforeServerDialog(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Find Your Position Form".equals(f.getName())) {
+            beforeFindYourPositionForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video View".equals(f.getName())) {
+            beforeVideoView(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Form".equals(f.getName())) {
+            beforeProximityForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
         if("Gps Form".equals(f.getName())) {
             beforeGpsForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Google Position Form".equals(f.getName())) {
+            beforeMyGooglePositionForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Position On Map Form".equals(f.getName())) {
+            beforeMyPositionOnMapForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Share Form".equals(f.getName())) {
+            beforeMyShareForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Providers Form".equals(f.getName())) {
+            beforeProximityProvidersForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video Capture".equals(f.getName())) {
+            beforeVideoCapture(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("File Browser View Form".equals(f.getName())) {
+            beforeFileBrowserViewForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Image Capture".equals(f.getName())) {
+            beforeImageCapture(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Providers".equals(f.getName())) {
+            beforeMapsProviders(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Photo Form".equals(f.getName())) {
+            beforeLoadPhotoForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2677,62 +2717,8 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("URL Dialog".equals(f.getName())) {
-            beforeURLDialog(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contacts".equals(f.getName())) {
-            beforeContacts(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Image Capture".equals(f.getName())) {
-            beforeImageCapture(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position On Map Form".equals(f.getName())) {
-            beforeMyPositionOnMapForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Maps Providers".equals(f.getName())) {
-            beforeMapsProviders(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Adress Form".equals(f.getName())) {
-            beforeAdressForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser View Form".equals(f.getName())) {
-            beforeFileBrowserViewForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Google Position Form".equals(f.getName())) {
-            beforeMyGooglePositionForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser".equals(f.getName())) {
-            beforeFileBrowser(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position Form".equals(f.getName())) {
-            beforeMyPositionForm(f);
+        if("My Multimedia Form".equals(f.getName())) {
+            beforeMyMultimediaForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2743,14 +2729,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("My Multimedia Form".equals(f.getName())) {
-            beforeMyMultimediaForm(f);
+        if("My Images Form".equals(f.getName())) {
+            beforeMyImagesForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Load Photo Form".equals(f.getName())) {
-            beforeLoadPhotoForm(f);
+        if("Proximity Google Form".equals(f.getName())) {
+            beforeProximityGoogleForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Insert Address Form".equals(f.getName())) {
+            beforeInsertAddressForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Adress Form".equals(f.getName())) {
+            beforeAdressForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Form".equals(f.getName())) {
+            beforeLoadForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2761,95 +2765,67 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+        if("Splash".equals(f.getName())) {
+            beforeSplash(f);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("My Audio Form".equals(f.getName())) {
+            beforeMyAudioForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeSelectAddressForm(Form f) {
-    }
+        if("Share".equals(f.getName())) {
+            beforeShare(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Contacts".equals(f.getName())) {
+            beforeContacts(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeFindYourPositionForm(Form f) {
-    }
+        if("My Position Form".equals(f.getName())) {
+            beforeMyPositionForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Login".equals(f.getName())) {
+            beforeLogin(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeNfc(Form f) {
-    }
+        if("Storage Form".equals(f.getName())) {
+            beforeStorageForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("File Browser".equals(f.getName())) {
+            beforeFileBrowser(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeMyAudioForm(Form f) {
-    }
+        if("ContactsTest".equals(f.getName())) {
+            beforeContactsTest(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("URL Dialog".equals(f.getName())) {
+            beforeURLDialog(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeProximityForm(Form f) {
-    }
-
-
-    protected void beforeSavePhotoForm(Form f) {
-    }
-
-
-    protected void beforeMyShareForm(Form f) {
-    }
-
-
-    protected void beforeLoadForm(Form f) {
-    }
-
-
-    protected void beforeInsertAddressForm(Form f) {
-    }
-
-
-    protected void beforeCameraForm(Form f) {
-    }
-
-
-    protected void beforeShare(Form f) {
-    }
-
-
-    protected void beforeVideoCapture(Form f) {
-    }
-
-
-    protected void beforeWebBrowserForm(Form f) {
-    }
-
-
-    protected void beforeLogin(Form f) {
-    }
-
-
-    protected void beforeSplash(Form f) {
-    }
-
-
-    protected void beforeStorageForm(Form f) {
-    }
-
-
-    protected void beforeContactForm(Form f) {
-    }
-
-
-    protected void beforeMyContactsForm(Form f) {
-    }
-
-
-    protected void beforeSettings(Form f) {
-    }
-
-
-    protected void beforeQRLogin(Form f) {
-    }
-
-
-    protected void beforeMapsForm(Form f) {
-    }
-
-
-    protected void beforeMyImagesForm(Form f) {
+            return;
     }
 
 
@@ -2857,19 +2833,27 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void beforeAudioListen(Form f) {
+    protected void beforeQRLogin(Form f) {
     }
 
 
-    protected void beforeProximityProvidersForm(Form f) {
+    protected void beforeWebBrowserForm(Form f) {
     }
 
 
-    protected void beforeVideoView(Form f) {
+    protected void beforeNfc(Form f) {
     }
 
 
-    protected void beforeProximityGoogleForm(Form f) {
+    protected void beforeContactForm(Form f) {
+    }
+
+
+    protected void beforeSavePhotoForm(Form f) {
+    }
+
+
+    protected void beforeSettings(Form f) {
     }
 
 
@@ -2877,11 +2861,79 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void beforeContactsTest(Form f) {
+    protected void beforeCameraForm(Form f) {
+    }
+
+
+    protected void beforeMapsForm(Form f) {
+    }
+
+
+    protected void beforeMyContactsForm(Form f) {
+    }
+
+
+    protected void beforeAudioListen(Form f) {
+    }
+
+
+    protected void beforeSelectAddressForm(Form f) {
+    }
+
+
+    protected void beforeServerDialog(Form f) {
+    }
+
+
+    protected void beforeFindYourPositionForm(Form f) {
+    }
+
+
+    protected void beforeVideoView(Form f) {
+    }
+
+
+    protected void beforeProximityForm(Form f) {
     }
 
 
     protected void beforeGpsForm(Form f) {
+    }
+
+
+    protected void beforeMyGooglePositionForm(Form f) {
+    }
+
+
+    protected void beforeMyPositionOnMapForm(Form f) {
+    }
+
+
+    protected void beforeMyShareForm(Form f) {
+    }
+
+
+    protected void beforeProximityProvidersForm(Form f) {
+    }
+
+
+    protected void beforeVideoCapture(Form f) {
+    }
+
+
+    protected void beforeFileBrowserViewForm(Form f) {
+    }
+
+
+    protected void beforeImageCapture(Form f) {
+    }
+
+
+    protected void beforeMapsProviders(Form f) {
+    }
+
+
+    protected void beforeLoadPhotoForm(Form f) {
     }
 
 
@@ -2893,43 +2945,7 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void beforeURLDialog(Form f) {
-    }
-
-
-    protected void beforeContacts(Form f) {
-    }
-
-
-    protected void beforeImageCapture(Form f) {
-    }
-
-
-    protected void beforeMyPositionOnMapForm(Form f) {
-    }
-
-
-    protected void beforeMapsProviders(Form f) {
-    }
-
-
-    protected void beforeAdressForm(Form f) {
-    }
-
-
-    protected void beforeFileBrowserViewForm(Form f) {
-    }
-
-
-    protected void beforeMyGooglePositionForm(Form f) {
-    }
-
-
-    protected void beforeFileBrowser(Form f) {
-    }
-
-
-    protected void beforeMyPositionForm(Form f) {
+    protected void beforeMyMultimediaForm(Form f) {
     }
 
 
@@ -2937,129 +2953,73 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void beforeMyMultimediaForm(Form f) {
+    protected void beforeMyImagesForm(Form f) {
     }
 
 
-    protected void beforeLoadPhotoForm(Form f) {
+    protected void beforeProximityGoogleForm(Form f) {
+    }
+
+
+    protected void beforeInsertAddressForm(Form f) {
+    }
+
+
+    protected void beforeAdressForm(Form f) {
+    }
+
+
+    protected void beforeLoadForm(Form f) {
     }
 
 
     protected void beforeMediaPlayerForm(Form f) {
     }
 
+
+    protected void beforeSplash(Form f) {
+    }
+
+
+    protected void beforeMyAudioForm(Form f) {
+    }
+
+
+    protected void beforeShare(Form f) {
+    }
+
+
+    protected void beforeContacts(Form f) {
+    }
+
+
+    protected void beforeMyPositionForm(Form f) {
+    }
+
+
+    protected void beforeLogin(Form f) {
+    }
+
+
+    protected void beforeStorageForm(Form f) {
+    }
+
+
+    protected void beforeFileBrowser(Form f) {
+    }
+
+
+    protected void beforeContactsTest(Form f) {
+    }
+
+
+    protected void beforeURLDialog(Form f) {
+    }
+
     protected void beforeShowContainer(Container c) {
         aboutToShowThisContainer = c;
-        if("Select Address Form".equals(c.getName())) {
-            beforeContainerSelectAddressForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Find Your Position Form".equals(c.getName())) {
-            beforeContainerFindYourPositionForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Nfc".equals(c.getName())) {
-            beforeContainerNfc(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Audio Form".equals(c.getName())) {
-            beforeContainerMyAudioForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Form".equals(c.getName())) {
-            beforeContainerProximityForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Save Photo Form".equals(c.getName())) {
-            beforeContainerSavePhotoForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Share Form".equals(c.getName())) {
-            beforeContainerMyShareForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Load Form".equals(c.getName())) {
-            beforeContainerLoadForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Insert Address Form".equals(c.getName())) {
-            beforeContainerInsertAddressForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Camera Form".equals(c.getName())) {
-            beforeContainerCameraForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Share".equals(c.getName())) {
-            beforeContainerShare(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video Capture".equals(c.getName())) {
-            beforeContainerVideoCapture(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Web Browser Form".equals(c.getName())) {
-            beforeContainerWebBrowserForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Login".equals(c.getName())) {
-            beforeContainerLogin(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Splash".equals(c.getName())) {
-            beforeContainerSplash(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Storage Form".equals(c.getName())) {
-            beforeContainerStorageForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contact Form".equals(c.getName())) {
-            beforeContainerContactForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("MyContacts Form".equals(c.getName())) {
-            beforeContainerMyContactsForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Settings".equals(c.getName())) {
-            beforeContainerSettings(c);
+        if("My Video Form".equals(c.getName())) {
+            beforeContainerMyVideoForm(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3070,44 +3030,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Maps Form".equals(c.getName())) {
-            beforeContainerMapsForm(c);
+        if("Web Browser Form".equals(c.getName())) {
+            beforeContainerWebBrowserForm(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Images Form".equals(c.getName())) {
-            beforeContainerMyImagesForm(c);
+        if("Nfc".equals(c.getName())) {
+            beforeContainerNfc(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Video Form".equals(c.getName())) {
-            beforeContainerMyVideoForm(c);
+        if("Contact Form".equals(c.getName())) {
+            beforeContainerContactForm(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Audio Listen".equals(c.getName())) {
-            beforeContainerAudioListen(c);
+        if("Save Photo Form".equals(c.getName())) {
+            beforeContainerSavePhotoForm(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Proximity Providers Form".equals(c.getName())) {
-            beforeContainerProximityProvidersForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video View".equals(c.getName())) {
-            beforeContainerVideoView(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Google Form".equals(c.getName())) {
-            beforeContainerProximityGoogleForm(c);
+        if("Settings".equals(c.getName())) {
+            beforeContainerSettings(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3118,14 +3066,116 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("ContactsTest".equals(c.getName())) {
-            beforeContainerContactsTest(c);
+        if("Camera Form".equals(c.getName())) {
+            beforeContainerCameraForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Form".equals(c.getName())) {
+            beforeContainerMapsForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("MyContacts Form".equals(c.getName())) {
+            beforeContainerMyContactsForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Audio Listen".equals(c.getName())) {
+            beforeContainerAudioListen(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Select Address Form".equals(c.getName())) {
+            beforeContainerSelectAddressForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("serverDialog".equals(c.getName())) {
+            beforeContainerServerDialog(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Find Your Position Form".equals(c.getName())) {
+            beforeContainerFindYourPositionForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video View".equals(c.getName())) {
+            beforeContainerVideoView(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Form".equals(c.getName())) {
+            beforeContainerProximityForm(c);
             aboutToShowThisContainer = null;
             return;
         }
 
         if("Gps Form".equals(c.getName())) {
             beforeContainerGpsForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Google Position Form".equals(c.getName())) {
+            beforeContainerMyGooglePositionForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Position On Map Form".equals(c.getName())) {
+            beforeContainerMyPositionOnMapForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Share Form".equals(c.getName())) {
+            beforeContainerMyShareForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Providers Form".equals(c.getName())) {
+            beforeContainerProximityProvidersForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video Capture".equals(c.getName())) {
+            beforeContainerVideoCapture(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("File Browser View Form".equals(c.getName())) {
+            beforeContainerFileBrowserViewForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Image Capture".equals(c.getName())) {
+            beforeContainerImageCapture(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Providers".equals(c.getName())) {
+            beforeContainerMapsProviders(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Photo Form".equals(c.getName())) {
+            beforeContainerLoadPhotoForm(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3142,62 +3192,8 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("URL Dialog".equals(c.getName())) {
-            beforeContainerURLDialog(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contacts".equals(c.getName())) {
-            beforeContainerContacts(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Image Capture".equals(c.getName())) {
-            beforeContainerImageCapture(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position On Map Form".equals(c.getName())) {
-            beforeContainerMyPositionOnMapForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Maps Providers".equals(c.getName())) {
-            beforeContainerMapsProviders(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Adress Form".equals(c.getName())) {
-            beforeContainerAdressForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser View Form".equals(c.getName())) {
-            beforeContainerFileBrowserViewForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Google Position Form".equals(c.getName())) {
-            beforeContainerMyGooglePositionForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser".equals(c.getName())) {
-            beforeContainerFileBrowser(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position Form".equals(c.getName())) {
-            beforeContainerMyPositionForm(c);
+        if("My Multimedia Form".equals(c.getName())) {
+            beforeContainerMyMultimediaForm(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3208,14 +3204,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("My Multimedia Form".equals(c.getName())) {
-            beforeContainerMyMultimediaForm(c);
+        if("My Images Form".equals(c.getName())) {
+            beforeContainerMyImagesForm(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Load Photo Form".equals(c.getName())) {
-            beforeContainerLoadPhotoForm(c);
+        if("Proximity Google Form".equals(c.getName())) {
+            beforeContainerProximityGoogleForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Insert Address Form".equals(c.getName())) {
+            beforeContainerInsertAddressForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Adress Form".equals(c.getName())) {
+            beforeContainerAdressForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Form".equals(c.getName())) {
+            beforeContainerLoadForm(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3226,95 +3240,67 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+        if("Splash".equals(c.getName())) {
+            beforeContainerSplash(c);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("My Audio Form".equals(c.getName())) {
+            beforeContainerMyAudioForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeContainerSelectAddressForm(Container c) {
-    }
+        if("Share".equals(c.getName())) {
+            beforeContainerShare(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Contacts".equals(c.getName())) {
+            beforeContainerContacts(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeContainerFindYourPositionForm(Container c) {
-    }
+        if("My Position Form".equals(c.getName())) {
+            beforeContainerMyPositionForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Login".equals(c.getName())) {
+            beforeContainerLogin(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeContainerNfc(Container c) {
-    }
+        if("Storage Form".equals(c.getName())) {
+            beforeContainerStorageForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("File Browser".equals(c.getName())) {
+            beforeContainerFileBrowser(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeContainerMyAudioForm(Container c) {
-    }
+        if("ContactsTest".equals(c.getName())) {
+            beforeContainerContactsTest(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("URL Dialog".equals(c.getName())) {
+            beforeContainerURLDialog(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void beforeContainerProximityForm(Container c) {
-    }
-
-
-    protected void beforeContainerSavePhotoForm(Container c) {
-    }
-
-
-    protected void beforeContainerMyShareForm(Container c) {
-    }
-
-
-    protected void beforeContainerLoadForm(Container c) {
-    }
-
-
-    protected void beforeContainerInsertAddressForm(Container c) {
-    }
-
-
-    protected void beforeContainerCameraForm(Container c) {
-    }
-
-
-    protected void beforeContainerShare(Container c) {
-    }
-
-
-    protected void beforeContainerVideoCapture(Container c) {
-    }
-
-
-    protected void beforeContainerWebBrowserForm(Container c) {
-    }
-
-
-    protected void beforeContainerLogin(Container c) {
-    }
-
-
-    protected void beforeContainerSplash(Container c) {
-    }
-
-
-    protected void beforeContainerStorageForm(Container c) {
-    }
-
-
-    protected void beforeContainerContactForm(Container c) {
-    }
-
-
-    protected void beforeContainerMyContactsForm(Container c) {
-    }
-
-
-    protected void beforeContainerSettings(Container c) {
-    }
-
-
-    protected void beforeContainerQRLogin(Container c) {
-    }
-
-
-    protected void beforeContainerMapsForm(Container c) {
-    }
-
-
-    protected void beforeContainerMyImagesForm(Container c) {
+            return;
     }
 
 
@@ -3322,19 +3308,27 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void beforeContainerAudioListen(Container c) {
+    protected void beforeContainerQRLogin(Container c) {
     }
 
 
-    protected void beforeContainerProximityProvidersForm(Container c) {
+    protected void beforeContainerWebBrowserForm(Container c) {
     }
 
 
-    protected void beforeContainerVideoView(Container c) {
+    protected void beforeContainerNfc(Container c) {
     }
 
 
-    protected void beforeContainerProximityGoogleForm(Container c) {
+    protected void beforeContainerContactForm(Container c) {
+    }
+
+
+    protected void beforeContainerSavePhotoForm(Container c) {
+    }
+
+
+    protected void beforeContainerSettings(Container c) {
     }
 
 
@@ -3342,11 +3336,79 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void beforeContainerContactsTest(Container c) {
+    protected void beforeContainerCameraForm(Container c) {
+    }
+
+
+    protected void beforeContainerMapsForm(Container c) {
+    }
+
+
+    protected void beforeContainerMyContactsForm(Container c) {
+    }
+
+
+    protected void beforeContainerAudioListen(Container c) {
+    }
+
+
+    protected void beforeContainerSelectAddressForm(Container c) {
+    }
+
+
+    protected void beforeContainerServerDialog(Container c) {
+    }
+
+
+    protected void beforeContainerFindYourPositionForm(Container c) {
+    }
+
+
+    protected void beforeContainerVideoView(Container c) {
+    }
+
+
+    protected void beforeContainerProximityForm(Container c) {
     }
 
 
     protected void beforeContainerGpsForm(Container c) {
+    }
+
+
+    protected void beforeContainerMyGooglePositionForm(Container c) {
+    }
+
+
+    protected void beforeContainerMyPositionOnMapForm(Container c) {
+    }
+
+
+    protected void beforeContainerMyShareForm(Container c) {
+    }
+
+
+    protected void beforeContainerProximityProvidersForm(Container c) {
+    }
+
+
+    protected void beforeContainerVideoCapture(Container c) {
+    }
+
+
+    protected void beforeContainerFileBrowserViewForm(Container c) {
+    }
+
+
+    protected void beforeContainerImageCapture(Container c) {
+    }
+
+
+    protected void beforeContainerMapsProviders(Container c) {
+    }
+
+
+    protected void beforeContainerLoadPhotoForm(Container c) {
     }
 
 
@@ -3358,43 +3420,7 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void beforeContainerURLDialog(Container c) {
-    }
-
-
-    protected void beforeContainerContacts(Container c) {
-    }
-
-
-    protected void beforeContainerImageCapture(Container c) {
-    }
-
-
-    protected void beforeContainerMyPositionOnMapForm(Container c) {
-    }
-
-
-    protected void beforeContainerMapsProviders(Container c) {
-    }
-
-
-    protected void beforeContainerAdressForm(Container c) {
-    }
-
-
-    protected void beforeContainerFileBrowserViewForm(Container c) {
-    }
-
-
-    protected void beforeContainerMyGooglePositionForm(Container c) {
-    }
-
-
-    protected void beforeContainerFileBrowser(Container c) {
-    }
-
-
-    protected void beforeContainerMyPositionForm(Container c) {
+    protected void beforeContainerMyMultimediaForm(Container c) {
     }
 
 
@@ -3402,128 +3428,72 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void beforeContainerMyMultimediaForm(Container c) {
+    protected void beforeContainerMyImagesForm(Container c) {
     }
 
 
-    protected void beforeContainerLoadPhotoForm(Container c) {
+    protected void beforeContainerProximityGoogleForm(Container c) {
+    }
+
+
+    protected void beforeContainerInsertAddressForm(Container c) {
+    }
+
+
+    protected void beforeContainerAdressForm(Container c) {
+    }
+
+
+    protected void beforeContainerLoadForm(Container c) {
     }
 
 
     protected void beforeContainerMediaPlayerForm(Container c) {
     }
 
+
+    protected void beforeContainerSplash(Container c) {
+    }
+
+
+    protected void beforeContainerMyAudioForm(Container c) {
+    }
+
+
+    protected void beforeContainerShare(Container c) {
+    }
+
+
+    protected void beforeContainerContacts(Container c) {
+    }
+
+
+    protected void beforeContainerMyPositionForm(Container c) {
+    }
+
+
+    protected void beforeContainerLogin(Container c) {
+    }
+
+
+    protected void beforeContainerStorageForm(Container c) {
+    }
+
+
+    protected void beforeContainerFileBrowser(Container c) {
+    }
+
+
+    protected void beforeContainerContactsTest(Container c) {
+    }
+
+
+    protected void beforeContainerURLDialog(Container c) {
+    }
+
     protected void postShow(Form f) {
-        if("Select Address Form".equals(f.getName())) {
-            postSelectAddressForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Find Your Position Form".equals(f.getName())) {
-            postFindYourPositionForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Nfc".equals(f.getName())) {
-            postNfc(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Audio Form".equals(f.getName())) {
-            postMyAudioForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Form".equals(f.getName())) {
-            postProximityForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Save Photo Form".equals(f.getName())) {
-            postSavePhotoForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Share Form".equals(f.getName())) {
-            postMyShareForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Load Form".equals(f.getName())) {
-            postLoadForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Insert Address Form".equals(f.getName())) {
-            postInsertAddressForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Camera Form".equals(f.getName())) {
-            postCameraForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Share".equals(f.getName())) {
-            postShare(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video Capture".equals(f.getName())) {
-            postVideoCapture(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Web Browser Form".equals(f.getName())) {
-            postWebBrowserForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Login".equals(f.getName())) {
-            postLogin(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Splash".equals(f.getName())) {
-            postSplash(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Storage Form".equals(f.getName())) {
-            postStorageForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contact Form".equals(f.getName())) {
-            postContactForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("MyContacts Form".equals(f.getName())) {
-            postMyContactsForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Settings".equals(f.getName())) {
-            postSettings(f);
+        if("My Video Form".equals(f.getName())) {
+            postMyVideoForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3534,44 +3504,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Maps Form".equals(f.getName())) {
-            postMapsForm(f);
+        if("Web Browser Form".equals(f.getName())) {
+            postWebBrowserForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Images Form".equals(f.getName())) {
-            postMyImagesForm(f);
+        if("Nfc".equals(f.getName())) {
+            postNfc(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Video Form".equals(f.getName())) {
-            postMyVideoForm(f);
+        if("Contact Form".equals(f.getName())) {
+            postContactForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Audio Listen".equals(f.getName())) {
-            postAudioListen(f);
+        if("Save Photo Form".equals(f.getName())) {
+            postSavePhotoForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Proximity Providers Form".equals(f.getName())) {
-            postProximityProvidersForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video View".equals(f.getName())) {
-            postVideoView(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Google Form".equals(f.getName())) {
-            postProximityGoogleForm(f);
+        if("Settings".equals(f.getName())) {
+            postSettings(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3582,14 +3540,116 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("ContactsTest".equals(f.getName())) {
-            postContactsTest(f);
+        if("Camera Form".equals(f.getName())) {
+            postCameraForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Form".equals(f.getName())) {
+            postMapsForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("MyContacts Form".equals(f.getName())) {
+            postMyContactsForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Audio Listen".equals(f.getName())) {
+            postAudioListen(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Select Address Form".equals(f.getName())) {
+            postSelectAddressForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("serverDialog".equals(f.getName())) {
+            postServerDialog(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Find Your Position Form".equals(f.getName())) {
+            postFindYourPositionForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video View".equals(f.getName())) {
+            postVideoView(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Form".equals(f.getName())) {
+            postProximityForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
         if("Gps Form".equals(f.getName())) {
             postGpsForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Google Position Form".equals(f.getName())) {
+            postMyGooglePositionForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Position On Map Form".equals(f.getName())) {
+            postMyPositionOnMapForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Share Form".equals(f.getName())) {
+            postMyShareForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Providers Form".equals(f.getName())) {
+            postProximityProvidersForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video Capture".equals(f.getName())) {
+            postVideoCapture(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("File Browser View Form".equals(f.getName())) {
+            postFileBrowserViewForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Image Capture".equals(f.getName())) {
+            postImageCapture(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Providers".equals(f.getName())) {
+            postMapsProviders(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Photo Form".equals(f.getName())) {
+            postLoadPhotoForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3606,62 +3666,8 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("URL Dialog".equals(f.getName())) {
-            postURLDialog(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contacts".equals(f.getName())) {
-            postContacts(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Image Capture".equals(f.getName())) {
-            postImageCapture(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position On Map Form".equals(f.getName())) {
-            postMyPositionOnMapForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Maps Providers".equals(f.getName())) {
-            postMapsProviders(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Adress Form".equals(f.getName())) {
-            postAdressForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser View Form".equals(f.getName())) {
-            postFileBrowserViewForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Google Position Form".equals(f.getName())) {
-            postMyGooglePositionForm(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser".equals(f.getName())) {
-            postFileBrowser(f);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position Form".equals(f.getName())) {
-            postMyPositionForm(f);
+        if("My Multimedia Form".equals(f.getName())) {
+            postMyMultimediaForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3672,14 +3678,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("My Multimedia Form".equals(f.getName())) {
-            postMyMultimediaForm(f);
+        if("My Images Form".equals(f.getName())) {
+            postMyImagesForm(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Load Photo Form".equals(f.getName())) {
-            postLoadPhotoForm(f);
+        if("Proximity Google Form".equals(f.getName())) {
+            postProximityGoogleForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Insert Address Form".equals(f.getName())) {
+            postInsertAddressForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Adress Form".equals(f.getName())) {
+            postAdressForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Form".equals(f.getName())) {
+            postLoadForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3690,95 +3714,67 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+        if("Splash".equals(f.getName())) {
+            postSplash(f);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("My Audio Form".equals(f.getName())) {
+            postMyAudioForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postSelectAddressForm(Form f) {
-    }
+        if("Share".equals(f.getName())) {
+            postShare(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Contacts".equals(f.getName())) {
+            postContacts(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postFindYourPositionForm(Form f) {
-    }
+        if("My Position Form".equals(f.getName())) {
+            postMyPositionForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Login".equals(f.getName())) {
+            postLogin(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postNfc(Form f) {
-    }
+        if("Storage Form".equals(f.getName())) {
+            postStorageForm(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("File Browser".equals(f.getName())) {
+            postFileBrowser(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postMyAudioForm(Form f) {
-    }
+        if("ContactsTest".equals(f.getName())) {
+            postContactsTest(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("URL Dialog".equals(f.getName())) {
+            postURLDialog(f);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postProximityForm(Form f) {
-    }
-
-
-    protected void postSavePhotoForm(Form f) {
-    }
-
-
-    protected void postMyShareForm(Form f) {
-    }
-
-
-    protected void postLoadForm(Form f) {
-    }
-
-
-    protected void postInsertAddressForm(Form f) {
-    }
-
-
-    protected void postCameraForm(Form f) {
-    }
-
-
-    protected void postShare(Form f) {
-    }
-
-
-    protected void postVideoCapture(Form f) {
-    }
-
-
-    protected void postWebBrowserForm(Form f) {
-    }
-
-
-    protected void postLogin(Form f) {
-    }
-
-
-    protected void postSplash(Form f) {
-    }
-
-
-    protected void postStorageForm(Form f) {
-    }
-
-
-    protected void postContactForm(Form f) {
-    }
-
-
-    protected void postMyContactsForm(Form f) {
-    }
-
-
-    protected void postSettings(Form f) {
-    }
-
-
-    protected void postQRLogin(Form f) {
-    }
-
-
-    protected void postMapsForm(Form f) {
-    }
-
-
-    protected void postMyImagesForm(Form f) {
+            return;
     }
 
 
@@ -3786,19 +3782,27 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void postAudioListen(Form f) {
+    protected void postQRLogin(Form f) {
     }
 
 
-    protected void postProximityProvidersForm(Form f) {
+    protected void postWebBrowserForm(Form f) {
     }
 
 
-    protected void postVideoView(Form f) {
+    protected void postNfc(Form f) {
     }
 
 
-    protected void postProximityGoogleForm(Form f) {
+    protected void postContactForm(Form f) {
+    }
+
+
+    protected void postSavePhotoForm(Form f) {
+    }
+
+
+    protected void postSettings(Form f) {
     }
 
 
@@ -3806,11 +3810,79 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void postContactsTest(Form f) {
+    protected void postCameraForm(Form f) {
+    }
+
+
+    protected void postMapsForm(Form f) {
+    }
+
+
+    protected void postMyContactsForm(Form f) {
+    }
+
+
+    protected void postAudioListen(Form f) {
+    }
+
+
+    protected void postSelectAddressForm(Form f) {
+    }
+
+
+    protected void postServerDialog(Form f) {
+    }
+
+
+    protected void postFindYourPositionForm(Form f) {
+    }
+
+
+    protected void postVideoView(Form f) {
+    }
+
+
+    protected void postProximityForm(Form f) {
     }
 
 
     protected void postGpsForm(Form f) {
+    }
+
+
+    protected void postMyGooglePositionForm(Form f) {
+    }
+
+
+    protected void postMyPositionOnMapForm(Form f) {
+    }
+
+
+    protected void postMyShareForm(Form f) {
+    }
+
+
+    protected void postProximityProvidersForm(Form f) {
+    }
+
+
+    protected void postVideoCapture(Form f) {
+    }
+
+
+    protected void postFileBrowserViewForm(Form f) {
+    }
+
+
+    protected void postImageCapture(Form f) {
+    }
+
+
+    protected void postMapsProviders(Form f) {
+    }
+
+
+    protected void postLoadPhotoForm(Form f) {
     }
 
 
@@ -3822,43 +3894,7 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void postURLDialog(Form f) {
-    }
-
-
-    protected void postContacts(Form f) {
-    }
-
-
-    protected void postImageCapture(Form f) {
-    }
-
-
-    protected void postMyPositionOnMapForm(Form f) {
-    }
-
-
-    protected void postMapsProviders(Form f) {
-    }
-
-
-    protected void postAdressForm(Form f) {
-    }
-
-
-    protected void postFileBrowserViewForm(Form f) {
-    }
-
-
-    protected void postMyGooglePositionForm(Form f) {
-    }
-
-
-    protected void postFileBrowser(Form f) {
-    }
-
-
-    protected void postMyPositionForm(Form f) {
+    protected void postMyMultimediaForm(Form f) {
     }
 
 
@@ -3866,128 +3902,72 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void postMyMultimediaForm(Form f) {
+    protected void postMyImagesForm(Form f) {
     }
 
 
-    protected void postLoadPhotoForm(Form f) {
+    protected void postProximityGoogleForm(Form f) {
+    }
+
+
+    protected void postInsertAddressForm(Form f) {
+    }
+
+
+    protected void postAdressForm(Form f) {
+    }
+
+
+    protected void postLoadForm(Form f) {
     }
 
 
     protected void postMediaPlayerForm(Form f) {
     }
 
+
+    protected void postSplash(Form f) {
+    }
+
+
+    protected void postMyAudioForm(Form f) {
+    }
+
+
+    protected void postShare(Form f) {
+    }
+
+
+    protected void postContacts(Form f) {
+    }
+
+
+    protected void postMyPositionForm(Form f) {
+    }
+
+
+    protected void postLogin(Form f) {
+    }
+
+
+    protected void postStorageForm(Form f) {
+    }
+
+
+    protected void postFileBrowser(Form f) {
+    }
+
+
+    protected void postContactsTest(Form f) {
+    }
+
+
+    protected void postURLDialog(Form f) {
+    }
+
     protected void postShowContainer(Container c) {
-        if("Select Address Form".equals(c.getName())) {
-            postContainerSelectAddressForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Find Your Position Form".equals(c.getName())) {
-            postContainerFindYourPositionForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Nfc".equals(c.getName())) {
-            postContainerNfc(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Audio Form".equals(c.getName())) {
-            postContainerMyAudioForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Form".equals(c.getName())) {
-            postContainerProximityForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Save Photo Form".equals(c.getName())) {
-            postContainerSavePhotoForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Share Form".equals(c.getName())) {
-            postContainerMyShareForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Load Form".equals(c.getName())) {
-            postContainerLoadForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Insert Address Form".equals(c.getName())) {
-            postContainerInsertAddressForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Camera Form".equals(c.getName())) {
-            postContainerCameraForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Share".equals(c.getName())) {
-            postContainerShare(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video Capture".equals(c.getName())) {
-            postContainerVideoCapture(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Web Browser Form".equals(c.getName())) {
-            postContainerWebBrowserForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Login".equals(c.getName())) {
-            postContainerLogin(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Splash".equals(c.getName())) {
-            postContainerSplash(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Storage Form".equals(c.getName())) {
-            postContainerStorageForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contact Form".equals(c.getName())) {
-            postContainerContactForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("MyContacts Form".equals(c.getName())) {
-            postContainerMyContactsForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Settings".equals(c.getName())) {
-            postContainerSettings(c);
+        if("My Video Form".equals(c.getName())) {
+            postContainerMyVideoForm(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3998,44 +3978,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Maps Form".equals(c.getName())) {
-            postContainerMapsForm(c);
+        if("Web Browser Form".equals(c.getName())) {
+            postContainerWebBrowserForm(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Images Form".equals(c.getName())) {
-            postContainerMyImagesForm(c);
+        if("Nfc".equals(c.getName())) {
+            postContainerNfc(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Video Form".equals(c.getName())) {
-            postContainerMyVideoForm(c);
+        if("Contact Form".equals(c.getName())) {
+            postContainerContactForm(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Audio Listen".equals(c.getName())) {
-            postContainerAudioListen(c);
+        if("Save Photo Form".equals(c.getName())) {
+            postContainerSavePhotoForm(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Proximity Providers Form".equals(c.getName())) {
-            postContainerProximityProvidersForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video View".equals(c.getName())) {
-            postContainerVideoView(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Google Form".equals(c.getName())) {
-            postContainerProximityGoogleForm(c);
+        if("Settings".equals(c.getName())) {
+            postContainerSettings(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -4046,14 +4014,116 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("ContactsTest".equals(c.getName())) {
-            postContainerContactsTest(c);
+        if("Camera Form".equals(c.getName())) {
+            postContainerCameraForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Form".equals(c.getName())) {
+            postContainerMapsForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("MyContacts Form".equals(c.getName())) {
+            postContainerMyContactsForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Audio Listen".equals(c.getName())) {
+            postContainerAudioListen(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Select Address Form".equals(c.getName())) {
+            postContainerSelectAddressForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("serverDialog".equals(c.getName())) {
+            postContainerServerDialog(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Find Your Position Form".equals(c.getName())) {
+            postContainerFindYourPositionForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video View".equals(c.getName())) {
+            postContainerVideoView(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Form".equals(c.getName())) {
+            postContainerProximityForm(c);
             aboutToShowThisContainer = null;
             return;
         }
 
         if("Gps Form".equals(c.getName())) {
             postContainerGpsForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Google Position Form".equals(c.getName())) {
+            postContainerMyGooglePositionForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Position On Map Form".equals(c.getName())) {
+            postContainerMyPositionOnMapForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Share Form".equals(c.getName())) {
+            postContainerMyShareForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Providers Form".equals(c.getName())) {
+            postContainerProximityProvidersForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video Capture".equals(c.getName())) {
+            postContainerVideoCapture(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("File Browser View Form".equals(c.getName())) {
+            postContainerFileBrowserViewForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Image Capture".equals(c.getName())) {
+            postContainerImageCapture(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Providers".equals(c.getName())) {
+            postContainerMapsProviders(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Photo Form".equals(c.getName())) {
+            postContainerLoadPhotoForm(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -4070,62 +4140,8 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("URL Dialog".equals(c.getName())) {
-            postContainerURLDialog(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contacts".equals(c.getName())) {
-            postContainerContacts(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Image Capture".equals(c.getName())) {
-            postContainerImageCapture(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position On Map Form".equals(c.getName())) {
-            postContainerMyPositionOnMapForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Maps Providers".equals(c.getName())) {
-            postContainerMapsProviders(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Adress Form".equals(c.getName())) {
-            postContainerAdressForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser View Form".equals(c.getName())) {
-            postContainerFileBrowserViewForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Google Position Form".equals(c.getName())) {
-            postContainerMyGooglePositionForm(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser".equals(c.getName())) {
-            postContainerFileBrowser(c);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position Form".equals(c.getName())) {
-            postContainerMyPositionForm(c);
+        if("My Multimedia Form".equals(c.getName())) {
+            postContainerMyMultimediaForm(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -4136,14 +4152,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("My Multimedia Form".equals(c.getName())) {
-            postContainerMyMultimediaForm(c);
+        if("My Images Form".equals(c.getName())) {
+            postContainerMyImagesForm(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Load Photo Form".equals(c.getName())) {
-            postContainerLoadPhotoForm(c);
+        if("Proximity Google Form".equals(c.getName())) {
+            postContainerProximityGoogleForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Insert Address Form".equals(c.getName())) {
+            postContainerInsertAddressForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Adress Form".equals(c.getName())) {
+            postContainerAdressForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Form".equals(c.getName())) {
+            postContainerLoadForm(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -4154,95 +4188,67 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+        if("Splash".equals(c.getName())) {
+            postContainerSplash(c);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("My Audio Form".equals(c.getName())) {
+            postContainerMyAudioForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postContainerSelectAddressForm(Container c) {
-    }
+        if("Share".equals(c.getName())) {
+            postContainerShare(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Contacts".equals(c.getName())) {
+            postContainerContacts(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postContainerFindYourPositionForm(Container c) {
-    }
+        if("My Position Form".equals(c.getName())) {
+            postContainerMyPositionForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Login".equals(c.getName())) {
+            postContainerLogin(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postContainerNfc(Container c) {
-    }
+        if("Storage Form".equals(c.getName())) {
+            postContainerStorageForm(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("File Browser".equals(c.getName())) {
+            postContainerFileBrowser(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postContainerMyAudioForm(Container c) {
-    }
+        if("ContactsTest".equals(c.getName())) {
+            postContainerContactsTest(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("URL Dialog".equals(c.getName())) {
+            postContainerURLDialog(c);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void postContainerProximityForm(Container c) {
-    }
-
-
-    protected void postContainerSavePhotoForm(Container c) {
-    }
-
-
-    protected void postContainerMyShareForm(Container c) {
-    }
-
-
-    protected void postContainerLoadForm(Container c) {
-    }
-
-
-    protected void postContainerInsertAddressForm(Container c) {
-    }
-
-
-    protected void postContainerCameraForm(Container c) {
-    }
-
-
-    protected void postContainerShare(Container c) {
-    }
-
-
-    protected void postContainerVideoCapture(Container c) {
-    }
-
-
-    protected void postContainerWebBrowserForm(Container c) {
-    }
-
-
-    protected void postContainerLogin(Container c) {
-    }
-
-
-    protected void postContainerSplash(Container c) {
-    }
-
-
-    protected void postContainerStorageForm(Container c) {
-    }
-
-
-    protected void postContainerContactForm(Container c) {
-    }
-
-
-    protected void postContainerMyContactsForm(Container c) {
-    }
-
-
-    protected void postContainerSettings(Container c) {
-    }
-
-
-    protected void postContainerQRLogin(Container c) {
-    }
-
-
-    protected void postContainerMapsForm(Container c) {
-    }
-
-
-    protected void postContainerMyImagesForm(Container c) {
+            return;
     }
 
 
@@ -4250,19 +4256,27 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void postContainerAudioListen(Container c) {
+    protected void postContainerQRLogin(Container c) {
     }
 
 
-    protected void postContainerProximityProvidersForm(Container c) {
+    protected void postContainerWebBrowserForm(Container c) {
     }
 
 
-    protected void postContainerVideoView(Container c) {
+    protected void postContainerNfc(Container c) {
     }
 
 
-    protected void postContainerProximityGoogleForm(Container c) {
+    protected void postContainerContactForm(Container c) {
+    }
+
+
+    protected void postContainerSavePhotoForm(Container c) {
+    }
+
+
+    protected void postContainerSettings(Container c) {
     }
 
 
@@ -4270,11 +4284,79 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void postContainerContactsTest(Container c) {
+    protected void postContainerCameraForm(Container c) {
+    }
+
+
+    protected void postContainerMapsForm(Container c) {
+    }
+
+
+    protected void postContainerMyContactsForm(Container c) {
+    }
+
+
+    protected void postContainerAudioListen(Container c) {
+    }
+
+
+    protected void postContainerSelectAddressForm(Container c) {
+    }
+
+
+    protected void postContainerServerDialog(Container c) {
+    }
+
+
+    protected void postContainerFindYourPositionForm(Container c) {
+    }
+
+
+    protected void postContainerVideoView(Container c) {
+    }
+
+
+    protected void postContainerProximityForm(Container c) {
     }
 
 
     protected void postContainerGpsForm(Container c) {
+    }
+
+
+    protected void postContainerMyGooglePositionForm(Container c) {
+    }
+
+
+    protected void postContainerMyPositionOnMapForm(Container c) {
+    }
+
+
+    protected void postContainerMyShareForm(Container c) {
+    }
+
+
+    protected void postContainerProximityProvidersForm(Container c) {
+    }
+
+
+    protected void postContainerVideoCapture(Container c) {
+    }
+
+
+    protected void postContainerFileBrowserViewForm(Container c) {
+    }
+
+
+    protected void postContainerImageCapture(Container c) {
+    }
+
+
+    protected void postContainerMapsProviders(Container c) {
+    }
+
+
+    protected void postContainerLoadPhotoForm(Container c) {
     }
 
 
@@ -4286,43 +4368,7 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void postContainerURLDialog(Container c) {
-    }
-
-
-    protected void postContainerContacts(Container c) {
-    }
-
-
-    protected void postContainerImageCapture(Container c) {
-    }
-
-
-    protected void postContainerMyPositionOnMapForm(Container c) {
-    }
-
-
-    protected void postContainerMapsProviders(Container c) {
-    }
-
-
-    protected void postContainerAdressForm(Container c) {
-    }
-
-
-    protected void postContainerFileBrowserViewForm(Container c) {
-    }
-
-
-    protected void postContainerMyGooglePositionForm(Container c) {
-    }
-
-
-    protected void postContainerFileBrowser(Container c) {
-    }
-
-
-    protected void postContainerMyPositionForm(Container c) {
+    protected void postContainerMyMultimediaForm(Container c) {
     }
 
 
@@ -4330,128 +4376,72 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void postContainerMyMultimediaForm(Container c) {
+    protected void postContainerMyImagesForm(Container c) {
     }
 
 
-    protected void postContainerLoadPhotoForm(Container c) {
+    protected void postContainerProximityGoogleForm(Container c) {
+    }
+
+
+    protected void postContainerInsertAddressForm(Container c) {
+    }
+
+
+    protected void postContainerAdressForm(Container c) {
+    }
+
+
+    protected void postContainerLoadForm(Container c) {
     }
 
 
     protected void postContainerMediaPlayerForm(Container c) {
     }
 
+
+    protected void postContainerSplash(Container c) {
+    }
+
+
+    protected void postContainerMyAudioForm(Container c) {
+    }
+
+
+    protected void postContainerShare(Container c) {
+    }
+
+
+    protected void postContainerContacts(Container c) {
+    }
+
+
+    protected void postContainerMyPositionForm(Container c) {
+    }
+
+
+    protected void postContainerLogin(Container c) {
+    }
+
+
+    protected void postContainerStorageForm(Container c) {
+    }
+
+
+    protected void postContainerFileBrowser(Container c) {
+    }
+
+
+    protected void postContainerContactsTest(Container c) {
+    }
+
+
+    protected void postContainerURLDialog(Container c) {
+    }
+
     protected void onCreateRoot(String rootName) {
-        if("Select Address Form".equals(rootName)) {
-            onCreateSelectAddressForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Find Your Position Form".equals(rootName)) {
-            onCreateFindYourPositionForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Nfc".equals(rootName)) {
-            onCreateNfc();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Audio Form".equals(rootName)) {
-            onCreateMyAudioForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Form".equals(rootName)) {
-            onCreateProximityForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Save Photo Form".equals(rootName)) {
-            onCreateSavePhotoForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Share Form".equals(rootName)) {
-            onCreateMyShareForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Load Form".equals(rootName)) {
-            onCreateLoadForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Insert Address Form".equals(rootName)) {
-            onCreateInsertAddressForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Camera Form".equals(rootName)) {
-            onCreateCameraForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Share".equals(rootName)) {
-            onCreateShare();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video Capture".equals(rootName)) {
-            onCreateVideoCapture();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Web Browser Form".equals(rootName)) {
-            onCreateWebBrowserForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Login".equals(rootName)) {
-            onCreateLogin();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Splash".equals(rootName)) {
-            onCreateSplash();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Storage Form".equals(rootName)) {
-            onCreateStorageForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contact Form".equals(rootName)) {
-            onCreateContactForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("MyContacts Form".equals(rootName)) {
-            onCreateMyContactsForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Settings".equals(rootName)) {
-            onCreateSettings();
+        if("My Video Form".equals(rootName)) {
+            onCreateMyVideoForm();
             aboutToShowThisContainer = null;
             return;
         }
@@ -4462,44 +4452,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Maps Form".equals(rootName)) {
-            onCreateMapsForm();
+        if("Web Browser Form".equals(rootName)) {
+            onCreateWebBrowserForm();
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Images Form".equals(rootName)) {
-            onCreateMyImagesForm();
+        if("Nfc".equals(rootName)) {
+            onCreateNfc();
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Video Form".equals(rootName)) {
-            onCreateMyVideoForm();
+        if("Contact Form".equals(rootName)) {
+            onCreateContactForm();
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Audio Listen".equals(rootName)) {
-            onCreateAudioListen();
+        if("Save Photo Form".equals(rootName)) {
+            onCreateSavePhotoForm();
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Proximity Providers Form".equals(rootName)) {
-            onCreateProximityProvidersForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video View".equals(rootName)) {
-            onCreateVideoView();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Google Form".equals(rootName)) {
-            onCreateProximityGoogleForm();
+        if("Settings".equals(rootName)) {
+            onCreateSettings();
             aboutToShowThisContainer = null;
             return;
         }
@@ -4510,14 +4488,116 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("ContactsTest".equals(rootName)) {
-            onCreateContactsTest();
+        if("Camera Form".equals(rootName)) {
+            onCreateCameraForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Form".equals(rootName)) {
+            onCreateMapsForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("MyContacts Form".equals(rootName)) {
+            onCreateMyContactsForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Audio Listen".equals(rootName)) {
+            onCreateAudioListen();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Select Address Form".equals(rootName)) {
+            onCreateSelectAddressForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("serverDialog".equals(rootName)) {
+            onCreateServerDialog();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Find Your Position Form".equals(rootName)) {
+            onCreateFindYourPositionForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video View".equals(rootName)) {
+            onCreateVideoView();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Form".equals(rootName)) {
+            onCreateProximityForm();
             aboutToShowThisContainer = null;
             return;
         }
 
         if("Gps Form".equals(rootName)) {
             onCreateGpsForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Google Position Form".equals(rootName)) {
+            onCreateMyGooglePositionForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Position On Map Form".equals(rootName)) {
+            onCreateMyPositionOnMapForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Share Form".equals(rootName)) {
+            onCreateMyShareForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Providers Form".equals(rootName)) {
+            onCreateProximityProvidersForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video Capture".equals(rootName)) {
+            onCreateVideoCapture();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("File Browser View Form".equals(rootName)) {
+            onCreateFileBrowserViewForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Image Capture".equals(rootName)) {
+            onCreateImageCapture();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Providers".equals(rootName)) {
+            onCreateMapsProviders();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Photo Form".equals(rootName)) {
+            onCreateLoadPhotoForm();
             aboutToShowThisContainer = null;
             return;
         }
@@ -4534,62 +4614,8 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("URL Dialog".equals(rootName)) {
-            onCreateURLDialog();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contacts".equals(rootName)) {
-            onCreateContacts();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Image Capture".equals(rootName)) {
-            onCreateImageCapture();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position On Map Form".equals(rootName)) {
-            onCreateMyPositionOnMapForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Maps Providers".equals(rootName)) {
-            onCreateMapsProviders();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Adress Form".equals(rootName)) {
-            onCreateAdressForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser View Form".equals(rootName)) {
-            onCreateFileBrowserViewForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Google Position Form".equals(rootName)) {
-            onCreateMyGooglePositionForm();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser".equals(rootName)) {
-            onCreateFileBrowser();
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position Form".equals(rootName)) {
-            onCreateMyPositionForm();
+        if("My Multimedia Form".equals(rootName)) {
+            onCreateMyMultimediaForm();
             aboutToShowThisContainer = null;
             return;
         }
@@ -4600,14 +4626,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("My Multimedia Form".equals(rootName)) {
-            onCreateMyMultimediaForm();
+        if("My Images Form".equals(rootName)) {
+            onCreateMyImagesForm();
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Load Photo Form".equals(rootName)) {
-            onCreateLoadPhotoForm();
+        if("Proximity Google Form".equals(rootName)) {
+            onCreateProximityGoogleForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Insert Address Form".equals(rootName)) {
+            onCreateInsertAddressForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Adress Form".equals(rootName)) {
+            onCreateAdressForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Form".equals(rootName)) {
+            onCreateLoadForm();
             aboutToShowThisContainer = null;
             return;
         }
@@ -4618,95 +4662,67 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+        if("Splash".equals(rootName)) {
+            onCreateSplash();
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("My Audio Form".equals(rootName)) {
+            onCreateMyAudioForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void onCreateSelectAddressForm() {
-    }
+        if("Share".equals(rootName)) {
+            onCreateShare();
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Contacts".equals(rootName)) {
+            onCreateContacts();
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void onCreateFindYourPositionForm() {
-    }
+        if("My Position Form".equals(rootName)) {
+            onCreateMyPositionForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Login".equals(rootName)) {
+            onCreateLogin();
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void onCreateNfc() {
-    }
+        if("Storage Form".equals(rootName)) {
+            onCreateStorageForm();
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("File Browser".equals(rootName)) {
+            onCreateFileBrowser();
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void onCreateMyAudioForm() {
-    }
+        if("ContactsTest".equals(rootName)) {
+            onCreateContactsTest();
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("URL Dialog".equals(rootName)) {
+            onCreateURLDialog();
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void onCreateProximityForm() {
-    }
-
-
-    protected void onCreateSavePhotoForm() {
-    }
-
-
-    protected void onCreateMyShareForm() {
-    }
-
-
-    protected void onCreateLoadForm() {
-    }
-
-
-    protected void onCreateInsertAddressForm() {
-    }
-
-
-    protected void onCreateCameraForm() {
-    }
-
-
-    protected void onCreateShare() {
-    }
-
-
-    protected void onCreateVideoCapture() {
-    }
-
-
-    protected void onCreateWebBrowserForm() {
-    }
-
-
-    protected void onCreateLogin() {
-    }
-
-
-    protected void onCreateSplash() {
-    }
-
-
-    protected void onCreateStorageForm() {
-    }
-
-
-    protected void onCreateContactForm() {
-    }
-
-
-    protected void onCreateMyContactsForm() {
-    }
-
-
-    protected void onCreateSettings() {
-    }
-
-
-    protected void onCreateQRLogin() {
-    }
-
-
-    protected void onCreateMapsForm() {
-    }
-
-
-    protected void onCreateMyImagesForm() {
+            return;
     }
 
 
@@ -4714,19 +4730,27 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void onCreateAudioListen() {
+    protected void onCreateQRLogin() {
     }
 
 
-    protected void onCreateProximityProvidersForm() {
+    protected void onCreateWebBrowserForm() {
     }
 
 
-    protected void onCreateVideoView() {
+    protected void onCreateNfc() {
     }
 
 
-    protected void onCreateProximityGoogleForm() {
+    protected void onCreateContactForm() {
+    }
+
+
+    protected void onCreateSavePhotoForm() {
+    }
+
+
+    protected void onCreateSettings() {
     }
 
 
@@ -4734,11 +4758,79 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void onCreateContactsTest() {
+    protected void onCreateCameraForm() {
+    }
+
+
+    protected void onCreateMapsForm() {
+    }
+
+
+    protected void onCreateMyContactsForm() {
+    }
+
+
+    protected void onCreateAudioListen() {
+    }
+
+
+    protected void onCreateSelectAddressForm() {
+    }
+
+
+    protected void onCreateServerDialog() {
+    }
+
+
+    protected void onCreateFindYourPositionForm() {
+    }
+
+
+    protected void onCreateVideoView() {
+    }
+
+
+    protected void onCreateProximityForm() {
     }
 
 
     protected void onCreateGpsForm() {
+    }
+
+
+    protected void onCreateMyGooglePositionForm() {
+    }
+
+
+    protected void onCreateMyPositionOnMapForm() {
+    }
+
+
+    protected void onCreateMyShareForm() {
+    }
+
+
+    protected void onCreateProximityProvidersForm() {
+    }
+
+
+    protected void onCreateVideoCapture() {
+    }
+
+
+    protected void onCreateFileBrowserViewForm() {
+    }
+
+
+    protected void onCreateImageCapture() {
+    }
+
+
+    protected void onCreateMapsProviders() {
+    }
+
+
+    protected void onCreateLoadPhotoForm() {
     }
 
 
@@ -4750,43 +4842,7 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void onCreateURLDialog() {
-    }
-
-
-    protected void onCreateContacts() {
-    }
-
-
-    protected void onCreateImageCapture() {
-    }
-
-
-    protected void onCreateMyPositionOnMapForm() {
-    }
-
-
-    protected void onCreateMapsProviders() {
-    }
-
-
-    protected void onCreateAdressForm() {
-    }
-
-
-    protected void onCreateFileBrowserViewForm() {
-    }
-
-
-    protected void onCreateMyGooglePositionForm() {
-    }
-
-
-    protected void onCreateFileBrowser() {
-    }
-
-
-    protected void onCreateMyPositionForm() {
+    protected void onCreateMyMultimediaForm() {
     }
 
 
@@ -4794,129 +4850,73 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void onCreateMyMultimediaForm() {
+    protected void onCreateMyImagesForm() {
     }
 
 
-    protected void onCreateLoadPhotoForm() {
+    protected void onCreateProximityGoogleForm() {
+    }
+
+
+    protected void onCreateInsertAddressForm() {
+    }
+
+
+    protected void onCreateAdressForm() {
+    }
+
+
+    protected void onCreateLoadForm() {
     }
 
 
     protected void onCreateMediaPlayerForm() {
     }
 
+
+    protected void onCreateSplash() {
+    }
+
+
+    protected void onCreateMyAudioForm() {
+    }
+
+
+    protected void onCreateShare() {
+    }
+
+
+    protected void onCreateContacts() {
+    }
+
+
+    protected void onCreateMyPositionForm() {
+    }
+
+
+    protected void onCreateLogin() {
+    }
+
+
+    protected void onCreateStorageForm() {
+    }
+
+
+    protected void onCreateFileBrowser() {
+    }
+
+
+    protected void onCreateContactsTest() {
+    }
+
+
+    protected void onCreateURLDialog() {
+    }
+
     protected Hashtable getFormState(Form f) {
         Hashtable h = super.getFormState(f);
-        if("Select Address Form".equals(f.getName())) {
-            getStateSelectAddressForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Find Your Position Form".equals(f.getName())) {
-            getStateFindYourPositionForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Nfc".equals(f.getName())) {
-            getStateNfc(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("My Audio Form".equals(f.getName())) {
-            getStateMyAudioForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Proximity Form".equals(f.getName())) {
-            getStateProximityForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Save Photo Form".equals(f.getName())) {
-            getStateSavePhotoForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("My Share Form".equals(f.getName())) {
-            getStateMyShareForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Load Form".equals(f.getName())) {
-            getStateLoadForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Insert Address Form".equals(f.getName())) {
-            getStateInsertAddressForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Camera Form".equals(f.getName())) {
-            getStateCameraForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Share".equals(f.getName())) {
-            getStateShare(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Video Capture".equals(f.getName())) {
-            getStateVideoCapture(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Web Browser Form".equals(f.getName())) {
-            getStateWebBrowserForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Login".equals(f.getName())) {
-            getStateLogin(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Splash".equals(f.getName())) {
-            getStateSplash(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Storage Form".equals(f.getName())) {
-            getStateStorageForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Contact Form".equals(f.getName())) {
-            getStateContactForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("MyContacts Form".equals(f.getName())) {
-            getStateMyContactsForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Settings".equals(f.getName())) {
-            getStateSettings(f, h);
+        if("My Video Form".equals(f.getName())) {
+            getStateMyVideoForm(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
@@ -4927,44 +4927,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return h;
         }
 
-        if("Maps Form".equals(f.getName())) {
-            getStateMapsForm(f, h);
+        if("Web Browser Form".equals(f.getName())) {
+            getStateWebBrowserForm(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
 
-        if("My Images Form".equals(f.getName())) {
-            getStateMyImagesForm(f, h);
+        if("Nfc".equals(f.getName())) {
+            getStateNfc(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
 
-        if("My Video Form".equals(f.getName())) {
-            getStateMyVideoForm(f, h);
+        if("Contact Form".equals(f.getName())) {
+            getStateContactForm(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
 
-        if("Audio Listen".equals(f.getName())) {
-            getStateAudioListen(f, h);
+        if("Save Photo Form".equals(f.getName())) {
+            getStateSavePhotoForm(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
 
-        if("Proximity Providers Form".equals(f.getName())) {
-            getStateProximityProvidersForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Video View".equals(f.getName())) {
-            getStateVideoView(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Proximity Google Form".equals(f.getName())) {
-            getStateProximityGoogleForm(f, h);
+        if("Settings".equals(f.getName())) {
+            getStateSettings(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
@@ -4975,14 +4963,116 @@ public abstract class StateMachineBase extends UIBuilder {
             return h;
         }
 
-        if("ContactsTest".equals(f.getName())) {
-            getStateContactsTest(f, h);
+        if("Camera Form".equals(f.getName())) {
+            getStateCameraForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Maps Form".equals(f.getName())) {
+            getStateMapsForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("MyContacts Form".equals(f.getName())) {
+            getStateMyContactsForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Audio Listen".equals(f.getName())) {
+            getStateAudioListen(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Select Address Form".equals(f.getName())) {
+            getStateSelectAddressForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("serverDialog".equals(f.getName())) {
+            getStateServerDialog(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Find Your Position Form".equals(f.getName())) {
+            getStateFindYourPositionForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Video View".equals(f.getName())) {
+            getStateVideoView(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Proximity Form".equals(f.getName())) {
+            getStateProximityForm(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
 
         if("Gps Form".equals(f.getName())) {
             getStateGpsForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Google Position Form".equals(f.getName())) {
+            getStateMyGooglePositionForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Position On Map Form".equals(f.getName())) {
+            getStateMyPositionOnMapForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("My Share Form".equals(f.getName())) {
+            getStateMyShareForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Proximity Providers Form".equals(f.getName())) {
+            getStateProximityProvidersForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Video Capture".equals(f.getName())) {
+            getStateVideoCapture(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("File Browser View Form".equals(f.getName())) {
+            getStateFileBrowserViewForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Image Capture".equals(f.getName())) {
+            getStateImageCapture(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Maps Providers".equals(f.getName())) {
+            getStateMapsProviders(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Load Photo Form".equals(f.getName())) {
+            getStateLoadPhotoForm(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
@@ -4999,62 +5089,8 @@ public abstract class StateMachineBase extends UIBuilder {
             return h;
         }
 
-        if("URL Dialog".equals(f.getName())) {
-            getStateURLDialog(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Contacts".equals(f.getName())) {
-            getStateContacts(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Image Capture".equals(f.getName())) {
-            getStateImageCapture(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("My Position On Map Form".equals(f.getName())) {
-            getStateMyPositionOnMapForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Maps Providers".equals(f.getName())) {
-            getStateMapsProviders(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("Adress Form".equals(f.getName())) {
-            getStateAdressForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("File Browser View Form".equals(f.getName())) {
-            getStateFileBrowserViewForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("My Google Position Form".equals(f.getName())) {
-            getStateMyGooglePositionForm(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("File Browser".equals(f.getName())) {
-            getStateFileBrowser(f, h);
-            aboutToShowThisContainer = null;
-            return h;
-        }
-
-        if("My Position Form".equals(f.getName())) {
-            getStateMyPositionForm(f, h);
+        if("My Multimedia Form".equals(f.getName())) {
+            getStateMyMultimediaForm(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
@@ -5065,14 +5101,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return h;
         }
 
-        if("My Multimedia Form".equals(f.getName())) {
-            getStateMyMultimediaForm(f, h);
+        if("My Images Form".equals(f.getName())) {
+            getStateMyImagesForm(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
 
-        if("Load Photo Form".equals(f.getName())) {
-            getStateLoadPhotoForm(f, h);
+        if("Proximity Google Form".equals(f.getName())) {
+            getStateProximityGoogleForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Insert Address Form".equals(f.getName())) {
+            getStateInsertAddressForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Adress Form".equals(f.getName())) {
+            getStateAdressForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
+
+        if("Load Form".equals(f.getName())) {
+            getStateLoadForm(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
@@ -5083,95 +5137,67 @@ public abstract class StateMachineBase extends UIBuilder {
             return h;
         }
 
+        if("Splash".equals(f.getName())) {
+            getStateSplash(f, h);
+            aboutToShowThisContainer = null;
             return h;
-    }
+        }
 
+        if("My Audio Form".equals(f.getName())) {
+            getStateMyAudioForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
 
-    protected void getStateSelectAddressForm(Form f, Hashtable h) {
-    }
+        if("Share".equals(f.getName())) {
+            getStateShare(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
 
+        if("Contacts".equals(f.getName())) {
+            getStateContacts(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
 
-    protected void getStateFindYourPositionForm(Form f, Hashtable h) {
-    }
+        if("My Position Form".equals(f.getName())) {
+            getStateMyPositionForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
 
+        if("Login".equals(f.getName())) {
+            getStateLogin(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
 
-    protected void getStateNfc(Form f, Hashtable h) {
-    }
+        if("Storage Form".equals(f.getName())) {
+            getStateStorageForm(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
 
+        if("File Browser".equals(f.getName())) {
+            getStateFileBrowser(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
 
-    protected void getStateMyAudioForm(Form f, Hashtable h) {
-    }
+        if("ContactsTest".equals(f.getName())) {
+            getStateContactsTest(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
 
+        if("URL Dialog".equals(f.getName())) {
+            getStateURLDialog(f, h);
+            aboutToShowThisContainer = null;
+            return h;
+        }
 
-    protected void getStateProximityForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateSavePhotoForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateMyShareForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateLoadForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateInsertAddressForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateCameraForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateShare(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateVideoCapture(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateWebBrowserForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateLogin(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateSplash(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateStorageForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateContactForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateMyContactsForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateSettings(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateQRLogin(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateMapsForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateMyImagesForm(Form f, Hashtable h) {
+            return h;
     }
 
 
@@ -5179,19 +5205,27 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void getStateAudioListen(Form f, Hashtable h) {
+    protected void getStateQRLogin(Form f, Hashtable h) {
     }
 
 
-    protected void getStateProximityProvidersForm(Form f, Hashtable h) {
+    protected void getStateWebBrowserForm(Form f, Hashtable h) {
     }
 
 
-    protected void getStateVideoView(Form f, Hashtable h) {
+    protected void getStateNfc(Form f, Hashtable h) {
     }
 
 
-    protected void getStateProximityGoogleForm(Form f, Hashtable h) {
+    protected void getStateContactForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateSavePhotoForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateSettings(Form f, Hashtable h) {
     }
 
 
@@ -5199,11 +5233,79 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void getStateContactsTest(Form f, Hashtable h) {
+    protected void getStateCameraForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMapsForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyContactsForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateAudioListen(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateSelectAddressForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateServerDialog(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateFindYourPositionForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateVideoView(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateProximityForm(Form f, Hashtable h) {
     }
 
 
     protected void getStateGpsForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyGooglePositionForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyPositionOnMapForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyShareForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateProximityProvidersForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateVideoCapture(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateFileBrowserViewForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateImageCapture(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMapsProviders(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateLoadPhotoForm(Form f, Hashtable h) {
     }
 
 
@@ -5215,43 +5317,7 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void getStateURLDialog(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateContacts(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateImageCapture(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateMyPositionOnMapForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateMapsProviders(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateAdressForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateFileBrowserViewForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateMyGooglePositionForm(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateFileBrowser(Form f, Hashtable h) {
-    }
-
-
-    protected void getStateMyPositionForm(Form f, Hashtable h) {
+    protected void getStateMyMultimediaForm(Form f, Hashtable h) {
     }
 
 
@@ -5259,129 +5325,73 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void getStateMyMultimediaForm(Form f, Hashtable h) {
+    protected void getStateMyImagesForm(Form f, Hashtable h) {
     }
 
 
-    protected void getStateLoadPhotoForm(Form f, Hashtable h) {
+    protected void getStateProximityGoogleForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateInsertAddressForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateAdressForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateLoadForm(Form f, Hashtable h) {
     }
 
 
     protected void getStateMediaPlayerForm(Form f, Hashtable h) {
     }
 
+
+    protected void getStateSplash(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyAudioForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateShare(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateContacts(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateMyPositionForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateLogin(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateStorageForm(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateFileBrowser(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateContactsTest(Form f, Hashtable h) {
+    }
+
+
+    protected void getStateURLDialog(Form f, Hashtable h) {
+    }
+
     protected void setFormState(Form f, Hashtable state) {
         super.setFormState(f, state);
-        if("Select Address Form".equals(f.getName())) {
-            setStateSelectAddressForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Find Your Position Form".equals(f.getName())) {
-            setStateFindYourPositionForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Nfc".equals(f.getName())) {
-            setStateNfc(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Audio Form".equals(f.getName())) {
-            setStateMyAudioForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Form".equals(f.getName())) {
-            setStateProximityForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Save Photo Form".equals(f.getName())) {
-            setStateSavePhotoForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Share Form".equals(f.getName())) {
-            setStateMyShareForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Load Form".equals(f.getName())) {
-            setStateLoadForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Insert Address Form".equals(f.getName())) {
-            setStateInsertAddressForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Camera Form".equals(f.getName())) {
-            setStateCameraForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Share".equals(f.getName())) {
-            setStateShare(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video Capture".equals(f.getName())) {
-            setStateVideoCapture(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Web Browser Form".equals(f.getName())) {
-            setStateWebBrowserForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Login".equals(f.getName())) {
-            setStateLogin(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Splash".equals(f.getName())) {
-            setStateSplash(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Storage Form".equals(f.getName())) {
-            setStateStorageForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contact Form".equals(f.getName())) {
-            setStateContactForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("MyContacts Form".equals(f.getName())) {
-            setStateMyContactsForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Settings".equals(f.getName())) {
-            setStateSettings(f, state);
+        if("My Video Form".equals(f.getName())) {
+            setStateMyVideoForm(f, state);
             aboutToShowThisContainer = null;
             return;
         }
@@ -5392,44 +5402,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Maps Form".equals(f.getName())) {
-            setStateMapsForm(f, state);
+        if("Web Browser Form".equals(f.getName())) {
+            setStateWebBrowserForm(f, state);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Images Form".equals(f.getName())) {
-            setStateMyImagesForm(f, state);
+        if("Nfc".equals(f.getName())) {
+            setStateNfc(f, state);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("My Video Form".equals(f.getName())) {
-            setStateMyVideoForm(f, state);
+        if("Contact Form".equals(f.getName())) {
+            setStateContactForm(f, state);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Audio Listen".equals(f.getName())) {
-            setStateAudioListen(f, state);
+        if("Save Photo Form".equals(f.getName())) {
+            setStateSavePhotoForm(f, state);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Proximity Providers Form".equals(f.getName())) {
-            setStateProximityProvidersForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Video View".equals(f.getName())) {
-            setStateVideoView(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Proximity Google Form".equals(f.getName())) {
-            setStateProximityGoogleForm(f, state);
+        if("Settings".equals(f.getName())) {
+            setStateSettings(f, state);
             aboutToShowThisContainer = null;
             return;
         }
@@ -5440,14 +5438,116 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("ContactsTest".equals(f.getName())) {
-            setStateContactsTest(f, state);
+        if("Camera Form".equals(f.getName())) {
+            setStateCameraForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Form".equals(f.getName())) {
+            setStateMapsForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("MyContacts Form".equals(f.getName())) {
+            setStateMyContactsForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Audio Listen".equals(f.getName())) {
+            setStateAudioListen(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Select Address Form".equals(f.getName())) {
+            setStateSelectAddressForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("serverDialog".equals(f.getName())) {
+            setStateServerDialog(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Find Your Position Form".equals(f.getName())) {
+            setStateFindYourPositionForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video View".equals(f.getName())) {
+            setStateVideoView(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Form".equals(f.getName())) {
+            setStateProximityForm(f, state);
             aboutToShowThisContainer = null;
             return;
         }
 
         if("Gps Form".equals(f.getName())) {
             setStateGpsForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Google Position Form".equals(f.getName())) {
+            setStateMyGooglePositionForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Position On Map Form".equals(f.getName())) {
+            setStateMyPositionOnMapForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("My Share Form".equals(f.getName())) {
+            setStateMyShareForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Proximity Providers Form".equals(f.getName())) {
+            setStateProximityProvidersForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Video Capture".equals(f.getName())) {
+            setStateVideoCapture(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("File Browser View Form".equals(f.getName())) {
+            setStateFileBrowserViewForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Image Capture".equals(f.getName())) {
+            setStateImageCapture(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Maps Providers".equals(f.getName())) {
+            setStateMapsProviders(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Photo Form".equals(f.getName())) {
+            setStateLoadPhotoForm(f, state);
             aboutToShowThisContainer = null;
             return;
         }
@@ -5464,62 +5564,8 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("URL Dialog".equals(f.getName())) {
-            setStateURLDialog(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Contacts".equals(f.getName())) {
-            setStateContacts(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Image Capture".equals(f.getName())) {
-            setStateImageCapture(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position On Map Form".equals(f.getName())) {
-            setStateMyPositionOnMapForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Maps Providers".equals(f.getName())) {
-            setStateMapsProviders(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("Adress Form".equals(f.getName())) {
-            setStateAdressForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser View Form".equals(f.getName())) {
-            setStateFileBrowserViewForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Google Position Form".equals(f.getName())) {
-            setStateMyGooglePositionForm(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("File Browser".equals(f.getName())) {
-            setStateFileBrowser(f, state);
-            aboutToShowThisContainer = null;
-            return;
-        }
-
-        if("My Position Form".equals(f.getName())) {
-            setStateMyPositionForm(f, state);
+        if("My Multimedia Form".equals(f.getName())) {
+            setStateMyMultimediaForm(f, state);
             aboutToShowThisContainer = null;
             return;
         }
@@ -5530,14 +5576,32 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("My Multimedia Form".equals(f.getName())) {
-            setStateMyMultimediaForm(f, state);
+        if("My Images Form".equals(f.getName())) {
+            setStateMyImagesForm(f, state);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Load Photo Form".equals(f.getName())) {
-            setStateLoadPhotoForm(f, state);
+        if("Proximity Google Form".equals(f.getName())) {
+            setStateProximityGoogleForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Insert Address Form".equals(f.getName())) {
+            setStateInsertAddressForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Adress Form".equals(f.getName())) {
+            setStateAdressForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
+
+        if("Load Form".equals(f.getName())) {
+            setStateLoadForm(f, state);
             aboutToShowThisContainer = null;
             return;
         }
@@ -5548,95 +5612,67 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
+        if("Splash".equals(f.getName())) {
+            setStateSplash(f, state);
+            aboutToShowThisContainer = null;
             return;
-    }
+        }
 
+        if("My Audio Form".equals(f.getName())) {
+            setStateMyAudioForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void setStateSelectAddressForm(Form f, Hashtable state) {
-    }
+        if("Share".equals(f.getName())) {
+            setStateShare(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Contacts".equals(f.getName())) {
+            setStateContacts(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void setStateFindYourPositionForm(Form f, Hashtable state) {
-    }
+        if("My Position Form".equals(f.getName())) {
+            setStateMyPositionForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("Login".equals(f.getName())) {
+            setStateLogin(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void setStateNfc(Form f, Hashtable state) {
-    }
+        if("Storage Form".equals(f.getName())) {
+            setStateStorageForm(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("File Browser".equals(f.getName())) {
+            setStateFileBrowser(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void setStateMyAudioForm(Form f, Hashtable state) {
-    }
+        if("ContactsTest".equals(f.getName())) {
+            setStateContactsTest(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
+        if("URL Dialog".equals(f.getName())) {
+            setStateURLDialog(f, state);
+            aboutToShowThisContainer = null;
+            return;
+        }
 
-    protected void setStateProximityForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateSavePhotoForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateMyShareForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateLoadForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateInsertAddressForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateCameraForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateShare(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateVideoCapture(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateWebBrowserForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateLogin(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateSplash(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateStorageForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateContactForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateMyContactsForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateSettings(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateQRLogin(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateMapsForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateMyImagesForm(Form f, Hashtable state) {
+            return;
     }
 
 
@@ -5644,19 +5680,27 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void setStateAudioListen(Form f, Hashtable state) {
+    protected void setStateQRLogin(Form f, Hashtable state) {
     }
 
 
-    protected void setStateProximityProvidersForm(Form f, Hashtable state) {
+    protected void setStateWebBrowserForm(Form f, Hashtable state) {
     }
 
 
-    protected void setStateVideoView(Form f, Hashtable state) {
+    protected void setStateNfc(Form f, Hashtable state) {
     }
 
 
-    protected void setStateProximityGoogleForm(Form f, Hashtable state) {
+    protected void setStateContactForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateSavePhotoForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateSettings(Form f, Hashtable state) {
     }
 
 
@@ -5664,11 +5708,79 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void setStateContactsTest(Form f, Hashtable state) {
+    protected void setStateCameraForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMapsForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyContactsForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateAudioListen(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateSelectAddressForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateServerDialog(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateFindYourPositionForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateVideoView(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateProximityForm(Form f, Hashtable state) {
     }
 
 
     protected void setStateGpsForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyGooglePositionForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyPositionOnMapForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyShareForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateProximityProvidersForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateVideoCapture(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateFileBrowserViewForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateImageCapture(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMapsProviders(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateLoadPhotoForm(Form f, Hashtable state) {
     }
 
 
@@ -5680,43 +5792,7 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void setStateURLDialog(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateContacts(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateImageCapture(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateMyPositionOnMapForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateMapsProviders(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateAdressForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateFileBrowserViewForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateMyGooglePositionForm(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateFileBrowser(Form f, Hashtable state) {
-    }
-
-
-    protected void setStateMyPositionForm(Form f, Hashtable state) {
+    protected void setStateMyMultimediaForm(Form f, Hashtable state) {
     }
 
 
@@ -5724,21 +5800,76 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void setStateMyMultimediaForm(Form f, Hashtable state) {
+    protected void setStateMyImagesForm(Form f, Hashtable state) {
     }
 
 
-    protected void setStateLoadPhotoForm(Form f, Hashtable state) {
+    protected void setStateProximityGoogleForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateInsertAddressForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateAdressForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateLoadForm(Form f, Hashtable state) {
     }
 
 
     protected void setStateMediaPlayerForm(Form f, Hashtable state) {
     }
 
+
+    protected void setStateSplash(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyAudioForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateShare(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateContacts(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateMyPositionForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateLogin(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateStorageForm(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateFileBrowser(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateContactsTest(Form f, Hashtable state) {
+    }
+
+
+    protected void setStateURLDialog(Form f, Hashtable state) {
+    }
+
     protected boolean setListModel(List cmp) {
         String listName = cmp.getName();
         if("urlComboBox".equals(listName)) {
             return initListModelUrlComboBox(cmp);
+        }
+        if("serverCombo".equals(listName)) {
+            return initListModelServerCombo(cmp);
         }
         if("folderBrowserList".equals(listName)) {
             return initListModelFolderBrowserList(cmp);
@@ -5783,6 +5914,10 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
     protected boolean initListModelUrlComboBox(List cmp) {
+        return false;
+    }
+
+    protected boolean initListModelServerCombo(List cmp) {
         return false;
     }
 
@@ -5847,57 +5982,9 @@ public abstract class StateMachineBase extends UIBuilder {
             c = c.getParent().getLeadParent();
         }
         if(rootContainerName == null) return;
-        if(rootContainerName.equals("Find Your Position Form")) {
-            if("positionMultiList".equals(c.getName())) {
-                onFindYourPositionForm_PositionMultiListAction(c, event);
-                return;
-            }
-        }
-        if(rootContainerName.equals("My Audio Form")) {
-            if("My Audio MultiList".equals(c.getName())) {
-                onMyAudioForm_MyAudioMultiListAction(c, event);
-                return;
-            }
-        }
-        if(rootContainerName.equals("My Share Form")) {
-            if("shareMultiList".equals(c.getName())) {
-                onMyShareForm_ShareMultiListAction(c, event);
-                return;
-            }
-        }
-        if(rootContainerName.equals("Insert Address Form")) {
-            if("streetField".equals(c.getName())) {
-                onInsertAddressForm_StreetFieldAction(c, event);
-                return;
-            }
-        }
-        if(rootContainerName.equals("Share")) {
-            if("shareButton".equals(c.getName())) {
-                onShare_ShareButtonAction(c, event);
-                return;
-            }
-        }
-        if(rootContainerName.equals("Login")) {
-            if("usernameTA".equals(c.getName())) {
-                onLogin_UsernameTAAction(c, event);
-                return;
-            }
-            if("ipTA".equals(c.getName())) {
-                onLogin_IpTAAction(c, event);
-                return;
-            }
-            if("loginBtn".equals(c.getName())) {
-                onLogin_LoginBtnAction(c, event);
-                return;
-            }
-            if("passwordTA".equals(c.getName())) {
-                onLogin_PasswordTAAction(c, event);
-                return;
-            }
-        }
-        if(rootContainerName.equals("Storage Form")) {
-            if("area".equals(c.getName())) {
-                onStorageForm_AreaAction(c, event);
+        if(rootContainerName.equals("My Video Form")) {
+            if("My Video MultiList".equals(c.getName())) {
+                onMyVideoForm_MyVideoMultiListAction(c, event);
                 return;
             }
         }
@@ -5995,27 +6082,21 @@ public abstract class StateMachineBase extends UIBuilder {
                 return;
             }
         }
-        if(rootContainerName.equals("My Images Form")) {
-            if("My Images MultiList".equals(c.getName())) {
-                onMyImagesForm_MyImagesMultiListAction(c, event);
-                return;
-            }
-        }
-        if(rootContainerName.equals("My Video Form")) {
-            if("My Video MultiList".equals(c.getName())) {
-                onMyVideoForm_MyVideoMultiListAction(c, event);
-                return;
-            }
-        }
         if(rootContainerName.equals("Audio Listen")) {
             if("audioPlayButton".equals(c.getName())) {
                 onAudioListen_AudioPlayButtonAction(c, event);
                 return;
             }
         }
-        if(rootContainerName.equals("Proximity Providers Form")) {
-            if("proximityProvidersMultiList".equals(c.getName())) {
-                onProximityProvidersForm_ProximityProvidersMultiListAction(c, event);
+        if(rootContainerName.equals("serverDialog")) {
+            if("serverTA".equals(c.getName())) {
+                onServerDialog_ServerTAAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("Find Your Position Form")) {
+            if("positionMultiList".equals(c.getName())) {
+                onFindYourPositionForm_PositionMultiListAction(c, event);
                 return;
             }
         }
@@ -6025,9 +6106,21 @@ public abstract class StateMachineBase extends UIBuilder {
                 return;
             }
         }
-        if(rootContainerName.equals("ContactsTest")) {
-            if("contactsTestMultiList".equals(c.getName())) {
-                onContactsTest_ContactsTestMultiListAction(c, event);
+        if(rootContainerName.equals("My Share Form")) {
+            if("shareMultiList".equals(c.getName())) {
+                onMyShareForm_ShareMultiListAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("Proximity Providers Form")) {
+            if("proximityProvidersMultiList".equals(c.getName())) {
+                onProximityProvidersForm_ProximityProvidersMultiListAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("Maps Providers")) {
+            if("providersMultiList".equals(c.getName())) {
+                onMapsProviders_ProvidersMultiListAction(c, event);
                 return;
             }
         }
@@ -6047,6 +6140,78 @@ public abstract class StateMachineBase extends UIBuilder {
                 return;
             }
         }
+        if(rootContainerName.equals("My Multimedia Form")) {
+            if("Multimedia List".equals(c.getName())) {
+                onMyMultimediaForm_MultimediaListAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("My Images Form")) {
+            if("My Images MultiList".equals(c.getName())) {
+                onMyImagesForm_MyImagesMultiListAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("Insert Address Form")) {
+            if("streetField".equals(c.getName())) {
+                onInsertAddressForm_StreetFieldAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("My Audio Form")) {
+            if("My Audio MultiList".equals(c.getName())) {
+                onMyAudioForm_MyAudioMultiListAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("Share")) {
+            if("shareButton".equals(c.getName())) {
+                onShare_ShareButtonAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("Contacts")) {
+            if("allContactsMultiList".equals(c.getName())) {
+                onContacts_AllContactsMultiListAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("Login")) {
+            if("usernameTA".equals(c.getName())) {
+                onLogin_UsernameTAAction(c, event);
+                return;
+            }
+            if("serverCombo".equals(c.getName())) {
+                onLogin_ServerComboAction(c, event);
+                return;
+            }
+            if("loginBtn".equals(c.getName())) {
+                onLogin_LoginBtnAction(c, event);
+                return;
+            }
+            if("passwordTA".equals(c.getName())) {
+                onLogin_PasswordTAAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("Storage Form")) {
+            if("area".equals(c.getName())) {
+                onStorageForm_AreaAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("File Browser")) {
+            if("folderBrowserList".equals(c.getName())) {
+                onFileBrowser_FolderBrowserListAction(c, event);
+                return;
+            }
+        }
+        if(rootContainerName.equals("ContactsTest")) {
+            if("contactsTestMultiList".equals(c.getName())) {
+                onContactsTest_ContactsTestMultiListAction(c, event);
+                return;
+            }
+        }
         if(rootContainerName.equals("URL Dialog")) {
             if("urlTextField".equals(c.getName())) {
                 onURLDialog_UrlTextFieldAction(c, event);
@@ -6057,60 +6222,9 @@ public abstract class StateMachineBase extends UIBuilder {
                 return;
             }
         }
-        if(rootContainerName.equals("Contacts")) {
-            if("allContactsMultiList".equals(c.getName())) {
-                onContacts_AllContactsMultiListAction(c, event);
-                return;
-            }
-        }
-        if(rootContainerName.equals("Maps Providers")) {
-            if("providersMultiList".equals(c.getName())) {
-                onMapsProviders_ProvidersMultiListAction(c, event);
-                return;
-            }
-        }
-        if(rootContainerName.equals("File Browser")) {
-            if("folderBrowserList".equals(c.getName())) {
-                onFileBrowser_FolderBrowserListAction(c, event);
-                return;
-            }
-        }
-        if(rootContainerName.equals("My Multimedia Form")) {
-            if("Multimedia List".equals(c.getName())) {
-                onMyMultimediaForm_MultimediaListAction(c, event);
-                return;
-            }
-        }
     }
 
-      protected void onFindYourPositionForm_PositionMultiListAction(Component c, ActionEvent event) {
-      }
-
-      protected void onMyAudioForm_MyAudioMultiListAction(Component c, ActionEvent event) {
-      }
-
-      protected void onMyShareForm_ShareMultiListAction(Component c, ActionEvent event) {
-      }
-
-      protected void onInsertAddressForm_StreetFieldAction(Component c, ActionEvent event) {
-      }
-
-      protected void onShare_ShareButtonAction(Component c, ActionEvent event) {
-      }
-
-      protected void onLogin_UsernameTAAction(Component c, ActionEvent event) {
-      }
-
-      protected void onLogin_IpTAAction(Component c, ActionEvent event) {
-      }
-
-      protected void onLogin_LoginBtnAction(Component c, ActionEvent event) {
-      }
-
-      protected void onLogin_PasswordTAAction(Component c, ActionEvent event) {
-      }
-
-      protected void onStorageForm_AreaAction(Component c, ActionEvent event) {
+      protected void onMyVideoForm_MyVideoMultiListAction(Component c, ActionEvent event) {
       }
 
       protected void onContactForm_NameFieldAction(Component c, ActionEvent event) {
@@ -6179,22 +6293,25 @@ public abstract class StateMachineBase extends UIBuilder {
       protected void onMapsForm_MapsMultiListAction(Component c, ActionEvent event) {
       }
 
-      protected void onMyImagesForm_MyImagesMultiListAction(Component c, ActionEvent event) {
-      }
-
-      protected void onMyVideoForm_MyVideoMultiListAction(Component c, ActionEvent event) {
-      }
-
       protected void onAudioListen_AudioPlayButtonAction(Component c, ActionEvent event) {
       }
 
-      protected void onProximityProvidersForm_ProximityProvidersMultiListAction(Component c, ActionEvent event) {
+      protected void onServerDialog_ServerTAAction(Component c, ActionEvent event) {
+      }
+
+      protected void onFindYourPositionForm_PositionMultiListAction(Component c, ActionEvent event) {
       }
 
       protected void onVideoView_ButtonAction(Component c, ActionEvent event) {
       }
 
-      protected void onContactsTest_ContactsTestMultiListAction(Component c, ActionEvent event) {
+      protected void onMyShareForm_ShareMultiListAction(Component c, ActionEvent event) {
+      }
+
+      protected void onProximityProvidersForm_ProximityProvidersMultiListAction(Component c, ActionEvent event) {
+      }
+
+      protected void onMapsProviders_ProvidersMultiListAction(Component c, ActionEvent event) {
       }
 
       protected void onInsertPositionManuallyForm_LongitudeFieldAction(Component c, ActionEvent event) {
@@ -6206,22 +6323,49 @@ public abstract class StateMachineBase extends UIBuilder {
       protected void onMain_MultiListAction(Component c, ActionEvent event) {
       }
 
-      protected void onURLDialog_UrlTextFieldAction(Component c, ActionEvent event) {
+      protected void onMyMultimediaForm_MultimediaListAction(Component c, ActionEvent event) {
       }
 
-      protected void onURLDialog_UrlComboBoxAction(Component c, ActionEvent event) {
+      protected void onMyImagesForm_MyImagesMultiListAction(Component c, ActionEvent event) {
+      }
+
+      protected void onInsertAddressForm_StreetFieldAction(Component c, ActionEvent event) {
+      }
+
+      protected void onMyAudioForm_MyAudioMultiListAction(Component c, ActionEvent event) {
+      }
+
+      protected void onShare_ShareButtonAction(Component c, ActionEvent event) {
       }
 
       protected void onContacts_AllContactsMultiListAction(Component c, ActionEvent event) {
       }
 
-      protected void onMapsProviders_ProvidersMultiListAction(Component c, ActionEvent event) {
+      protected void onLogin_UsernameTAAction(Component c, ActionEvent event) {
+      }
+
+      protected void onLogin_ServerComboAction(Component c, ActionEvent event) {
+      }
+
+      protected void onLogin_LoginBtnAction(Component c, ActionEvent event) {
+      }
+
+      protected void onLogin_PasswordTAAction(Component c, ActionEvent event) {
+      }
+
+      protected void onStorageForm_AreaAction(Component c, ActionEvent event) {
       }
 
       protected void onFileBrowser_FolderBrowserListAction(Component c, ActionEvent event) {
       }
 
-      protected void onMyMultimediaForm_MultimediaListAction(Component c, ActionEvent event) {
+      protected void onContactsTest_ContactsTestMultiListAction(Component c, ActionEvent event) {
+      }
+
+      protected void onURLDialog_UrlTextFieldAction(Component c, ActionEvent event) {
+      }
+
+      protected void onURLDialog_UrlComboBoxAction(Component c, ActionEvent event) {
       }
 
 }
