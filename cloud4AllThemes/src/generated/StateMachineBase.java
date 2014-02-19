@@ -354,6 +354,18 @@ public abstract class StateMachineBase extends UIBuilder {
         return cmp;
     }
 
+    public com.codename1.ui.Button findTestButton(Component root) {
+        return (com.codename1.ui.Button)findByName("testButton", root);
+    }
+
+    public com.codename1.ui.Button findTestButton() {
+        com.codename1.ui.Button cmp = (com.codename1.ui.Button)findByName("testButton", Display.getInstance().getCurrent());
+        if(cmp == null && aboutToShowThisContainer != null) {
+            cmp = (com.codename1.ui.Button)findByName("testButton", aboutToShowThisContainer);
+        }
+        return cmp;
+    }
+
     public com.codename1.ui.TextField findSurnameField(Component root) {
         return (com.codename1.ui.TextField)findByName("surnameField", root);
     }
@@ -2080,14 +2092,14 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Web Browser Form".equals(f.getName())) {
-            exitWebBrowserForm(f);
+        if("Nfc".equals(f.getName())) {
+            exitNfc(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Nfc".equals(f.getName())) {
-            exitNfc(f);
+        if("Web Browser Form".equals(f.getName())) {
+            exitWebBrowserForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2362,11 +2374,11 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void exitWebBrowserForm(Form f) {
+    protected void exitNfc(Form f) {
     }
 
 
-    protected void exitNfc(Form f) {
+    protected void exitWebBrowserForm(Form f) {
     }
 
 
@@ -2555,14 +2567,14 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Web Browser Form".equals(f.getName())) {
-            beforeWebBrowserForm(f);
+        if("Nfc".equals(f.getName())) {
+            beforeNfc(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Nfc".equals(f.getName())) {
-            beforeNfc(f);
+        if("Web Browser Form".equals(f.getName())) {
+            beforeWebBrowserForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -2837,11 +2849,11 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void beforeWebBrowserForm(Form f) {
+    protected void beforeNfc(Form f) {
     }
 
 
-    protected void beforeNfc(Form f) {
+    protected void beforeWebBrowserForm(Form f) {
     }
 
 
@@ -3030,14 +3042,14 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Web Browser Form".equals(c.getName())) {
-            beforeContainerWebBrowserForm(c);
+        if("Nfc".equals(c.getName())) {
+            beforeContainerNfc(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Nfc".equals(c.getName())) {
-            beforeContainerNfc(c);
+        if("Web Browser Form".equals(c.getName())) {
+            beforeContainerWebBrowserForm(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3312,11 +3324,11 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void beforeContainerWebBrowserForm(Container c) {
+    protected void beforeContainerNfc(Container c) {
     }
 
 
-    protected void beforeContainerNfc(Container c) {
+    protected void beforeContainerWebBrowserForm(Container c) {
     }
 
 
@@ -3504,14 +3516,14 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Web Browser Form".equals(f.getName())) {
-            postWebBrowserForm(f);
+        if("Nfc".equals(f.getName())) {
+            postNfc(f);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Nfc".equals(f.getName())) {
-            postNfc(f);
+        if("Web Browser Form".equals(f.getName())) {
+            postWebBrowserForm(f);
             aboutToShowThisContainer = null;
             return;
         }
@@ -3786,11 +3798,11 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void postWebBrowserForm(Form f) {
+    protected void postNfc(Form f) {
     }
 
 
-    protected void postNfc(Form f) {
+    protected void postWebBrowserForm(Form f) {
     }
 
 
@@ -3978,14 +3990,14 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Web Browser Form".equals(c.getName())) {
-            postContainerWebBrowserForm(c);
+        if("Nfc".equals(c.getName())) {
+            postContainerNfc(c);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Nfc".equals(c.getName())) {
-            postContainerNfc(c);
+        if("Web Browser Form".equals(c.getName())) {
+            postContainerWebBrowserForm(c);
             aboutToShowThisContainer = null;
             return;
         }
@@ -4260,11 +4272,11 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void postContainerWebBrowserForm(Container c) {
+    protected void postContainerNfc(Container c) {
     }
 
 
-    protected void postContainerNfc(Container c) {
+    protected void postContainerWebBrowserForm(Container c) {
     }
 
 
@@ -4452,14 +4464,14 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Web Browser Form".equals(rootName)) {
-            onCreateWebBrowserForm();
+        if("Nfc".equals(rootName)) {
+            onCreateNfc();
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Nfc".equals(rootName)) {
-            onCreateNfc();
+        if("Web Browser Form".equals(rootName)) {
+            onCreateWebBrowserForm();
             aboutToShowThisContainer = null;
             return;
         }
@@ -4734,11 +4746,11 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void onCreateWebBrowserForm() {
+    protected void onCreateNfc() {
     }
 
 
-    protected void onCreateNfc() {
+    protected void onCreateWebBrowserForm() {
     }
 
 
@@ -4927,14 +4939,14 @@ public abstract class StateMachineBase extends UIBuilder {
             return h;
         }
 
-        if("Web Browser Form".equals(f.getName())) {
-            getStateWebBrowserForm(f, h);
+        if("Nfc".equals(f.getName())) {
+            getStateNfc(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
 
-        if("Nfc".equals(f.getName())) {
-            getStateNfc(f, h);
+        if("Web Browser Form".equals(f.getName())) {
+            getStateWebBrowserForm(f, h);
             aboutToShowThisContainer = null;
             return h;
         }
@@ -5209,11 +5221,11 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void getStateWebBrowserForm(Form f, Hashtable h) {
+    protected void getStateNfc(Form f, Hashtable h) {
     }
 
 
-    protected void getStateNfc(Form f, Hashtable h) {
+    protected void getStateWebBrowserForm(Form f, Hashtable h) {
     }
 
 
@@ -5402,14 +5414,14 @@ public abstract class StateMachineBase extends UIBuilder {
             return;
         }
 
-        if("Web Browser Form".equals(f.getName())) {
-            setStateWebBrowserForm(f, state);
+        if("Nfc".equals(f.getName())) {
+            setStateNfc(f, state);
             aboutToShowThisContainer = null;
             return;
         }
 
-        if("Nfc".equals(f.getName())) {
-            setStateNfc(f, state);
+        if("Web Browser Form".equals(f.getName())) {
+            setStateWebBrowserForm(f, state);
             aboutToShowThisContainer = null;
             return;
         }
@@ -5684,11 +5696,11 @@ public abstract class StateMachineBase extends UIBuilder {
     }
 
 
-    protected void setStateWebBrowserForm(Form f, Hashtable state) {
+    protected void setStateNfc(Form f, Hashtable state) {
     }
 
 
-    protected void setStateNfc(Form f, Hashtable state) {
+    protected void setStateWebBrowserForm(Form f, Hashtable state) {
     }
 
 
@@ -6193,6 +6205,10 @@ public abstract class StateMachineBase extends UIBuilder {
                 onLogin_PasswordTAAction(c, event);
                 return;
             }
+            if("testButton".equals(c.getName())) {
+                onLogin_TestButtonAction(c, event);
+                return;
+            }
         }
         if(rootContainerName.equals("Storage Form")) {
             if("area".equals(c.getName())) {
@@ -6351,6 +6367,9 @@ public abstract class StateMachineBase extends UIBuilder {
       }
 
       protected void onLogin_PasswordTAAction(Component c, ActionEvent event) {
+      }
+
+      protected void onLogin_TestButtonAction(Component c, ActionEvent event) {
       }
 
       protected void onStorageForm_AreaAction(Component c, ActionEvent event) {

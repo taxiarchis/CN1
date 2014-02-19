@@ -2420,11 +2420,11 @@ public class StateMachine extends StateMachineBase {
 
 		final Dialog dlg = new Dialog();
 		InfiniteProgress prog = new InfiniteProgress();
-		prog.setAnimation(r.getImage("waiting_4.png"));
+		prog.setAnimation(UIManager.getInstance().getThemeImageConstant("waitingImage"));
 
 		dlg.setLayout(new BorderLayout());
 		dlg.addComponent(BorderLayout.CENTER, prog);
-		dlg.showPacked(BorderLayout.CENTER, false);
+		dlg.showPacked(BorderLayout.CENTER, false); // HTAN false
 
 		Vector poiVec = ps.parseXMLResponseWithCodenameOneParser(ps.requestProximityService(
 				lastLocation.getLongitude(), lastLocation.getLatitude()));
@@ -4064,7 +4064,7 @@ public class StateMachine extends StateMachineBase {
 
 		final Dialog dlg = new Dialog();
 		InfiniteProgress prog = new InfiniteProgress();
-		prog.setAnimation(r.getImage("waiting_4.png"));
+		prog.setAnimation(UIManager.getInstance().getThemeImageConstant("waitingImage"));
 		// Dimension dim = new Dimension(60, 60);
 
 		dlg.setLayout(new BorderLayout());
@@ -4272,7 +4272,7 @@ public class StateMachine extends StateMachineBase {
 
 		final Dialog dlg = new Dialog();
 		InfiniteProgress prog = new InfiniteProgress();
-		prog.setAnimation(r.getImage("waiting_4.png"));
+		prog.setAnimation(UIManager.getInstance().getThemeImageConstant("waitingImage"));
 
 		dlg.setLayout(new BorderLayout());
 		dlg.addComponent(BorderLayout.CENTER, prog);
@@ -5189,6 +5189,10 @@ public class StateMachine extends StateMachineBase {
 		findPasswordTA().setText("ROOTS1:" + rimRoots());
 		findPasswordTA().setVisible(false);
 		findPasswordLb().setVisible(false);
+		findTestButton().setVisible(false);
+		findPasswordTA().setEnabled(false);
+		findPasswordLb().setEnabled(false);
+		findTestButton().setEnabled(false);
 		findUsernameLb().setText("Token");
 
 		selectedTheme = "Initial";
@@ -5315,4 +5319,22 @@ public class StateMachine extends StateMachineBase {
 		return val;
 	}
 
+
+    @Override
+    protected void onLogin_TestButtonAction(Component c, ActionEvent event) {
+    	
+		UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
+		selectedTheme = "mitsosWhite";
+		UIManager.getInstance().addThemeProps(r.getTheme("0"));
+		
+		Display.getInstance().getCurrent().refreshTheme();
+    	
+		final Dialog dlg = new Dialog();	
+		InfiniteProgress prog = new InfiniteProgress();
+		prog.setAnimation(UIManager.getInstance().getThemeImageConstant("waitingImage"));
+		
+		dlg.setLayout(new BorderLayout());
+		dlg.addComponent(BorderLayout.CENTER, prog);
+		dlg.showPacked(BorderLayout.CENTER, false);
+    }
 }
