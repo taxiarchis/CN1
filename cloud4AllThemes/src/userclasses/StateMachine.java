@@ -214,17 +214,17 @@ public class StateMachine extends StateMachineBase {
 		FlowManagerService fms = new FlowManagerService();
 		Log.p("getJsonResponseHashtable-1");
 
-//		if (!findServerCombo().isVisible()) {
-//			ip = serverTA.getText();
-//		} else {
-//			if (findServerCombo().getSelectedItem().equals("Cloud4All Server")) {
-//				ip = "flowmanager.gpii.net:80";
-//			} else if (findServerCombo().getSelectedItem().equals("HIT Server 2")) {
-//				ip = "160.40.60.183:8081";
-//			} else if (findServerCombo().getSelectedItem().equals("HIT Server 1")) {
-//				ip = "160.40.60.230:8081";
-//			}
-//		}
+		// if (!findServerCombo().isVisible()) {
+		// ip = serverTA.getText();
+		// } else {
+		// if (findServerCombo().getSelectedItem().equals("Cloud4All Server")) {
+		// ip = "flowmanager.gpii.net:80";
+		// } else if (findServerCombo().getSelectedItem().equals("HIT Server 2")) {
+		// ip = "160.40.60.183:8081";
+		// } else if (findServerCombo().getSelectedItem().equals("HIT Server 1")) {
+		// ip = "160.40.60.230:8081";
+		// }
+		// }
 
 		Log.p("ip: " + ip);
 		Log.p("username: " + username);
@@ -241,8 +241,8 @@ public class StateMachine extends StateMachineBase {
 
 		Log.p("getJsonResponseHashtable-2");
 		InputStream is = fms.requestNeedsAndPreferences2(ip, username);
-		
-		if(is!=null){
+
+		if (is != null) {
 			Log.p("getJsonResponseHashtable-3");
 			try {
 				ht = fms.parseJsonNeedsAndPreferencesResponse(is);
@@ -821,8 +821,8 @@ public class StateMachine extends StateMachineBase {
 
 		String username = findUsernameTA().getText();
 
-//		if (!serverTA.isVisible()) {
-		if(!findUsernameLb().getComponentForm().contains(serverTA)){
+		// if (!serverTA.isVisible()) {
+		if (!findUsernameLb().getComponentForm().contains(serverTA)) {
 			// ip = findServerCombo().getSelectedItem().toString();
 			if (findServerCombo().getSelectedItem().equals("Cloud4All Server")) {
 				ip = "flowmanager.gpii.net:80";
@@ -893,9 +893,9 @@ public class StateMachine extends StateMachineBase {
 			showForm("Main", null);
 		} else {
 			Hashtable tab = getJsonResponseHashtable(ip, username);
-			if(tab != null){
+			if (tab != null) {
 				applyServerSettings(tab);
-				
+
 				if (!isError) {
 					showForm("Main", null);
 				} else {
@@ -903,7 +903,7 @@ public class StateMachine extends StateMachineBase {
 				}
 			} else {
 				Dialog.show("Server ip error!", "", "OK", null);
-				
+
 				showForm("Login", null);
 			}
 		}
@@ -951,8 +951,8 @@ public class StateMachine extends StateMachineBase {
 								selectedTheme = "mitsosWhite";
 								Display.getInstance().getCurrent().refreshTheme();
 
-//								showForm("Main", null);
-								
+								// showForm("Main", null);
+
 								Display.getInstance().callSerially(new Runnable() {
 									public void run() {
 										showForm("Main", null);
@@ -988,16 +988,16 @@ public class StateMachine extends StateMachineBase {
 								// Log.p("showMain!-001");
 								// }
 								// });
-								
-//								showForm("Main", null);
-								
+
+								// showForm("Main", null);
+
 								Display.getInstance().callSerially(new Runnable() {
 									public void run() {
 										showForm("Main", null);
 										Log.p("scanCompleted-2-1");
 									}
 								});
-								
+
 							} else if (contents.equals("11")) {
 								flag = "11";
 								Log.p("scanCompleted-11-0");
@@ -1308,321 +1308,6 @@ public class StateMachine extends StateMachineBase {
 			});
 		}
 	}
-
-	// public static void scanQRCode(final StateMachine stateMachine) {
-	// new Thread() {
-	// @Override
-	// public void run() {
-	// // final TextArea scanResultArea =
-	// stateMachine.findScanResultArea(Display.getInstance().getCurrent());
-	// CodeScanner codeScanner = CodeScanner.getInstance();
-	// if (codeScanner == null) {
-	// //
-	// scanResultArea.setText("QR Code scanning is not enabled for your device");
-	// Log.
-	// } else {
-	// codeScanner.scanBarCode(new ScanResult() {
-	// public void scanCompleted(String contents, String formatName, byte[]
-	// rawBytes) {
-	// scanResultArea.setText(contents + ", " + formatName);
-	// }
-	//
-	// public void scanCanceled() {
-	// scanResultArea.setText("Scan was cancelled");
-	// }
-	//
-	// public void scanError(int errorCode, String message) {
-	// scanResultArea.setText("Error COde: " + errorCode + "\nMessage: " +
-	// message);
-	// }
-	// });
-	// }
-	// }
-	// }.start();
-	// }
-
-	// protected void beforeQRLogin(Form f) {
-	// // If the resource file changes the names of components this call will
-	// break notifying you that you should fix the code
-	// super.beforeQRLogin(f);
-	//
-	// if (CodeScanner.getInstance() != null) {
-	// final Button qrCode = new Button("Scan QR");
-	// findQRLoginForm(f).addComponent(qrCode);
-	//
-	// qrCode.addActionListener(new ActionListener() {
-	// public void actionPerformed(ActionEvent evt) {
-	//
-	// // MyResult m = new MyResult();
-	// // CodeScanner.getInstance().scanQRCode(m);
-	// // Display.getInstance().invokeAndBlock(m);
-	// //
-	// // if(m.getFlag()!= null){
-	// // if(m.getFlag().equals("1")){
-	// // showForm("Settings", null);
-	// // }else if(m.getFlag().equals("2")){
-	// // showForm("Share", null);
-	// // }
-	// // }
-	//
-	//
-	//
-	//
-	// Display.getInstance().invokeAndBlock(new Runnable(){
-	// public void run(){
-	// CodeScanner.getInstance().scanBarCode(new ScanResult() {
-	// public void scanCompleted(String contents, String formatName, byte[]
-	// rawBytes) {
-	// // barCode.setText("Bar: " + contents);
-	//
-	// if (contents.equals("1")) {
-	// flag = "1";
-	// } else if (contents.equals("2")) {
-	// flag = "2";
-	// }
-	// }
-	//
-	// public void scanCanceled() {
-	// if (flag != null) {
-	// if (flag.equals("1")) {
-	// // text = text + "1";
-	// // qrCode.setText(text);
-	//
-	// selectedLanguage = "gr";
-	// selectedFont = "huge";
-	// selectedTheme = "mitsosYellow";
-	//
-	// // Set Greek
-	// Hashtable table = r.getL10N("cloud4AllThemes", "gr");
-	// UIManager.getInstance().setResourceBundle(table);
-	//
-	// // Set huge
-	// UIManager.getInstance().addThemeProps(r.getTheme("0"));
-	//
-	// // Set mitsosWhite
-	// UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
-	// selectedTheme = "mitsosWhite";
-	// Display.getInstance().getCurrent().refreshTheme();
-	//
-	// String currentFormName = Display.getInstance().getCurrent().getName();
-	//
-	// text = text + currentFormName;
-	//
-	// showForm("Main", null);
-	// } else if (flag.equals("2")) {
-	// // text = text + "2";
-	// // qrCode.setText(text);
-	//
-	// selectedLanguage = "en";
-	// selectedFont = "small";
-	// selectedTheme = "Leather";
-	//
-	// // Set English
-	// Hashtable table = r.getL10N("cloud4AllThemes", "en");
-	// UIManager.getInstance().setResourceBundle(table);
-	//
-	// // Set small
-	// UIManager.getInstance().addThemeProps(r.getTheme("4"));
-	//
-	// // Set mitsosWhite
-	// UIManager.getInstance().setThemeProps(r.getTheme("Leather"));
-	// selectedTheme = "Leather";
-	// Display.getInstance().getCurrent().refreshTheme();
-	//
-	// showForm("Main", null);
-	// }
-	// }
-	// }
-	//
-	// public void scanError(int errorCode, String message) {
-	// if (flag != null) {
-	// if (flag.equals("1")) {
-	// // text = text + "1";
-	// // qrCode.setText(text);
-	//
-	// selectedLanguage = "gr";
-	// selectedFont = "huge";
-	// selectedTheme = "mitsosYellow";
-	//
-	// // Set Greek
-	// Hashtable table = r.getL10N("cloud4AllThemes", "gr");
-	// UIManager.getInstance().setResourceBundle(table);
-	//
-	// // Set huge
-	// UIManager.getInstance().addThemeProps(r.getTheme("0"));
-	//
-	// // Set mitsosWhite
-	// UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
-	// selectedTheme = "mitsosWhite";
-	// Display.getInstance().getCurrent().refreshTheme();
-	//
-	// String currentFormName = Display.getInstance().getCurrent().getName();
-	//
-	// text = text + currentFormName;
-	//
-	// showForm("Main", null);
-	// } else if (flag.equals("2")) {
-	// // text = text + "2";
-	// // qrCode.setText(text);
-	//
-	// selectedLanguage = "en";
-	// selectedFont = "small";
-	// selectedTheme = "Leather";
-	//
-	// // Set English
-	// Hashtable table = r.getL10N("cloud4AllThemes", "en");
-	// UIManager.getInstance().setResourceBundle(table);
-	//
-	// // Set small
-	// UIManager.getInstance().addThemeProps(r.getTheme("4"));
-	//
-	// // Set mitsosWhite
-	// UIManager.getInstance().setThemeProps(r.getTheme("Leather"));
-	// selectedTheme = "Leather";
-	// Display.getInstance().getCurrent().refreshTheme();
-	//
-	// showForm("Main", null);
-	// }
-	// }
-	// }
-	// });
-	// }
-	// });
-	//
-	// // MyResult myRes = new MyResult();
-	// // CodeScanner.getInstance().scanQRCode(myRes);
-	// }
-	// });
-	//
-	// final Button barCode = new Button("Scan Barcode");
-	// // findQRLogin().addComponent(barCode);
-	//
-	// // Form currentForm2 = Display.getInstance().getCurrent();
-	// // System.out.println("Form: " + currentForm2.getName());
-	// findQRLoginForm(f).addComponent(barCode);
-	//
-	// barCode.addActionListener(new ActionListener() {
-	// public void actionPerformed(ActionEvent evt) {
-	// CodeScanner.getInstance().scanBarCode(new ScanResult() {
-	// public void scanCompleted(String contents, String formatName, byte[]
-	// rawBytes) {
-	// // barCode.setText("Bar: " + contents);
-	//
-	// if (contents.equals("1")) {
-	// flag = "1";
-	// } else if (contents.equals("2")) {
-	// flag = "2";
-	// }
-	// }
-	//
-	// public void scanCanceled() {
-	// if (flag != null) {
-	// if (flag.equals("1")) {
-	// // text = text + "1";
-	// // qrCode.setText(text);
-	//
-	// selectedLanguage = "gr";
-	// selectedFont = "huge";
-	// selectedTheme = "mitsosYellow";
-	//
-	// // Set Greek
-	// Hashtable table = r.getL10N("cloud4AllThemes", "gr");
-	// UIManager.getInstance().setResourceBundle(table);
-	//
-	// // Set huge
-	// UIManager.getInstance().addThemeProps(r.getTheme("0"));
-	//
-	// // Set mitsosWhite
-	// UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
-	// selectedTheme = "mitsosWhite";
-	// Display.getInstance().getCurrent().refreshTheme();
-	//
-	// String currentFormName = Display.getInstance().getCurrent().getName();
-	//
-	// text = text + currentFormName;
-	//
-	// showForm("Main", null);
-	// } else if (flag.equals("2")) {
-	// // text = text + "2";
-	// // qrCode.setText(text);
-	//
-	// selectedLanguage = "en";
-	// selectedFont = "small";
-	// selectedTheme = "Leather";
-	//
-	// // Set English
-	// Hashtable table = r.getL10N("cloud4AllThemes", "en");
-	// UIManager.getInstance().setResourceBundle(table);
-	//
-	// // Set small
-	// UIManager.getInstance().addThemeProps(r.getTheme("4"));
-	//
-	// // Set mitsosWhite
-	// UIManager.getInstance().setThemeProps(r.getTheme("Leather"));
-	// selectedTheme = "Leather";
-	// Display.getInstance().getCurrent().refreshTheme();
-	//
-	// showForm("Main", null);
-	// }
-	// }
-	// }
-	//
-	// public void scanError(int errorCode, String message) {
-	// if (flag != null) {
-	// if (flag.equals("1")) {
-	// // text = text + "1";
-	// // qrCode.setText(text);
-	//
-	// selectedLanguage = "gr";
-	// selectedFont = "huge";
-	// selectedTheme = "mitsosYellow";
-	//
-	// // Set Greek
-	// Hashtable table = r.getL10N("cloud4AllThemes", "gr");
-	// UIManager.getInstance().setResourceBundle(table);
-	//
-	// // Set huge
-	// UIManager.getInstance().addThemeProps(r.getTheme("0"));
-	//
-	// // Set mitsosWhite
-	// UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
-	// selectedTheme = "mitsosWhite";
-	// Display.getInstance().getCurrent().refreshTheme();
-	//
-	// String currentFormName = Display.getInstance().getCurrent().getName();
-	//
-	// text = text + currentFormName;
-	//
-	// showForm("Main", null);
-	// } else if (flag.equals("2")) {
-	// // text = text + "2";
-	// // qrCode.setText(text);
-	//
-	// selectedLanguage = "en";
-	// selectedFont = "small";
-	// selectedTheme = "Leather";
-	//
-	// // Set English
-	// Hashtable table = r.getL10N("cloud4AllThemes", "en");
-	// UIManager.getInstance().setResourceBundle(table);
-	//
-	// // Set small
-	// UIManager.getInstance().addThemeProps(r.getTheme("4"));
-	//
-	// // Set mitsosWhite
-	// UIManager.getInstance().setThemeProps(r.getTheme("Leather"));
-	// selectedTheme = "Leather";
-	// Display.getInstance().getCurrent().refreshTheme();
-	//
-	// showForm("Main", null);
-	// }
-	// }
-	// }
-	// });
-	// }
-	// });
-	// }
-	// }
 
 	public void getFontFromName(String font) {
 		// String returnStr = "";
@@ -5202,13 +4887,13 @@ public class StateMachine extends StateMachineBase {
 		findLoginBtn().getUnselectedStyle().setMargin(Button.TOP, 50);
 		findLoginBtn().getPressedStyle().setMargin(Button.TOP, 50);
 
-//		findPasswordTA().setText("ROOTS1:" + rimRoots());
-//		findPasswordTA().setVisible(false);
-//		findPasswordLb().setVisible(false);
-//		findTestButton().setVisible(false);
-//		findPasswordTA().setEnabled(false);
-//		findPasswordLb().setEnabled(false);
-//		findTestButton().setEnabled(false);
+		// findPasswordTA().setText("ROOTS1:" + rimRoots());
+		// findPasswordTA().setVisible(false);
+		// findPasswordLb().setVisible(false);
+		// findTestButton().setVisible(false);
+		// findPasswordTA().setEnabled(false);
+		// findPasswordLb().setEnabled(false);
+		// findTestButton().setEnabled(false);
 		findUsernameLb().setText("Token");
 
 		selectedTheme = "Initial";
@@ -5308,19 +4993,19 @@ public class StateMachine extends StateMachineBase {
 			findUsernameLb().getComponentForm().revalidate();
 		} else if (((ComboBox) c).getSelectedItem().equals("Cloud4All Server")) {
 			ip = "flowmanager.gpii.net:80";
-			if(serverTA != null){
+			if (serverTA != null) {
 				findUsernameLb().getComponentForm().removeComponent(serverTA);
 				findUsernameLb().getComponentForm().revalidate();
 			}
 		} else if (((ComboBox) c).getSelectedItem().equals("HIT Server 2")) {
 			ip = "160.40.60.183:8081";
-			if(serverTA != null){
+			if (serverTA != null) {
 				findUsernameLb().getComponentForm().removeComponent(serverTA);
 				findUsernameLb().getComponentForm().revalidate();
 			}
 		} else if (((ComboBox) c).getSelectedItem().equals("HIT Server 1")) {
 			ip = "160.40.60.230:8081";
-			if(serverTA != null){
+			if (serverTA != null) {
 				findUsernameLb().getComponentForm().removeComponent(serverTA);
 				findUsernameLb().getComponentForm().revalidate();
 			}
@@ -5335,22 +5020,22 @@ public class StateMachine extends StateMachineBase {
 		return val;
 	}
 
+	// @Override
+	// protected void onLogin_TestButtonAction(Component c, ActionEvent event) {
+	//
+	// UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
+	// selectedTheme = "mitsosWhite";
+	// UIManager.getInstance().addThemeProps(r.getTheme("0"));
+	//
+	// Display.getInstance().getCurrent().refreshTheme();
+	//
+	// final Dialog dlg = new Dialog();
+	// InfiniteProgress prog = new InfiniteProgress();
+	// prog.setAnimation(UIManager.getInstance().getThemeImageConstant("waitingImage"));
+	//
+	// dlg.setLayout(new BorderLayout());
+	// dlg.addComponent(BorderLayout.CENTER, prog);
+	// dlg.showPacked(BorderLayout.CENTER, false);
+	// }
 
-//    @Override
-//    protected void onLogin_TestButtonAction(Component c, ActionEvent event) {
-//    	
-//		UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
-//		selectedTheme = "mitsosWhite";
-//		UIManager.getInstance().addThemeProps(r.getTheme("0"));
-//		
-//		Display.getInstance().getCurrent().refreshTheme();
-//    	
-//		final Dialog dlg = new Dialog();	
-//		InfiniteProgress prog = new InfiniteProgress();
-//		prog.setAnimation(UIManager.getInstance().getThemeImageConstant("waitingImage"));
-//		
-//		dlg.setLayout(new BorderLayout());
-//		dlg.addComponent(BorderLayout.CENTER, prog);
-//		dlg.showPacked(BorderLayout.CENTER, false);
-//    }
 }

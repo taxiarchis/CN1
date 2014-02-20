@@ -12,6 +12,7 @@ import com.codename1.ui.Dialog;
 import com.codename1.ui.Label;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.codename1.xml.Element;
 import com.codename1.xml.XMLParser;
@@ -117,7 +118,9 @@ public class GeocodingService {
 		final Dialog dlg = new Dialog();
 		dlg.setLayout(new BorderLayout());
 		InfiniteProgress prog = new InfiniteProgress();
-		prog.setAnimation(resources.getImage("waiting_4.png"));
+		// prog.setAnimation(resources.getImage("waiting_4.png"));
+		
+		prog.setAnimation(UIManager.getInstance().getThemeImageConstant("waitingImage"));
 //		Dimension dim = new Dimension(60, 60);
 
 		dlg.addComponent(BorderLayout.CENTER, prog);
