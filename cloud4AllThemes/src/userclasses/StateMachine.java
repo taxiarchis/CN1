@@ -951,7 +951,14 @@ public class StateMachine extends StateMachineBase {
 								selectedTheme = "mitsosWhite";
 								Display.getInstance().getCurrent().refreshTheme();
 
-								showForm("Main", null);
+//								showForm("Main", null);
+								
+								Display.getInstance().callSerially(new Runnable() {
+									public void run() {
+										showForm("Main", null);
+										Log.p("scanCompleted-1-1");
+									}
+								});
 
 							} else if (contents.equals("2")) {
 								flag = "2";
@@ -981,7 +988,16 @@ public class StateMachine extends StateMachineBase {
 								// Log.p("showMain!-001");
 								// }
 								// });
-								showForm("Main", null);
+								
+//								showForm("Main", null);
+								
+								Display.getInstance().callSerially(new Runnable() {
+									public void run() {
+										showForm("Main", null);
+										Log.p("scanCompleted-2-1");
+									}
+								});
+								
 							} else if (contents.equals("11")) {
 								flag = "11";
 								Log.p("scanCompleted-11-0");
@@ -5186,13 +5202,13 @@ public class StateMachine extends StateMachineBase {
 		findLoginBtn().getUnselectedStyle().setMargin(Button.TOP, 50);
 		findLoginBtn().getPressedStyle().setMargin(Button.TOP, 50);
 
-		findPasswordTA().setText("ROOTS1:" + rimRoots());
-		findPasswordTA().setVisible(false);
-		findPasswordLb().setVisible(false);
-		findTestButton().setVisible(false);
-		findPasswordTA().setEnabled(false);
-		findPasswordLb().setEnabled(false);
-		findTestButton().setEnabled(false);
+//		findPasswordTA().setText("ROOTS1:" + rimRoots());
+//		findPasswordTA().setVisible(false);
+//		findPasswordLb().setVisible(false);
+//		findTestButton().setVisible(false);
+//		findPasswordTA().setEnabled(false);
+//		findPasswordLb().setEnabled(false);
+//		findTestButton().setEnabled(false);
 		findUsernameLb().setText("Token");
 
 		selectedTheme = "Initial";
@@ -5320,21 +5336,21 @@ public class StateMachine extends StateMachineBase {
 	}
 
 
-    @Override
-    protected void onLogin_TestButtonAction(Component c, ActionEvent event) {
-    	
-		UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
-		selectedTheme = "mitsosWhite";
-		UIManager.getInstance().addThemeProps(r.getTheme("0"));
-		
-		Display.getInstance().getCurrent().refreshTheme();
-    	
-		final Dialog dlg = new Dialog();	
-		InfiniteProgress prog = new InfiniteProgress();
-		prog.setAnimation(UIManager.getInstance().getThemeImageConstant("waitingImage"));
-		
-		dlg.setLayout(new BorderLayout());
-		dlg.addComponent(BorderLayout.CENTER, prog);
-		dlg.showPacked(BorderLayout.CENTER, false);
-    }
+//    @Override
+//    protected void onLogin_TestButtonAction(Component c, ActionEvent event) {
+//    	
+//		UIManager.getInstance().setThemeProps(r.getTheme("mitsosWhite"));
+//		selectedTheme = "mitsosWhite";
+//		UIManager.getInstance().addThemeProps(r.getTheme("0"));
+//		
+//		Display.getInstance().getCurrent().refreshTheme();
+//    	
+//		final Dialog dlg = new Dialog();	
+//		InfiniteProgress prog = new InfiniteProgress();
+//		prog.setAnimation(UIManager.getInstance().getThemeImageConstant("waitingImage"));
+//		
+//		dlg.setLayout(new BorderLayout());
+//		dlg.addComponent(BorderLayout.CENTER, prog);
+//		dlg.showPacked(BorderLayout.CENTER, false);
+//    }
 }
