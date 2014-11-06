@@ -1,0 +1,153 @@
+package gr.certh.hit.app.map;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Vector;
+
+import com.codename1.components.InfiniteProgress;
+import com.codename1.io.ConnectionRequest;
+import com.codename1.io.NetworkManager;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.Label;
+import com.codename1.ui.geom.Dimension;
+import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.plaf.UIManager;
+import com.codename1.ui.util.Resources;
+import com.codename1.xml.Element;
+import com.codename1.xml.XMLParser;
+
+public class GeocodingService {
+
+	ConnectionRequest con;
+	Resources resources;
+
+	public GeocodingService(Resources r) {
+		resources = r;
+	}
+
+	public Vector parseXMLResponseWithCodenameOneParser(InputStream input) {
+		Vector poisVector = new Vector();
+
+		System.out.println("input:" + input);
+		InputStreamReader dataReader = new InputStreamReader(input);
+
+		XMLParser parser = new XMLParser();
+		Element geocodeResponse = parser.parse(dataReader);
+
+		// Element result = geocodeResponse.getChildAt(1); // To 0 prepei na einai to <status>
+		// System.out.println(result);
+		//
+		// Vector formattedAddressVec = result.getDescendantsByTagName("lat");
+		// Element a2 = (Element)formattedAddressVec.get(0);
+		// System.out.println(a2.getAttribute("formattedAddressVec"));
+		// String formattedAddressStr = a2.getText();
+		// System.out.println(formattedAddressStr);
+
+		Vector vec = geocodeResponse.getChildrenByTagName("result");
+		System.out.println(vec);
+
+		for (int i = 1; i <= vec.size(); i++) {
+			// GeocodingPoi object
+			GeocodingPoi thePoi = new GeocodingPoi();
+
+			Element formattedAddressEl = geocodeResponse.getChildAt(i).getChildAt(1).getChildAt(0);
+			String formattedAddressStr = formattedAddressEl.getText();
+			System.out.println("formattedAddressStr: " + formattedAddressStr);
+			thePoi.setFormattedAddress(formattedAddressStr);
+
+			Element result = geocodeResponse.getChildAt(i);
+			System.out.println(result);
+
+			Vector latitudeVec = result.getDescendantsByTagName("lat");
+			Element latEl = ((Element) latitudeVec.get(0)).getChildAt(0);
+			String latStr = latEl.getText();
+			System.out.println("latStr: " + latStr);
+			thePoi.setLatitude(latStr);
+
+			Vector longitudeVec = result.getDescendantsByTagName("lng");
+			Element lngEl = ((Element) longitudeVec.get(0)).getChildAt(0);
+			String lngStr = lngEl.getText();
+			System.out.println("lngStr: " + lngStr);
+			thePoi.setLongitude(lngStr);
+
+			// SE KAPOIES PERIPTWSEIW ERXETAI ENA ELEMENT PARAPANW GIAYTO DEN PIANEI O PARAKATW TROPOS
+			// Element latitudeEl = geocodeResponse.getChildAt(i).getChildAt(11).getChildAt(0).getChildAt(0).getChildAt(0);
+			// String latitudeStr = latitudeEl.getText();
+			// System.out.println("latitudeStr: " + latitudeStr);
+			// thePoi.setLatitude(latitudeStr);
+			//
+			// Element longitudeEl = geocodeResponse.getChildAt(i).getChildAt(11).getChildAt(0).getChildAt(1).getChildAt(0);
+			// String longitudeStr = longitudeEl.getText();
+			// System.out.println("longitudeStr: " + longitudeStr);
+			// thePoi.setLongitude(longitudeStr);
+
+			poisVector.addElement(thePoi);
+			System.out.println("Size: " + poisVector.size());
+		}
+
+		return poisVector;
+	}
+
+	// Address format : <Str. No> <Str. Name>
+	public InputStream requestGeocodingService(String address) {
+		String url = "http://maps.googleapis.com/maps/api/geocode/xml";
+
+		con = new ConnectionRequest();
+
+		con.setUrl(url); // + "address=12 Pipinou&sensor=false"
+		con.setPost(false);
+		con.setContentType("text/xml");
+
+		// con.addArgument("x", "22.436092"); // Edw tha prepei na mpoun oi pragmatikes times tou GPS
+		// con.addArgument("y", "38.899984");
+		// con.addArgument("x", ""+longitude);
+		con.addArgument("address", address);
+		con.addArgument("sensor", "false");
+
+		// con.addArgument("poi_type", "11");
+		// con.addArgument("range", "500000");
+
+		// TODO: Leitourgei
+//		final Dialog dlg = new Dialog();
+//		dlg.setLayout(new BorderLayout());
+//		dlg.addComponent(BorderLayout.EAST, new InfiniteProgress()); 
+//		dlg.addComponent(BorderLayout.CENTER, new Label("Loading.."));
+//		dlg.showModeless();
+		
+		final Dialog dlg = new Dialog();
+		dlg.setLayout(new BorderLayout());
+		InfiniteProgress prog = new InfiniteProgress();
+		// prog.setAnimation(resources.getImage("waiting_4.png"));
+		
+		prog.setAnimation(UIManager.getInstance().getThemeImageConstant("waitingImage"));
+//		Dimension dim = new Dimension(60, 60);
+
+		dlg.addComponent(BorderLayout.CENTER, prog);
+//		dlg.setPreferredSize(dim);
+//		dlg.addComponent(BorderLayout.CENTER, new Label("Loading.."));
+//		dlg.showModeless();
+		dlg.showPacked(BorderLayout.CENTER, false);
+		
+		con.setDisposeOnCompletion(dlg);
+
+		NetworkManager.getInstance().addToQueueAndWait(con);
+		byte[] data = con.getResponseData();
+		System.out.println(data);
+		String response = openFileToString(data);
+		System.out.println("response: " + response);
+
+		InputStream is = new ByteArrayInputStream(response.getBytes());
+
+		return is;
+	}
+
+	public String openFileToString(byte[] _bytes) {
+		String file_string = "";
+		for (int i = 0; i < _bytes.length; i++) {
+			file_string += (char) _bytes[i];
+		}
+		return file_string;
+	}
+
+}
